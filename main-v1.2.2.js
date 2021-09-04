@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('#button-retira-gratis').insertAdjacentHTML('afterend', '<div class="modal-background retira-gratis"><div id="modal-retira-gratis" class="modal"><div class="flex -between"><div class="modal-header"><div class="theme-title">Retira Grátis</div> <div class="-subtitle"> Para o cep <span class="selected-retira-gratis"></span> <span class="-divisor"> | </span> <span class="selected-city"> - </span></div></div> <div class="close-modal"><i class="icon icon-close-modal"></i></div></div> <div class="modal-content"> <table class="table"><tr><th>Tipo</th> <th>Prazo</th> <th>Valor</th></tr> </table> <div class="disclaimer"> Prazo de entrega a partir da aprovação de pagamento <span class="display-hibrid">e envio ao operador logístico.</span></div></div></div></div></div>');
             console.log('#modal de retirada grátis adicionado');
             
+            document.querySelector('#button-retira-gratis').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido por <span class="text-primary">Lojas Hiper</span></p>');
+            console.log('#informação do vendedor adicionado');
+            
             document.querySelector('#button-retira-gratis').onclick = function() {
                 document.querySelector('#modal-retira-gratis').parentNode.classList.add("active");
             };
