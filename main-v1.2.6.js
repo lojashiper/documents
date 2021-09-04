@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.querySelector('#modal-retira-gratis button').classList.add('sending');
                 setTimeout(function(){
                     document.querySelector('#modal-retira-gratis button').classList.remove('sending');
-                    document.querySelector('#modal-retira-gratis .disclaimer').innerText = 'Desculpe! Não encontramos nenhum Ponto de Retirada próximo as informações informadas.'
+                    document.querySelector('#modal-retira-gratis .disclaimer').innerText = 'Desculpe! Não encontramos nenhum Ponto de Retirada próximo ao CEP que foi informado.'
                     document.querySelector('#modal-retira-gratis .disclaimer').style.display = 'block';
                 },5000);
             };
