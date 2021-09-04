@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('.main-product-buy-button-holder').insertAdjacentHTML('afterend', '<button id="button-retira-gratis" class="loader-button btn btn-primary" style=" width: 100%; background-color: var(--color-general-primary); border-color: var(--color-general-primary);">Retira Grátis <svg viewBox="0 0 36 8"><circle cx="4" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".1"></animate></circle> <circle cx="18" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".2"></animate></circle> <circle cx="32" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".3"></animate></circle></svg></button>');
             console.log('#botão de retirada grátis adicionado');
 
-            document.querySelector('#button-retira-gratis').insertAdjacentHTML('afterend', '<div class="modal-background"><div id="modal-retira-gratis" class="modal"><div class="flex -between"><div class="modal-header"><div class="theme-title">Retira Grátis</div> <div class="-subtitle">Digite o seu CEP abaixo para verificarmos o lugar ideal para você retirar o seu pedido.</div></div> <div class="close-modal"><i class="icon icon-close-modal"></i></div></div> <div class="modal-content"> <div id="retira-gratis-zipcode"><div class="-holder relative"><input type="tel" name="zipcode" placeholder="Ex.: 00000-000" class=""> <button disabled="disabled" class="loader-button btn btn-secundary -small" style="position: absolute;right: 5px;top: 5px;">Verificar<svg viewBox="0 0 36 8"><circle cx="4" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".1"></animate></circle> <circle cx="18" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".2"></animate></circle> <circle cx="32" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".3"></animate></circle></svg></button></div></div> </div></div></div>');
+            document.querySelector('#button-retira-gratis').insertAdjacentHTML('afterend', '<div class="modal-background"><div id="modal-retira-gratis" class="modal"><div class="flex -between"><div class="modal-header"><div class="theme-title">Retira Grátis</div> <div class="-subtitle">Digite o seu CEP abaixo para verificarmos o lugar ideal para você retirar o seu pedido.</div></div> <div class="close-modal"><i class="icon icon-close-modal"></i></div></div> <div class="modal-content"> <div id="retira-gratis-zipcode"><div class="-holder relative"><input type="tel" name="zipcode" placeholder="Ex.: 00000-000" class=""> <button disabled="disabled" class="loader-button btn btn-secundary -small" style="position: absolute;right: 5px;top: 5px;">Verificar<svg viewBox="0 0 36 8"><circle cx="4" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".1"></animate></circle> <circle cx="18" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".2"></animate></circle> <circle cx="32" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".3"></animate></circle></svg></button></div><div class="disclaimer" style="display: none; font-size: 12px; color: var(--black-light); margin-top: 16px; line-height: 17px;"></div></div> </div></div></div>');
             console.log('#modal de retirada grátis adicionado');
             
             document.querySelector('#button-retira-gratis').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido por <span class="text-primary">Lojas Hiper</span></p>');
@@ -19,6 +19,26 @@ document.addEventListener("DOMContentLoaded", function() {
             };
             window.onclick = function(event) {
                 if(event.target.classList.contains('retira-gratis') && event.target.classList.contains('modal-background') && event.target.classList.contains('active')) event.target.classList.remove("active");
+            };
+            document.querySelector('#modal-retira-gratis input[name="zipcode"]').onkeyup = function(){
+                if(this.value.length <= 9){
+                    var v = this.value.replace(/\D/g,"");
+                    v = v.replace(/^(\d{5})(\d)/,"$1-$2");
+                    this.value = v;
+                    if(/^[0-9]{5}-[0-9]{3}$/.test(v)) document.querySelector('#modal-retira-gratis button').removeAttribute('disabled');
+                    else{
+                        if(!document.querySelector('#modal-retira-gratis button').hasAttribute('disabled')) document.querySelector('#modal-retira-gratis button').setAttribute('disabled','');
+                        document.querySelector('#modal-retira-gratis .disclaimer').style.display = 'none';
+                    }
+                }else this.value = this.value.slice(0, this.maxLength);
+            };
+            document.querySelector('#modal-retira-gratis button').onclick = function(){
+                document.querySelector('#modal-retira-gratis button').classList.add('sending');
+                setTimeout(function(){
+                    document.querySelector('#modal-retira-gratis button').classList.remove('sending');
+                    document.querySelector('#modal-retira-gratis .disclaimer').innerText = 'Desculpe! Não encontramos nenhum Ponto de Retirada próximo as informações informadas.'
+                    document.querySelector('#modal-retira-gratis .disclaimer').style.display = 'block';
+                },5000);
             };
             console.log('#scripts de retirada grátis adicionado');
             /* end:: Retirada grátis */
