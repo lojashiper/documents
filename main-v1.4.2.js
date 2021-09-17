@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    html.classList.add('script-lojashiper');
+    document.querySelector('body').classList.add('script-lojashiper');
     console.log('#iniciando definição de script');
     
     if(document.body.classList.contains('home')){
