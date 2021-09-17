@@ -61,7 +61,19 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('.main-product-shipping.lojashiper label').insertAdjacentHTML('beforebegin', '<div class="product-info-shipping"> <figure aria-hidden="true" class="product-info-shipping-figure"> <svg xmlns="http://www.w3.org/2000/svg" class="product-info-shipping-icon" width="18" height="15" viewBox="0 0 18 15"><path fill-rule="nonzero" d="M7.763 12.207a2.398 2.398 0 0 1-4.726 0H1.8a1.8 1.8 0 0 1-1.8-1.8V2.195a1.8 1.8 0 0 1 1.8-1.8h8.445a1.8 1.8 0 0 1 1.8 1.8v.568l3.322.035L18 6.821v5.386h-2.394a2.398 2.398 0 0 1-4.727 0H7.763zm-.1-1.2h3.182V2.195a.6.6 0 0 0-.6-.6H1.8a.6.6 0 0 0-.6.6v8.212a.6.6 0 0 0 .6.6h1.337a2.399 2.399 0 0 1 4.526 0zm7.843 0H16.8V7.179l-2.086-3.187-2.669-.029v5.76a2.399 2.399 0 0 1 3.461 1.284zm-2.263 1.99a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396zm-7.843 0a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396z"></path></svg> </figure> <div class="product-info-shipping-body"> <p class="product-info-shipping-title">Envio para todo o país</p> <p class="product-info-shipping-text">Calcule o frete e o prazo de entrega</p> </div> </div>');
             console.log('#mensagem de frete adicionado');
             /* end:: Mensagem de frete */
-
+            
+            /* begin:: Valor do desconto */
+            if(document.querySelector('.product .old-price')){
+                var valor_produto_antigo = document.querySelector('.product .old-price').innerText;
+                var valor_produto_float_antigo = parseFloat(valor_produto_antigo.split(' ')[1].replace(',','.'));
+                var valor_produto = document.querySelector('.product .actual-price').innerText;
+                var valor_produto_float = parseFloat(valor_produto.split(' ')[1].replace(',','.'));
+                var valor_desconto = (valor_produto_float_antigo - valor_produto_float).toFixed(2).replace('.', ',');
+                document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('beforebegin', '<div style="display: inline-flex;-webkit-box-align: center;align-items: center;padding: 6px 16px;font-size: 0.875rem;border: none;min-height: 1.5rem;max-width: 100%;min-width: 1.5rem;font-weight: bold;color: rgb(255, 255, 255);margin-top: 15px;background: rgb(59 181 74);border-radius: 4px;"><span><span>ECONOMIA DE </span><span class="economy-price" style="color: var(--color-general-secundary);">R$&nbsp;'+ valor_desconto +'</span></span></div>');
+                console.log('#valor do desconto adicionado');
+            }
+            /* end:: Valor do desconto */
+            
             /* begin:: Avaliações no produto */
             var total_avaliacoes = document.querySelector('.holder-product-reviews-title .-quantity').innerText;
             if(parseInt(total_avaliacoes) > 0){
