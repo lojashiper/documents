@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 var valor_produto = document.querySelector('.product .actual-price').innerText;
                 var valor_produto_float = parseFloat(valor_produto.split(' ')[1].replace(',','.'));
                 var valor_desconto = (valor_produto_float_antigo - valor_produto_float).toFixed(2).replace('.', ',');
-                document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('beforebegin', '<div style="display: inline-flex;-webkit-box-align: center;align-items: center;padding: 6px 16px;font-size: 0.875rem;border: none;min-height: 1.5rem;max-width: 100%;min-width: 1.5rem;font-weight: bold;color: rgb(255, 255, 255);margin-top: 15px;background: rgb(59 181 74);border-radius: 4px;"><span><span>ECONOMIA DE </span><span class="economy-price" style="color: var(--color-general-secundary);">R$&nbsp;'+ valor_desconto +'</span></span></div>');
+                document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('beforebegin', '<div style="display: block;-webkit-box-align: center;align-items: center;padding: 6px 16px;font-size: 0.875rem;border: none;min-height: 1.5rem;max-width: fit-content;min-width: 1.5rem;font-weight: bold;color: rgb(255, 255, 255);margin-top: 15px;background: rgb(59 181 74);border-radius: 4px;"><span><span>ECONOMIA DE </span><span class="economy-price" style="color: var(--color-general-secundary);">R$&nbsp;'+ valor_desconto +'</span></span></div>');
                 console.log('#valor do desconto adicionado');
             }
             /* end:: Valor do desconto */
