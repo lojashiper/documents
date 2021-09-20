@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     fbq('track', 'AddToCart', {
                         content_ids: [google_tag_params.ecomm_prodid.toString()],
                         content_type: 'product',
-                        value: google_tag_params.ecomm_totalvalue,
+                        value: parseFloat(valor_produto.split(' ')[1].replace(',','.')).toFixed(2),
                         currency: 'BRL' 
                     });
                 }
