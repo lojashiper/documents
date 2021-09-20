@@ -22,6 +22,20 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('#tipos de pagamento adicionado');
             /* end:: Tipos de pagamento */
             
+            /* begin:: Envia evento de adição ao carrinho */
+            document.querySelector('.main-product-buy-button-holder button').addEventListener('click', function(){
+                if(document.getElementsByClassName('error').length == 0){
+                    fbq('track', 'AddToCart', {
+                        content_ids: [google_tag_params.ecomm_prodid.toString()],
+                        content_type: 'product',
+                        value: google_tag_params.ecomm_totalvalue,
+                        currency: 'BRL' 
+                    });
+                }
+            });
+            console.log('#evento addtocart fbq adicionado');
+            /* end:: Envia evento de adição ao carrinho */
+            
             /* begin:: Informação do vendedor */
             document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido por <span class="text-primary">Lojas Hiper</span></p>');
             console.log('#informação do vendedor adicionado');
