@@ -77,6 +77,21 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             console.log('#avaliações do produto adicionado');
             /* end:: Avaliações no produto */
+            
+            /* begin:: Estimativa de entrega */
+            function convertDate(e){var t, o=new Date(e);return[(t=o.getDate(),t<10?"0"+t:t)].join("/");}
+            function getMesExtenso(e){var t=new Array(12);return t[0]="janeiro",t[1]="fevereiro",t[2]="março",t[3]="abril",t[4]="maio",t[5]="junho",t[6]="julho",t[7]="agosto",t[8]="setembro",t[9]="outubro",t[10]="novembro",t[11]="dezembro",t[e];}
+
+            var t = new Date, o=t.setDate(t.getDate()+4), n=t.setDate(t.getDate()+2), r=getMesExtenso(t.getMonth());
+            if(convertDate(o)>convertDate(n)){
+                var a = "<strong>"+ convertDate(n) +"</strong> e <strong>"+ convertDate(o) +" de "+ r +"</strong>";
+            }else{
+                if(null==(s=getMesExtenso(t.getMonth()+1))) var s=getMesExtenso(t.getMonth()-11);
+                a = "<strong>"+convertDate(n)+" de "+ r +"</strong> e <strong>"+ convertDate(o) +" de "+ s +"</strong>";
+            }
+            document.querySelector("#modal-zipcode .disclaimer").innerHTML = "Entrega estimada entre "+ a +", a depender do frete escolhido.";
+            console.log('#estimativa de entrega adicionado');
+            /* end:: Estimativa de entrega */
         });
     }
 });
