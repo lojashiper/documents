@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* end:: Retirada grátis */
             
             /* begin:: Informação do vendedor */
-            document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido e entregue por <span class="text-primary">Lojas Hiper</span></p>');
+            document.querySelector('#button-retira-gratis').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido e entregue por <span class="text-primary">Lojas Hiper</span></p>');
             console.log('#informação do vendedor adicionado');
             /* end:: Informação do vendedor */
             
