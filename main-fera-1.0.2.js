@@ -132,25 +132,15 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('section.product-reviews').insertAdjacentHTML('afterend', '<div data-fera-container="442151" data-product_id="6886111346881"></div>');
             console.log('#div fera adicionado');
           
-            (function() {
-              function asyncLoad() {
-                var urls = ["https:\/\/cdn.fera.ai\/js\/fera.placeholder.js?shop=lojas-hiper-brasil.myshopify.com"];
-                for (var i = 0; i < urls.length; i++) {
-                  var s = document.createElement('script');
-                  s.type = 'text/javascript';
-                  s.async = true;
-                  s.src = urls[i];
-                  var x = document.getElementsByTagName('script')[0];
-                  x.parentNode.insertBefore(s, x);
-                }
-              };
-              if(window.attachEvent) {
-                window.attachEvent('onload', asyncLoad);
-              } else {
-                window.addEventListener('load', asyncLoad, false);
-              }
-          })();
-          console.log('#script fera adicionado');
+            (function(h,o,t,j,a,r){
+              h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+              h._hjSettings={hjid:2609700,hjsv:6};
+              a=o.getElementsByTagName('head')[0];
+              r=o.createElement('script');r.async=1;
+              r.src=t;
+              a.appendChild(r);
+            })(window,document,'https://cdn.fera.ai/js/fera.placeholder.js?shop=lojas-hiper-brasil.myshopify.com','');
+            console.log('#script fera adicionado');
         });
     }
 });
