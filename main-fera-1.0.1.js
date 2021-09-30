@@ -130,11 +130,11 @@ document.addEventListener("DOMContentLoaded", function() {
             /* end:: Estimativa de entrega */
           
             document.querySelector('section.product-reviews').insertAdjacentHTML('afterend', '<div data-fera-container="442151" data-product_id="6886111346881"></div>');
-            console.log('#div ryviu adicionado');
+            console.log('#div fera adicionado');
           
             (function() {
               function asyncLoad() {
-                var urls = ["\/\/cdn.fera.ai\/js\/fera.placeholder.js?shop=lojas-hiper-brasil.myshopify.com"];
+                var urls = ["https:\/\/cdn.fera.ai\/js\/fera.placeholder.js?shop=lojas-hiper-brasil.myshopify.com"];
                 for (var i = 0; i < urls.length; i++) {
                   var s = document.createElement('script');
                   s.type = 'text/javascript';
