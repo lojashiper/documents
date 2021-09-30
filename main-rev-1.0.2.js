@@ -141,9 +141,9 @@ document.addEventListener("DOMContentLoaded", function() {
               h._hjSettings={hjid:2609700,hjsv:6};
               a=o.getElementsByTagName('head')[0];
               r=o.createElement('script');r.async=1;
-              r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+              r.src=t+h._hjSettings.hjid+j;
               a.appendChild(r);
-          })(window,document,'https://cdn.ryviu.com/v/static/js/app.js?shop=lojas-hiper-brasil.myshopify.com','?sv=');
+          })(window,document,'https://cdn.ryviu.com/v/static/js/app.js?shop=lojas-hiper-brasil.myshopify.com','');
           console.log('#script ryviu adicionado');
         });
     }
