@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
               r=o.createElement('script');r.async=1;
               r.src=t;
               a.appendChild(r);
-            })(window,document,'//cdn.ryviu.com/v/static/js/app.js?shop=lojas-hiper-brasil.myshopify.com','');
+            })(window,document,'//cdn.ryviu.com/v/static/js/app.js?shop=lojashiper.com','');
             console.log('#script ryviu adicionado');
         });
     }
