@@ -114,7 +114,11 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector("#modal-zipcode .disclaimer").innerHTML = "Entrega estimada entre "+ a +", a depender do frete escolhido.";
             console.log('#estimativa de entrega adicionado');
             /* end:: Estimativa de entrega */
-
+            
+            /* begin:: Avaliações do produto */
+            document.querySelector('h1.main-product-name').insertAdjacentHTML('afterend', '<div class="review-widget"> <ryviu-widget-total handle="'+ window.location.pathname.split('/')[1] +'"></ryviu-widget-total> </div>');
+            console.log('#avaliações do produto adicionado');
+            
             document.querySelector('section.collection').insertAdjacentHTML('beforebegin', '<div class="lt-block-reviews"> <ryviu-widget handle="'+ window.location.pathname.split('/')[1] +'" style="display: inline-block;" vce-ready=""></ryviu-widget> </ryviu-widget></div>');
             console.log('#div ryviu adicionado');
           
@@ -127,10 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
               a.appendChild(r);
             })(window,document,'//cdn.ryviu.com/v/static/js/app.js?shop=lojashiper.com','');
             console.log('#script ryviu adicionado');
-            
-            document.querySelector('.lt-block-reviews').addEventListener('load', function(){
-                console.log('carregou!');
-            });
+            /* end:: Avaliações do produto */
         });
     }
 });
