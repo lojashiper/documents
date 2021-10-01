@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* end:: Estimativa de entrega */
             
             /* begin:: Avaliações do produto */           
-            document.querySelector('section.collection').insertAdjacentHTML('beforebegin', '<div class="holder-collection container" style="margin-top: 40px"><div class="flex -between"><div class="holder-left flex -vcenter"><h2 class="theme-title collection-name">Avaliações de produto</h2></div></div></div> <div class="lt-block-reviews"> <ryviu-widget handle="'+ window.location.pathname.split('/')[1] +'" style="display: inline-block;"></ryviu-widget> </ryviu-widget></div>');
+            document.querySelector('section.collection').insertAdjacentHTML('beforebegin', '<div class="holder-collection container" style="margin-top: 40px"><div class="flex -between"><div class="holder-left flex -vcenter"><h2 class="theme-title collection-name">Avaliações do produto</h2></div></div></div> <div class="lt-block-reviews"> <ryviu-widget handle="'+ window.location.pathname.split('/')[1] +'" style="display: inline-block;"></ryviu-widget> </ryviu-widget></div>');
             console.log('#div ryviu adicionado');
           
             (function(h,o,t,j,a,r){
