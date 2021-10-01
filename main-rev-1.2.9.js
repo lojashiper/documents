@@ -115,10 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('#estimativa de entrega adicionado');
             /* end:: Estimativa de entrega */
             
-            /* begin:: Avaliações do produto */
-            document.querySelector('h1.main-product-name').insertAdjacentHTML('afterend', '<div class="review-widget"> <ryviu-widget-total handle="'+ window.location.pathname.split('/')[1] +'"></ryviu-widget-total> </div>');
-            console.log('#avaliações do produto adicionado');
-            
+            /* begin:: Avaliações do produto */           
             document.querySelector('section.collection').insertAdjacentHTML('beforebegin', '<div class="lt-block-reviews"> <ryviu-widget handle="'+ window.location.pathname.split('/')[1] +'" style="display: inline-block;"></ryviu-widget> </ryviu-widget></div>');
             console.log('#div ryviu adicionado');
           
@@ -129,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
               r=o.createElement('script');r.async=1;
               r.src=t;
               a.appendChild(r);
-            })(window,document,'//cdn.ryviu.com/v/static/js/app.js?shop=lojas-hiper-brasil.myshopify.com','');
+            })(window,document,'//cdn.ryviu.com/v/static/js/app.js?shop=lojashiper.com','');
             console.log('#script ryviu adicionado');
             /* end:: Avaliações do produto */
         });
