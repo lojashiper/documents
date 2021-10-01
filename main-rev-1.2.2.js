@@ -127,6 +127,10 @@ document.addEventListener("DOMContentLoaded", function() {
               a.appendChild(r);
             })(window,document,'//cdn.ryviu.com/v/static/js/app.js?shop=lojashiper.com','');
             console.log('#script ryviu adicionado');
+            
+            document.querySelector('.lt-block-reviews').addEventListener('load', function(){
+                console.log('carregou!');
+            });
         });
     }
 });
