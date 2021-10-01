@@ -99,21 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log('#valor do desconto adicionado');
             }
             /* end:: Valor do desconto */
-            
-            /* begin:: Avaliações no produto */
-            var total_avaliacoes = document.querySelector('.holder-product-reviews-title .-quantity').innerText;
-            if(parseInt(total_avaliacoes) > 0){
-                if(parseInt(total_avaliacoes) == 1){
-                    document.querySelector('h1.main-product-name').insertAdjacentHTML('afterend', '<div class="-rating"><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><p style="display: inline-block;margin-left: 10px;margin-top: 10px;margin-bottom: 2px;color: #717171;">'+ total_avaliacoes +' Avaliação</p></div>'); 
-                }else{
-                    document.querySelector('h1.main-product-name').insertAdjacentHTML('afterend', '<div class="-rating"><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><i class="icon icon-star-gold"></i><p style="display: inline-block;margin-left: 10px;margin-top: 10px;margin-bottom: 2px;color: #717171;">'+ total_avaliacoes +' Avaliações</p></div>');
-                }
-            }else{
-                document.querySelector('h1.main-product-name').insertAdjacentHTML('afterend', '<div class="-rating"><i class="icon icon-star-grey"></i><i class="icon icon-star-grey"></i><i class="icon icon-star-grey"></i><i class="icon icon-star-grey"></i><i class="icon icon-star-grey"></i><p style="display: inline-block;margin-left: 10px;margin-top: 10px;margin-bottom: 2px;color: #717171;">0 Avaliações</p></div>');
-            }
-            console.log('#avaliações do produto adicionado');
-            /* end:: Avaliações no produto */
-            
+
             /* begin:: Estimativa de entrega */
             function convertDate(e){var t, o=new Date(e);return[(t=o.getDate(),t<10?"0"+t:t)].join("/");}
             function getMesExtenso(e){var t=new Array(12);return t[0]="janeiro",t[1]="fevereiro",t[2]="março",t[3]="abril",t[4]="maio",t[5]="junho",t[6]="julho",t[7]="agosto",t[8]="setembro",t[9]="outubro",t[10]="novembro",t[11]="dezembro",t[e];}
