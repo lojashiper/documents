@@ -25,9 +25,33 @@ document.addEventListener("DOMContentLoaded", function() {
             /* end:: Envia evento de adição ao carrinho */
             
             /* begin:: Informações do frete */
-            document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('beforebegin', '<div class="shipping-preview-line" style="position: relative;height: fit-content;margin-bottom: 20px;"> <div style="margin-top: 3px;display: flex;position: absolute;width: fit-content;"> <svg xmlns="http://www.w3.org/2000/svg" class="product-info-shipping-icon" width="18" height="15" viewBox="0 0 18 15" style="width: 19px;height: 16px;"><path fill-rule="nonzero" d="M7.763 12.207a2.398 2.398 0 0 1-4.726 0H1.8a1.8 1.8 0 0 1-1.8-1.8V2.195a1.8 1.8 0 0 1 1.8-1.8h8.445a1.8 1.8 0 0 1 1.8 1.8v.568l3.322.035L18 6.821v5.386h-2.394a2.398 2.398 0 0 1-4.727 0H7.763zm-.1-1.2h3.182V2.195a.6.6 0 0 0-.6-.6H1.8a.6.6 0 0 0-.6.6v8.212a.6.6 0 0 0 .6.6h1.337a2.399 2.399 0 0 1 4.526 0zm7.843 0H16.8V7.179l-2.086-3.187-2.669-.029v5.76a2.399 2.399 0 0 1 3.461 1.284zm-2.263 1.99a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396zm-7.843 0a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396z"></path></svg> </div><p class="shipping-preview-loading" style="padding: 0px 0px 0px 35px;margin: -15px 0px 30px;display: none;text-align: left !important;color: rgb(74, 74, 74) !important;font-size: 13px !important;">Carregando, aguarde...</p><p style="text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 35px;font-size: 13px !important;margin: -15px 0 0 0;" class="custom-address"></p><p style="margin:-0.5px;text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 35px;font-size: 13px !important;" class="shipping-estimated"></p></div>');
-            console.log('#informação do vendedor adicionado');
+            document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('beforebegin', '<div class="shipping-preview-line" style="height: fit-content;margin-bottom: 20px;margin-top: 30px;"> <div style="margin-top: 3px;display: flex;position: absolute;width: fit-content;"> <svg xmlns="http://www.w3.org/2000/svg" class="product-info-shipping-icon" width="18" height="15" viewBox="0 0 18 15" style="width: 19px;height: 16px;"><path fill-rule="nonzero" d="M7.763 12.207a2.398 2.398 0 0 1-4.726 0H1.8a1.8 1.8 0 0 1-1.8-1.8V2.195a1.8 1.8 0 0 1 1.8-1.8h8.445a1.8 1.8 0 0 1 1.8 1.8v.568l3.322.035L18 6.821v5.386h-2.394a2.398 2.398 0 0 1-4.727 0H7.763zm-.1-1.2h3.182V2.195a.6.6 0 0 0-.6-.6H1.8a.6.6 0 0 0-.6.6v8.212a.6.6 0 0 0 .6.6h1.337a2.399 2.399 0 0 1 4.526 0zm7.843 0H16.8V7.179l-2.086-3.187-2.669-.029v5.76a2.399 2.399 0 0 1 3.461 1.284zm-2.263 1.99a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396zm-7.843 0a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396z"></path></svg> </div><p class="shipping-preview-loading" style="padding: 0px 0px 0px 35px;margin: -15px 0px 30px;text-align: left !important;color: rgb(74, 74, 74) !important;font-size: 13px !important;">Carregando, aguarde...</p><p style="text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 35px;font-size: 13px !important;margin: -15px 0 0 0;" class="custom-address"></p><p style="margin:-0.5px;text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 35px;font-size: 13px !important;" class="shipping-estimated"></p></div>');
+            console.log('#informação do frete adicionado');
             /* end:: Informações do frete */
+            
+            /* begin:: Estimativa de entrega */
+            function convertDate(e){var t, o=new Date(e);return[(t=o.getDate(),t<10?"0"+t:t)].join("/");}
+            function getMesExtenso(e){var t=new Array(12);return t[0]="janeiro",t[1]="fevereiro",t[2]="março",t[3]="abril",t[4]="maio",t[5]="junho",t[6]="julho",t[7]="agosto",t[8]="setembro",t[9]="outubro",t[10]="novembro",t[11]="dezembro",t[e];}
+
+            var t = new Date, o=t.setDate(t.getDate()+4), n=t.setDate(t.getDate()+2), r=getMesExtenso(t.getMonth());
+            if(convertDate(o)>convertDate(n)){
+                var a = "<strong>"+ convertDate(n) +"</strong> e <strong>"+ convertDate(o) +" de "+ r +"</strong>";
+            }else{
+                if(null==(s=getMesExtenso(t.getMonth()+1))) var s=getMesExtenso(t.getMonth()-11);
+                a = "<strong>"+convertDate(n)+" de "+ r +"</strong> e <strong>"+ convertDate(o) +" de "+ s +"</strong>";
+            }
+            
+            var getJSON=function(n,e){var s=new XMLHttpRequest;s.open("GET",n,!0),s.responseType="json",s.onload=function(){var n=s.status;e(200===n?null:n,s.response)},s.send()};
+            getJSON("https://wtfismyip.com/json", function(err, data) {
+                if (err === null) {
+                    var o = (t = data.YourFuckingLocation).replace(", Brazil", "");
+                    document.querySelector(".custom-address").innerHTML = "<font color='2CB977'><b>Frete Grátis</b></font> para <strong><font color='#2CB977'>" + o + " e Região</font></strong>";
+                    document.querySelector(".shipping-estimated").innerHTML = "Entrega estimada entre " + a + ".";
+                    document.querySelector(".shipping-preview-loading").style.display = "none";
+                }
+            });
+            console.log('#estimativa de entrega adicionado');
+            /* end:: Estimativa de entrega */
             
             /* begin:: Informação do vendedor */
             document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido e entregue por <span class="text-primary">Lojas Hiper</span></p>');
