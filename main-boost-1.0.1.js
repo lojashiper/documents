@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('#evento addtocart fbq adicionado');
             /* end:: Envia evento de adição ao carrinho */
             
+            /* begin:: Informações do frete */
+            document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('beforebegin', '<div class="shipping-preview-line" style="position: relative;margin-left: -20px;margin-top:15px;"> <img class="shipping-country-flag fadeIn lazyloaded " style="height: 20px; width: 32px; position: absolute; left: 17px; top: 40px;" src="https://i.imgur.com/vdieHIN.png" alt="brazil"><p class="shipping-preview-loading" style="padding: 0px 0px 0px 60px; margin: -15px 0px 30px; display: none; text-align: left !important; color: rgb(74, 74, 74) !important; font-size: 13px !important;">Carregando, aguarde...</p><p style="text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 60px;font-size: 13px !important;margin: -15px 0 0 0;" class="custom-address"></p><p style="margin:-0.5px;text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 60px;font-size: 13px !important;margin: -7px 0 0 0;" class="shipping-estimated"></p></div>');
+            console.log('#informação do vendedor adicionado');
+            /* end:: Informações do frete */
+            
             /* begin:: Informação do vendedor */
             document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido e entregue por <span class="text-primary">Lojas Hiper</span></p>');
             console.log('#informação do vendedor adicionado');
