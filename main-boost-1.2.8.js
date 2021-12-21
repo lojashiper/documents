@@ -45,7 +45,7 @@ function loading_on_home_page(){
 function loading_on_product_page(){
     /* begin:: Informação de estoque */
     if(document.querySelector('.main-product-info .holder-flags .flag')){
-      document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div style="margin-top: 2px;display: flex;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #fe760e;">.</span> <span style="margin-top: 4px;font-weight: 600;font-size: 13px;color: #fe8008;">Poucas unidades disponíveis</span></div>');
+      document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px;display: flex;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #fe760e;">.</span> <span style="margin-top: 4px;font-weight: 600;font-size: 13px;color: #fe8008;">Poucas unidades disponíveis</span></div></div>');
     }else{
       document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px; display: flex; color: #3bb54a;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #379543;">.</span> <span style="margin-top: 4px; font-weight: 600; font-size: 13px;">Produto em estoque</span></div></div>');
     }
