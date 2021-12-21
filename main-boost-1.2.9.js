@@ -53,8 +53,8 @@ function loading_on_product_page(){
     /* end:: Informação de estoque */
   
     /* begin:: Remoção de gatilho de escassez */
-    if(!document.querySelector('.main-product-info .holder-flags .flag')){
-      document.querySelector('.main-product-info .main-product-inventory-countdown').remove();
+    if(document.querySelector('.main-product-info .holder-flags .flag')){
+      document.querySelector('.main-product-info .main-product-inventory-countdown').style.display = 'block';
     }
     console.log('#remoção de escassez adicionado');
     /* end:: Remoção de gatilho de escassez */
