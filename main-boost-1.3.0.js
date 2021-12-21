@@ -45,19 +45,28 @@ function loading_on_home_page(){
 function loading_on_product_page(){
     /* begin:: Informação de estoque */
     if(document.querySelector('.main-product-info .holder-flags .flag')){
-      document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px;display: flex;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #fe760e;">.</span> <span style="margin-top: 4px;font-weight: 600;font-size: 13px;color: #fe8008;">Poucas unidades disponíveis</span></div></div>');
+        document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px;display: flex;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #fe760e;">.</span> <span class="unidades-disponiveis" style="margin-top: 4px;font-weight: 600;font-size: 13px;color: #fe8008;">Poucas unidades disponíveis</span></div></div>');
     }else{
-      document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px; display: flex; color: #3bb54a;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #379543;">.</span> <span style="margin-top: 4px; font-weight: 600; font-size: 13px;">Produto em estoque</span></div></div>');
+        document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px; display: flex; color: #3bb54a;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #379543;">.</span> <span style="margin-top: 4px; font-weight: 600; font-size: 13px;">Produto em estoque</span></div></div>');
     }
     console.log('#informação de estoque adicionado');
     /* end:: Informação de estoque */
   
-    /* begin:: Remoção de gatilho de escassez */
+    /* begin:: Adição de gatilho de escassez */
     if(document.querySelector('.main-product-info .holder-flags .flag')){
-      document.querySelector('.main-product-info .main-product-inventory-countdown').style.display = 'block';
+        document.querySelector('.main-product-info .main-product-inventory-countdown').style.display = 'block';
+        function verificaUnidades(){
+            setTimeout(function(){
+                if(parseInt(document.querySelector('.main-product-inventory-countdown .quantity-left').innerText) > 2){
+                    document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas '+ document.querySelector('.main-product-inventory-countdown .quantity-left').innerText +' unidades em estoque';
+                    verificaUnidades();
+                }
+            }, 5000);
+        }
+        verificaUnidades();
     }
-    console.log('#remoção de escassez adicionado');
-    /* end:: Remoção de gatilho de escassez */
+    console.log('#informações de escassez adicionado');
+    /* end:: Adição de gatilho de escassez */
     
     /* begin:: Informação do frete */
     document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('beforebegin', '<div style="height: fit-content;margin-bottom: 12px;margin-top: 0px;" class="shipping-preview-line"> <div style="margin-top: 3px;display: flex;position: absolute;width: fit-content;"> <svg xmlns="http://www.w3.org/2000/svg" class="product-info-shipping-icon" width="18" height="15" viewBox="0 0 18 15" style="width: 19px;height: 16px;"><path fill-rule="nonzero" d="M7.763 12.207a2.398 2.398 0 0 1-4.726 0H1.8a1.8 1.8 0 0 1-1.8-1.8V2.195a1.8 1.8 0 0 1 1.8-1.8h8.445a1.8 1.8 0 0 1 1.8 1.8v.568l3.322.035L18 6.821v5.386h-2.394a2.398 2.398 0 0 1-4.727 0H7.763zm-.1-1.2h3.182V2.195a.6.6 0 0 0-.6-.6H1.8a.6.6 0 0 0-.6.6v8.212a.6.6 0 0 0 .6.6h1.337a2.399 2.399 0 0 1 4.526 0zm7.843 0H16.8V7.179l-2.086-3.187-2.669-.029v5.76a2.399 2.399 0 0 1 3.461 1.284zm-2.263 1.99a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396zm-7.843 0a1.198 1.198 0 1 0 0-2.395 1.198 1.198 0 0 0 0 2.396z"></path></svg> </div><p class="shipping-preview-loading" style="padding: 0px 0px 0px 30px;text-align: left !important;color: rgb(74, 74, 74) !important; font-size: 13px !important;">Carregando, aguarde...</p><p style="text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 30px;font-size: 13px !important;" class="custom-address"></p><p style="text-align: left !important;color: #4a4a4a !important;padding: 5px 0 0 30px;font-size: 13px !important;" class="shipping-estimated"></p></div>');
