@@ -60,6 +60,8 @@ function loading_on_product_page(){
                 if(parseInt(document.querySelector('.main-product-inventory-countdown .quantity-left').innerText) > 2){
                     document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas '+ document.querySelector('.main-product-inventory-countdown .quantity-left').innerText +' unidades em estoque';
                     verificaUnidades();
+                }else{
+                    document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas 2 unidades em estoque';
                 }
             }, 5000);
         }
