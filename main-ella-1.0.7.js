@@ -37,8 +37,8 @@ function clickButtonSelect(button, index) {
     });
     button.classList.add('selected');
 
-    document.querySelector('div.custom-select select').selectedIndex = parseInt(button.getAttribute('data-target-index'));
-    document.querySelector('div.custom-select select').dispatchEvent(new Event('change'));
+    document.querySelector('div.custom-select select[name="'+ button.getAttribute('data-target') +'"]').value = button.getAttribute('data-value');
+    document.querySelector('div.custom-select select[name="'+ button.getAttribute('data-target') +'"]').dispatchEvent(new Event('change'));
 
     document.querySelectorAll('div.custom-select select').forEach(function(select, i){
     	if(i > index) waitElementToReplace(select, i);
@@ -54,10 +54,10 @@ function ReplaceSelectWithButtons(selectField, index) {
     });
 	
     var options = selectField.querySelectorAll('option');
-    options.forEach(function(button, buttonIndex){
+    options.forEach(function(button){
         if(button.value != 0 && button.value){
-            if(button.value == selectValue) selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" data-target-index="' + buttonIndex  + '" class="selectbtn target-' + selectId  + ' selected" onclick="clickButtonSelect(this,'+ index +')">' + button.innerText + '</div>');
-            else selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" data-target-index="' + buttonIndex  + '" class="selectbtn target-' + selectId  + '" onclick="clickButtonSelect(this,'+ index +')">' + button.innerText + '</div>');
+            if(button.value == selectValue) selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn target-' + selectId  + ' selected" onclick="clickButtonSelect(this,'+ index +')">' + button.innerText + '</div>');
+            else selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn target-' + selectId  + '" onclick="clickButtonSelect(this,'+ index +')">' + button.innerText + '</div>');
         }
     });
     selectField.style.display = 'none';
