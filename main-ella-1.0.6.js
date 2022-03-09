@@ -52,10 +52,7 @@ function ReplaceSelectWithButtons(selectField, index) {
     document.querySelectorAll('div.custom-select div[data-target="'+ selectId +'"]').forEach(function(select){
         select.remove();
     });
-
-    //adicionar esssa seção no tema
-    selectField.insertAdjacentHTML('beforebegin', '<style>div.selectbtn { display : inline-block; background-color : #f9f9f9; border : 1px solid #dcd5cf; padding: 8px 16px; border-radius: 4px; margin-right : 8px; margin-bottom : 8px; cursor: pointer; } div.selectbtn.selected { background-color: rgba(var(--color-general-primary),.06); border: 1px solid #0046be; box-shadow: 0 0 0 1px var(--color-general-primary); border-color: var(--color-general-primary); color: var(--color-general-primary) }</style>');
-
+	
     var options = selectField.querySelectorAll('option');
     options.forEach(function(button, buttonIndex){
         if(button.value != 0 && button.value){
