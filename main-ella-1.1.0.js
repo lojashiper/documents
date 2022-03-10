@@ -87,6 +87,7 @@ function loading_on_product_page(){
     document.querySelectorAll('.product-customizations div.custom-select select').forEach(function(select, index){
         waitElementToReplace(select, index);
     });
+	console.log('#adiciona conversão de selects para botões');
 }
 
 document.addEventListener("DOMContentLoaded", function() {
