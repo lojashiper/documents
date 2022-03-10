@@ -37,10 +37,10 @@ function clickButtonSelect(button, index) {
     });
     button.classList.add('selected');
 
-    document.querySelector('div.custom-select select[name="'+ button.getAttribute('data-target') +'"]').value = button.getAttribute('data-value');
-    document.querySelector('div.custom-select select[name="'+ button.getAttribute('data-target') +'"]').dispatchEvent(new Event('change'));
+    document.querySelector('.product-customizations div.custom-select select[name="'+ button.getAttribute('data-target') +'"]').value = button.getAttribute('data-value');
+    document.querySelector('.product-customizations div.custom-select select[name="'+ button.getAttribute('data-target') +'"]').dispatchEvent(new Event('change'));
 
-    document.querySelectorAll('div.custom-select select').forEach(function(select, i){
+    document.querySelectorAll('.product-customizations div.custom-select select').forEach(function(select, i){
     	if(i > index) waitElementToReplace(select, i);
    	});
 }
@@ -49,7 +49,7 @@ function ReplaceSelectWithButtons(selectField, index) {
     var selectValue = selectField.value;
     var selectId = selectField.id;
 
-    document.querySelectorAll('div.custom-select div[data-target="'+ selectId +'"]').forEach(function(select){
+    document.querySelectorAll('.product-customizations div.custom-select div[data-target="'+ selectId +'"]').forEach(function(select){
         select.remove();
     });
 	
@@ -73,25 +73,18 @@ function waitElementToReplace(select, index){
 }
 
 function loading_on_product_page(){
-    var selects =  document.querySelectorAll('div.custom-select select');
+    var selects =  document.querySelectorAll('.product-customizations div.custom-select select');
     selects.forEach(function(select, index){
         if(index + 1 < selects.length){
             select.addEventListener('change', function(){
-                if(document.querySelector('.info-'+ select.id)) document.querySelector('.info-'+ select.id).remove();
-                select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ select.id +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                 verifyElement(selects, index + 1);
-            });
-        }else if(index + 1 == selects.length){
-            select.addEventListener('change', function(){
-                if(document.querySelector('.info-'+ select.id)) document.querySelector('.info-'+ select.id).remove();
-                select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ select.id +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
             });
         }
     }, {once : true});
     selects[0].selectedIndex = 1;
     selects[0].dispatchEvent(new Event('change'));
   
-    document.querySelectorAll('div.custom-select select').forEach(function(select, index){
+    document.querySelectorAll('.product-customizations div.custom-select select').forEach(function(select, index){
         waitElementToReplace(select, index);
     });
 }
