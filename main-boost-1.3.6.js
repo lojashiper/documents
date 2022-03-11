@@ -95,21 +95,23 @@ function loading_on_home_page(){
 
 function loading_on_product_page(){
     /* begin:: Converte Select para Botão */
-    var selects =  document.querySelectorAll('.product-customizations div.custom-select select');
-    selects.forEach(function(select, index){
-        if(index + 1 < selects.length){
-            select.addEventListener('change', function(){
-                verifyElement(selects, index + 1);
-            });
-        }
-    }, {once : true});
-    selects[0].selectedIndex = 1;
-    selects[0].dispatchEvent(new Event('change'));
-  
-    document.querySelectorAll('.product-customizations div.custom-select select').forEach(function(select, index){
-        waitElementToReplace(select, index);
-    });
-    console.log('#conversão de selects para botões adicionado');
+    if(document.querySelector('.product-customizations div.custom-select select')){
+        var selects =  document.querySelectorAll('.product-customizations div.custom-select select');
+        selects.forEach(function(select, index){
+            if(index + 1 < selects.length){
+                select.addEventListener('change', function(){
+                    verifyElement(selects, index + 1);
+                });
+            }
+        }, {once : true});
+        selects[0].selectedIndex = 1;
+        selects[0].dispatchEvent(new Event('change'));
+
+        document.querySelectorAll('.product-customizations div.custom-select select').forEach(function(select, index){
+            waitElementToReplace(select, index);
+        });
+        console.log('#conversão de selects para botões adicionado');
+    }
     /* end:: Converte Select para Botão */
 
 
