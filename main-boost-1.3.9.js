@@ -100,7 +100,7 @@ function loading_on_product_page(){
         selects.forEach(function(select, index){
             if(index + 1 < selects.length){
                 select.addEventListener('change', function(){
-                    if(document.querySelector('.info-'+ window.btoa(select.id)) document.querySelector('.info-'+ window.btoa(select.id)).remove();
+                    if(document.querySelector('.info-'+ window.btoa(select.id))) document.querySelector('.info-'+ window.btoa(select.id)).remove();
                     select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ window.btoa(select.id) +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                     verifyElement(selects, index + 1);
                 });
