@@ -100,14 +100,16 @@ function loading_on_product_page(){
         selects.forEach(function(select, index){
             if(index + 1 < selects.length){
                 select.addEventListener('change', function(){
-                    if(document.querySelector('.info-'+ window.btoa(select.id))) document.querySelector('.info-'+ window.btoa(select.id)).remove();
-                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ window.btoa(select.id) +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
+                    var target_select = select.id.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(" ", "-").toLowerCase();
+                    if(document.querySelector('.info-'+ target_select)) document.querySelector('.info-'+ target_select).remove();
+                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ target_select +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                     verifyElement(selects, index + 1);
                 });
             }else if(index + 1 == selects.length){
                 select.addEventListener('change', function(){
-                    if(document.querySelector('.info-'+ window.btoa(select.id))) document.querySelector('.info-'+ window.btoa(select.id)).remove();
-                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ window.btoa(select.id) +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
+                    var target_select = select.id.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(" ", "-").toLowerCase();
+                    if(document.querySelector('.info-'+ target_select)) document.querySelector('.info-'+ target_select).remove();
+                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ target_select +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                 });
             }
         }, {once : true});
