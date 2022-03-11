@@ -100,16 +100,14 @@ function loading_on_product_page(){
         selects.forEach(function(select, index){
             if(index + 1 < selects.length){
                 select.addEventListener('change', function(){
-                    var target_select = select.id.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(" ", "-").toLowerCase();
-                    if(document.querySelector('.info-'+ target_select)) document.querySelector('.info-'+ target_select).remove();
-                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ target_select +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
+                    if(document.querySelector('div[class="info-'+ select.id +' info-sku-option"]')) document.querySelector('.info-'+ select.id).remove();
+                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ select.id +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                     verifyElement(selects, index + 1);
                 });
             }else if(index + 1 == selects.length){
                 select.addEventListener('change', function(){
-                    var target_select = select.id.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(" ", "-").toLowerCase();
-                    if(document.querySelector('.info-'+ target_select)) document.querySelector('.info-'+ target_select).remove();
-                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ target_select +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
+                    if(document.querySelector('div[class="info-'+ select.id +' info-sku-option"]')) document.querySelector('.info-'+ select.id).remove();
+                    select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ select.id +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                 });
             }
         }, {once : true});
