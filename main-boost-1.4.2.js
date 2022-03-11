@@ -100,13 +100,13 @@ function loading_on_product_page(){
         selects.forEach(function(select, index){
             if(index + 1 < selects.length){
                 select.addEventListener('change', function(){
-                    if(document.querySelector('div[class="info-'+ select.id +' info-sku-option"]')) document.querySelector('.info-'+ select.id).remove();
+                    if(document.querySelector('div[class="info-'+ select.id +' info-sku-option"]')) document.querySelector('div[class="info-'+ select.id +' info-sku-option"]').remove();
                     select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ select.id +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                     verifyElement(selects, index + 1);
                 });
             }else if(index + 1 == selects.length){
                 select.addEventListener('change', function(){
-                    if(document.querySelector('div[class="info-'+ select.id +' info-sku-option"]')) document.querySelector('.info-'+ select.id).remove();
+                    if(document.querySelector('div[class="info-'+ select.id +' info-sku-option"]')) document.querySelector('div[class="info-'+ select.id +' info-sku-option"]').remove();
                     select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-'+ select.id +' info-sku-option">'+ select.options[select.selectedIndex].text +'</div>');
                 });
             }
