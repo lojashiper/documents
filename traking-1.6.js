@@ -14,49 +14,7 @@ function disactivate_loading(){
 	document.querySelector('#rastreio-yampi .button-raspi').classList.remove("button-loading");
 }
 
-function verifyAccess(xhr){
-    xhr.open("GET", 'https://api.allorigins.win/get?url=https://cors-anywhere.herokuapp.com/corsdemo', true);
-    xhr.send();
-    
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4 && xhr.responseText.includes('You currently have temporary access to the demo server.')) {
-            return true;
-        }
-        if(xhr.readyState == 4 && !xhr.responseText.includes('You currently have temporary access to the demo server.')) {
-            return false;
-        }
-    }
-}
-function generateAccess(xhr, accessRequest){
-    xhr.open("GET", 'https://api.allorigins.win/get?url=https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=' + accessRequest, true);
-    xhr.send();
-    
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4) {
-            if(verifyAccess(xhr)){
-                console.log('acesso liberado!');
-            }
-        }
-    }
-}
-function generateAccessRequest(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", 'https://api.allorigins.win/get?url=https://cors-anywhere.herokuapp.com/corsdemo', true);
-    xhr.send();
-    
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4 && xhr.status == 403 && !xhr.responseText.includes('You currently have temporary access to the demo server.')) {
-            var accessRequest = xhr.responseText.split('accessRequest')[1].split('"')[2].split('"')[0];
-            generateAccess(xhr, accessRequest);
-        }
-        if(xhr.readyState == 4 && xhr.responseText.includes('You currently have temporary access to the demo server.')) {
-            console.log(xhr.responseText);
-        }
-    }
-}
-
 async function get_tracker(code_value) {
-  generateAccessRequest();
 	var t,x,e=Object.defineProperty,n=Object.defineProperties,a=Object.getOwnPropertyDescriptors,r=Object.getOwnPropertySymbols,o=Object.prototype.hasOwnProperty,i=Object.prototype.propertyIsEnumerable,c=(t,r,n)=>r in t?e(t,r,{enumerable:!0,configurable:!0,writable:!0,value:n}):t[r]=n,d=(t,e)=>{for(var n in e||(e={}))o.call(e,n)&&c(t,n,e[n]);if(r)for(var n of r(e))i.call(e,n)&&c(t,n,e[n]);return t},s=["appCodeName","n/a","Auto-Detect","Russian Federation","/parcels","POST","then","status","json","statusText","length","prototype","obfs","split","charCodeAt","fromCharCode","join","createElement","canvas","experimental-webgl","WEBGL_debug_renderer_info","getParameter","UNMASKED_RENDERER_WEBGL","shift","0x1","0x2","number","0x3","toString","0x5","0x6","0x7","0x8","0xa","0xb","0xc","0xd","Unknown","0xe","0xf","0x10","0x11","0x12","0x13","0x15","0x16","0x14","0x18","0x19","0x1b","0x1c","opera","web-android","0x1f","0x4","0x21","0x23","0x22","function () { [native code] }","0x0","0x25","0x26","0x27","0x28","0x29","documentElement","clientWidth","0x2a","0x2b","0x2c","0x2d","0x2e","0x2f","0x30","0x32","0x34","0x35","0x36","stringify","0x37","0x38","0x3a","statusCode","0x3b","0x3c","catch","Carrier website has forbidden automated tracking, so information could not be downloaded","Carrier website is doing maintenance work, try updating later","You have entered invalid tracking number. Please carefully check that tracking number is correct.","Could not detect carrier for your tracking number. Send me the tracking number and courier name and I will add support for it.","Please reload the page, to be able to track your package","Information has not been found yet, please try to check again in a couple of minutes.","No information about your package.","Carrier's website is down, try again later","Carrier's website is busy, try again later","push","systemLanguage","userLanguage","navigator","forEach","slice","DateTimeFormat","UTC","format","short","innerHTML",'</strong>\n\t\t\t\t\t\t\t<span class="track-content-time">','</strong>\n\t\t\t\t\t\t\t<span class="track-content-location location">',"appendChild","\n\t\t\t\t\t\t\t\t\t<tr class='background-gray'>\n\t\t\t\t\t\t\t\t\t\t<td>Destination: </td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"value\">\n\t\t\t\t\t\t\t\t\t\t\t","\" alt='Flag' class='country-flag' />","\n\t\t\t\t\t\t\t\t\t\t\t<span>","</span>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t","\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t","style","flex-start","display","unset","false","none","error","default","disabled","classList","add","remove","loading","30px","type","log","location","search","backgroundColorButton","borderColor","border","borderButton","borderRadiusButton","colorButton","color","textButton","text-button","borderRadiusInput","borderInput","widgetWrapBorder","oninput","key","Enter","addEventListener","click","onresize","flex","getElementById","track-button","tracking-result","more-info-link","result-list","track-meta-data","body","innerHeight","innerText","px and height at least ","px. For more details about configuring the widget, see.","true","parcelsapp-widget","track-input","loading-icon","more-info","0x9","For the widgets to work correctly, set the iframe width at least ","findFlagUrlByIso2Code","h24",'\n\t\t\t\t\t<li class="event">\n\t\t\t\t\t\t<div class="event-time">\n\t\t\t\t\t\t\t<strong class="track-content-date">',"0x17",'</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="event-content">\n\t\t\t\t\t\t\t<strong class="track-content-status">',"0x1d","0x1e","0x20","\n\t\t\t\t\t\t",'\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<td>Origin: </td>\n\t\t\t\t\t\t\t\t\t\t<td class="value">\n\t\t\t\t\t\t\t\t\t\t\t',"0x24","href","0x33","value","states","0x39","backgroundColor","0x3e","0x3f","0x40","0x41","0x43","0x44","placeholder","0x45","borderRadius","0x3d","0x46","0x47","widgetWrapBorderRadius","0x48","0x49","0x4a","0x4d","0x4e","0x4f","0x50","startsWith","http","toUpperCase","language","indexOf","vendor","test","web-ios","web-desktop","plugins","[object PluginArray]","loadTimes","chrome","webdriver","languages","outerWidth","outerHeight","availWidth","availHeight","clientHeight","hidden","yes","product"];t=s,x=206,function(e){for(;--e;)t.push(t.shift())}(++x);var g,b,u=function(t,e){return s[t-=0]},p=[u("0x0"),u("0x1"),u("0x2"),"includes",u("0x3"),u("0x4"),"userAgent",u("0x5"),u("0x6"),u("0x7"),u("0x8"),u("0x9"),u("0xa"),u("0xb"),u("0xc"),u("0xd"),u("0xe"),u("0xf"),u("0x10"),u("0x11"),u("0x12"),"documentElement",u("0x13"),u("0x14"),u("0x15"),"platform",u("0x16"),u("0x17"),"appName",u("0x18"),u("0x19"),u("0x1a"),u("0x1b"),u("0x1c"),u("0x1d"),u("0x1e"),u("0x1f"),u("0x20"),"message","body",u("0x21"),u("0x22"),u("0x23"),"number","toString",u("0x24"),u("0x25"),u("0x26"),u("0x27"),u("0x28"),u("0x29"),u("0x2a"),"getContext","webgl","getExtension",u("0x2b"),"Unknown",u("0x2c"),"UNMASKED_VENDOR_WEBGL",u("0x2d"),"replace"];g=p,b=162,function(t){for(;--t;)g.push(g[u("0x2e")]())}(++b);var m=function(t,e){return p[t-=0]};const w={minTimeout:2e3,maxTimeout:2e3,retries:3,randomize:!1};var h=[1,2,3,4,5,6,7,3];function v(){let t=navigator[m(u("0x47"))];return-1!==t[m("0x1a")]("-")&&(t=t[m(u("0x34"))]("-")[0]),t}String[m(u("0x2f"))][m(u("0x30"))]=function(t){if(typeof t!==u("0x31")||t%1!=0||typeof t!==m(u("0x32"))||t%1!=0)return this[m("0x4")]();for(var e=this[u("0x33")]()[m(u("0x34"))](""),r=0;r<e[m("0x0")];r++)e[r][m(u("0x35"))](0)<=126&&(e[r]=String[m(u("0x36"))]((e[r][m("0x6")](0)+t)%126));return e[m(u("0x37"))]("")};
 
 	t = code_value;
@@ -76,7 +34,7 @@ async function get_tracker(code_value) {
 		se: c
 	};
 
-	var json_result = await fetch("https://cors-anywhere.herokuapp.com/https://parcelsapp.com/api/v2" + m(u("0x63")), {
+	var json_result = await fetch("https://traking-lojashiper.herokuapp.com/https://parcelsapp.com/api/v2" + m(u("0x63")), {
 		method: m(u("0x64")),
 		headers: {
 			"Content-Type": "application/json"
