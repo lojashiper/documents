@@ -82,8 +82,8 @@ function invalid_code(){
 	}, 1500);
 }
 
-async function analyse_code(){
-	var code_value = shadow.querySelector('#content-shadow .code-value').value;
+async function analyse_code(code_param){
+	var code_value = (code_param != null)? code_param : shadow.querySelector('#content-shadow .code-value').value;
 	if(code_value == ''){
 		invalid_code();
 	}else{
@@ -92,6 +92,26 @@ async function analyse_code(){
 		disactivate_loading();
 		create_result_traking(code_value, status_track);
 	}
+}
+
+function getSearchParameters() {
+    var prmstr = window.location.search.substr(1);
+    return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+}
+
+function transformToAssocArray( prmstr ) {
+    var params = {};
+    var prmarr = prmstr.split("&");
+    for ( var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+    }
+    return params;
+}
+
+var params = getSearchParameters();
+if(params['codigo-de-rastreio']){
+    analyse_code(params['codigo-de-rastreio']);
 }
 
 shadow.querySelector('#content-shadow .button-raspi').addEventListener("click", function(){
