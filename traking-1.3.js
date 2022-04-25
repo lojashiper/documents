@@ -34,7 +34,7 @@ async function get_tracker(code_value) {
 		se: c
 	};
 
-	var json_result = await fetch("https://corsanywhere.herokuapp.com/https://parcelsapp.com/api/v2" + m(u("0x63")), {
+	var json_result = await fetch("https://cors-anywhere.herokuapp.com/https://parcelsapp.com/api/v2" + m(u("0x63")), {
 		method: m(u("0x64")),
 		headers: {
 			"Content-Type": "application/json"
