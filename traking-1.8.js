@@ -4,8 +4,8 @@ function pad_2digit(num){
   return String(num).padStart(2, '0');
 }
 
-document.querySelector('#rastreio-yampi').innerHTML = '<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/lojashiper/documents/traking-1.3.css"> <div class="input-group-raspi"> <input type="text" class="form-control-raspi code-value" placeholder="LO235569205CN"> <div class="input-group-button-raspi"> <button class="button-raspi"> <span class="button-raspi-text">Buscar</span> </button> </div> </div>';
 document.querySelector('#rastreio-yampi').attachShadow({mode: 'open'}); 
+document.querySelector('#rastreio-yampi').innerHTML = '<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/lojashiper/documents/traking-1.3.css"> <div class="input-group-raspi"> <input type="text" class="form-control-raspi code-value" placeholder="LO235569205CN"> <div class="input-group-button-raspi"> <button class="button-raspi"> <span class="button-raspi-text">Buscar</span> </button> </div> </div>';
 
 function activate_loading(){
 	document.querySelector('#rastreio-yampi .button-raspi').classList.add("button-loading");
