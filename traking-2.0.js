@@ -51,6 +51,7 @@ async function analyse_code(){
 		activate_loading();
 		var status_track = await get_tracker(code_value);
 		disactivate_loading();
+		console.log(status_track);
 		create_result_traking(code_value, status_track);
 	}
 }
