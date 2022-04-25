@@ -1,3 +1,6 @@
+body{
+	margin: 0px;
+}
 .input-group-raspi{
 	position: relative;
     display: flex;
