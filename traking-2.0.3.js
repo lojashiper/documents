@@ -79,6 +79,7 @@ async function analyse_code(code_param){
 		activate_loading();
 		var status_track = await get_tracker(code_value);
 		disactivate_loading();
+		if(shadow.querySelector('#rastreio-yampi')) shadow.querySelector('#rastreio-yampi').remove();
 		create_result_traking(code_value, status_track);
 	}
 }
@@ -101,6 +102,8 @@ function transformToAssocArray( prmstr ) {
 var params = getSearchParameters();
 if(params['codigo-de-rastreio']){
     analyse_code(params['codigo-de-rastreio']);
+}else if(params['codigo']){
+    analyse_code(params['codigo']);
 }
 
 shadow.querySelector('#content-shadow .button-raspi').addEventListener("click", function(){
