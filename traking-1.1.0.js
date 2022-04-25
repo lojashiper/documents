@@ -1,10 +1,3 @@
-var checkElement = async selector => {
-    while ( document.querySelector(selector) === null) {
-        await new Promise( resolve =>  requestAnimationFrame(resolve) )
-    }
-    return document.querySelector(selector); 
-};
-
 var mes_date = new Array ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez");
 
 function pad_2digit(num){
