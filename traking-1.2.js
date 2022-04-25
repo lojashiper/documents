@@ -45,12 +45,11 @@ async function get_tracker(code_value) {
 			return await t[m("0x39")]();
 		}
 	}));
-	console.log(json_result);
 	return json_result;
 }
 
 function create_result_traking(code_value, status_track){
-	if(status_track['status'] == 'transit'){
+	if(status_track['status'] == 'transit' || status_track['status'] == 'archive'){
 		document.querySelector('#rastreio-yampi').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-message" role="alert" style="padding:18px;font-size:17px;background-color:#21252f;border-color:#21252e"><span>Devido ao surto de COVID-19, todos os processos de envio nacional e internacional estarão sujeitos a atrasos.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
 		status_track['states'].forEach(function(state){
 			var state_date = new Date(state['date']);
@@ -75,7 +74,6 @@ async function analyse_code(){
 		var status_track = await get_tracker(code_value);
 		disactivate_loading();
 		create_result_traking(code_value, status_track);
-		console.log(status_track);
 	}
 }
 
