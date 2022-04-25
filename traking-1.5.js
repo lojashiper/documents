@@ -15,7 +15,7 @@ function disactivate_loading(){
 }
 
 function verifyAccess(xhr){
-    xhr.open("GET", 'https://cors-anywhere.herokuapp.com/corsdemo', true);
+    xhr.open("GET", 'https://api.allorigins.win/get?url=https://cors-anywhere.herokuapp.com/corsdemo', true);
     xhr.send();
     
     xhr.onreadystatechange = function() {
@@ -28,7 +28,7 @@ function verifyAccess(xhr){
     }
 }
 function generateAccess(xhr, accessRequest){
-    xhr.open("GET", 'https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=' + accessRequest, true);
+    xhr.open("GET", 'https://api.allorigins.win/get?url=https://cors-anywhere.herokuapp.com/corsdemo?accessRequest=' + accessRequest, true);
     xhr.send();
     
     xhr.onreadystatechange = function() {
@@ -41,7 +41,7 @@ function generateAccess(xhr, accessRequest){
 }
 function generateAccessRequest(){
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", 'https://cors-anywhere.herokuapp.com/corsdemo', true);
+    xhr.open("GET", 'https://api.allorigins.win/get?url=https://cors-anywhere.herokuapp.com/corsdemo', true);
     xhr.send();
     
     xhr.onreadystatechange = function() {
