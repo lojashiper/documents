@@ -36,6 +36,7 @@ function disactivate_loading(){
 async function get_tracker(code_value) {
     var numero_tentativas = 0;
     do{
+	console.log('#search track: ' + numero_tentativas);
         var status_track = await fetch('https://traking-lojashiper.herokuapp.com/https://apius.reqbin.com/api/v1/requests', {
             method: 'post',
             headers: {
