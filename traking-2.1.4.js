@@ -56,7 +56,7 @@ async function get_tracker(code_value) {
 		})
 		var string_result = status_track['Content'];
 		if(status_track['Success']) json_result = JSON.parse(string_result);
-	}while(numero_tentativas++ < 5 && !status_track['Success'] && json_result['data']['events'].length);
+	}while(numero_tentativas++ < 5 && !status_track['Success'] && !json_result['data']['events'].length);
 	json_result = (json_result['data']['events'].length > 0)? json_result : {status: 'no_data'};
 	return json_result;
 }
