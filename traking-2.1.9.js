@@ -45,7 +45,6 @@ function disactivate_loading(){
 async function get_tracker(code_value) {
 	var numero_tentativas = 0;
 	do{
-		console.log('#search track: ' + numero_tentativas);
 		var json_result = {data: { events: [] }};
 		var status_track = await fetch('https://traking-lojashiper.herokuapp.com/https://apius.reqbin.com/api/v1/requests', {
 		    method: 'post',
@@ -132,8 +131,10 @@ function transformToAssocArray( prmstr ) {
 
 var params = getSearchParameters();
 if(params['codigo-de-rastreio']){
+	shadow.querySelector('#content-shadow .code-value').value = params['codigo-de-rastreio'];
     analyse_code(params['codigo-de-rastreio']);
 }else if(params['codigo']){
+	shadow.querySelector('#content-shadow .code-value').value = params['codigo'];
     analyse_code(params['codigo']);
 }
 
