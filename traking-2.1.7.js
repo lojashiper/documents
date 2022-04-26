@@ -25,6 +25,15 @@ function pad_2digit(num){
   return String(num).padStart(2, '0');
 }
 
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
 function activate_loading(){
 	shadow.querySelector('#content-shadow .button-raspi').classList.add("button-loading");
 }
@@ -34,25 +43,31 @@ function disactivate_loading(){
 }
 
 async function get_tracker(code_value) {
-	var status_track = await fetch('https://traking-lojashiper.herokuapp.com/https://apius.reqbin.com/api/v1/requests', {
-	method: 'post',
-	headers: {
-		'Origin': 'https://apius.reqbin.com',
-		'Content-Type': 'application/json'
-	},
-	body: JSON.stringify({
-		errors: "",
-		id: "0",
-		json: "{\"method\":\"GET\",\"url\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\",\"apiNode\":\"US\",\"contentType\":\"\",\"content\":\"\",\"headers\":\"Accept: application/json\",\"errors\":\"\",\"curlCmd\":\"\",\"codeCmd\":\"\",\"lang\":\"\",\"auth\":{\"auth\":\"noAuth\",\"bearerToken\":\"\",\"basicUsername\":\"\",\"basicPassword\":\"\",\"customHeader\":\"\",\"encrypted\":\"\"},\"compare\":false,\"idnUrl\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\"}",
-		name: ""
-	}),
-	redirect: 'follow'
-	}).then(async res => {
-		return await res.json()
-	})
-
-	var string_result = status_track['Content'];
-	var json_result = (status_track['Success'])? JSON.parse(string_result) : {status: 'no_data'};
+	var numero_tentativas = 0;
+	do{
+		console.log('#search track: ' + numero_tentativas);
+		var json_result = {data: { events: [] }};
+		var status_track = await fetch('https://traking-lojashiper.herokuapp.com/https://apius.reqbin.com/api/v1/requests', {
+		    method: 'post',
+		    headers: {
+			'Origin': 'https://apius.reqbin.com',
+			'Content-Type': 'application/json'
+		    },
+		    body: JSON.stringify({
+			errors: "",
+			id: "0",
+			json: "{\"method\":\"GET\",\"url\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\",\"apiNode\":\"US\",\"contentType\":\"\",\"content\":\"\",\"headers\":\"Accept: application/json\",\"errors\":\"\",\"curlCmd\":\"\",\"codeCmd\":\"\",\"lang\":\"\",\"auth\":{\"auth\":\"noAuth\",\"bearerToken\":\"\",\"basicUsername\":\"\",\"basicPassword\":\"\",\"customHeader\":\"\",\"encrypted\":\"\"},\"compare\":false,\"idnUrl\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\"}",
+			name: ""
+		    }),
+		    redirect: 'follow'
+		}).then(async res => {
+		    return await res.json()
+		})
+		var string_result = status_track['Content'];
+		if(status_track['Success']) json_result = JSON.parse(string_result);
+		if(json_result['data']['events'].length == 0 ) sleep(5000);
+	}while(numero_tentativas++ < 10 && json_result['data']['events'].length == 0);
+	json_result = (json_result['data']['events'].length > 0)? json_result : {status: 'no_data'};
 	return json_result;
 }
 
@@ -74,7 +89,7 @@ function create_result_traking(code_value, status_track){
 			}
 		});
 	}else if(status_track['status'] == 'no_data'){
-		shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-warning-message" role="alert"><strong>Ops!</strong> <span>A busca demorou mais do que o normal! Por favor, clique em Buscar novamente.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
+		shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-warning-message" role="alert"><strong>Ops!</strong> <span>Infelizmente houve um erro para se comunicar com a transporadora, tente novamente mais tarde.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
 	}else{
 		shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-warning-message" role="alert"><strong>Ops!</strong> <span>A transportadora ainda não atualizou o status de andamento do envio, tente novamente mais tarde.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
 	}
