@@ -54,7 +54,7 @@ async function get_tracker(code_value) {
 		    return await res.json()
 		})
 		var string_result = status_track['Content'];
-	}while(numero_tentativas++ < 4 && !status_track['Success']);
+	}while(numero_tentativas++ < 5 && !status_track['Success']);
 	var json_result = (status_track['Success'])? JSON.parse(string_result): {status: 'no_data'};
 	return json_result;
 }
@@ -76,6 +76,8 @@ function create_result_traking(code_value, status_track){
 					shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend','<section class="time-line-data"><h3 class="year">'+ state_date.getDate() +' de '+ mes_date[state_date.getMonth()] +'<br> de '+ state_date.getFullYear() +'</h3><section><ul><li>'+ status_info +'</li><li></li><li class="timer">'+ pad_2digit(state_date.getHours()) +':'+ pad_2digit(state_date.getMinutes()) +'</li></ul></section></section>');
 			}
 		});
+	}else if(status_track['status'] == 'no_data'){
+		shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-warning-message" role="alert"><strong>Ops!</strong> <span>Infelizmente houve um erro para se comunicar com a transporadora, tente novamente mais tarde.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
 	}else{
 		shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-warning-message" role="alert"><strong>Ops!</strong> <span>A transportadora ainda não atualizou o status de andamento do envio, tente novamente mais tarde.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
 	}
