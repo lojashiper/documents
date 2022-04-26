@@ -57,6 +57,7 @@ async function get_tracker(code_value) {
 		    },
 		    body: JSON.stringify({
                 deviceId: uuid,
+				sessionId: 1651004745940,
                 errors: "",
                 id: "0",
                 json: "{\"method\":\"GET\",\"url\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\",\"apiNode\":\"US\",\"contentType\":\"\",\"content\":\"\",\"headers\":\"Accept: application/json\",\"errors\":\"\",\"curlCmd\":\"\",\"codeCmd\":\"\",\"lang\":\"\",\"auth\":{\"auth\":\"noAuth\",\"bearerToken\":\"\",\"basicUsername\":\"\",\"basicPassword\":\"\",\"customHeader\":\"\",\"encrypted\":\"\"},\"compare\":false,\"idnUrl\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\"}",
