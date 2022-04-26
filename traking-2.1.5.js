@@ -35,21 +35,21 @@ function disactivate_loading(){
 
 async function get_tracker(code_value) {
 	var status_track = await fetch('https://traking-lojashiper.herokuapp.com/https://apius.reqbin.com/api/v1/requests', {
-		method: 'post',
-		headers: {
-		    'Origin': 'https://apius.reqbin.com',
-		    'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-		    errors: "",
-		    id: "0",
-		    json: "{\"method\":\"GET\",\"url\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\",\"apiNode\":\"US\",\"contentType\":\"\",\"content\":\"\",\"headers\":\"Accept: application/json\",\"errors\":\"\",\"curlCmd\":\"\",\"codeCmd\":\"\",\"lang\":\"\",\"auth\":{\"auth\":\"noAuth\",\"bearerToken\":\"\",\"basicUsername\":\"\",\"basicPassword\":\"\",\"customHeader\":\"\",\"encrypted\":\"\"},\"compare\":false,\"idnUrl\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\"}",
-		    name: ""
-		}),
-		redirect: 'follow'
-	    }).then(res => {
-		return res.json()
-	    })
+	method: 'post',
+	headers: {
+		'Origin': 'https://apius.reqbin.com',
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify({
+		errors: "",
+		id: "0",
+		json: "{\"method\":\"GET\",\"url\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\",\"apiNode\":\"US\",\"contentType\":\"\",\"content\":\"\",\"headers\":\"Accept: application/json\",\"errors\":\"\",\"curlCmd\":\"\",\"codeCmd\":\"\",\"lang\":\"\",\"auth\":{\"auth\":\"noAuth\",\"bearerToken\":\"\",\"basicUsername\":\"\",\"basicPassword\":\"\",\"customHeader\":\"\",\"encrypted\":\"\"},\"compare\":false,\"idnUrl\":\"https://1trackapp.com/ajax/tracking?lang=pt&track="+ code_value +"\"}",
+		name: ""
+	}),
+	redirect: 'follow'
+	}).then(async res => {
+		return await res.json()
+	})
 
 	var string_result = status_track['Content'];
 	var json_result = (status_track['Success'])? JSON.parse(string_result) : {status: 'no_data'};
