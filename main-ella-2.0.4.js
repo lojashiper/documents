@@ -220,12 +220,13 @@ document.querySelector('body').classList.add('script-ella');
 console.log('#iniciando definição de script');
 
 var current_domain = window.location.hostname.replace('www.','');
-if(current_domain != 'lojashiper.com'){
-    window.merchant['checkout']['base_domain'] = window.merchant['checkout']['base_domain'].replace('lojashiper.com', current_domain);
-    window.merchant['checkout']['items'] = window.merchant['checkout']['items'].replace('lojashiper.com', current_domain);
-    window.merchant['checkout']['items_json'] = window.merchant['checkout']['items_json'].replace('lojashiper.com', current_domain);
-    window.merchant['checkout']['redirect_to'] = window.merchant['checkout']['redirect_to'].replace('lojashiper.com', current_domain);
-    window.merchant['checkout']['orders'] = window.merchant['checkout']['orders'].replace('lojashiper.com', current_domain);
+var store_domain = window.merchant['domain'];
+if(current_domain != store_domain){
+    window.merchant['checkout']['base_domain'] = window.merchant['checkout']['base_domain'].replace(store_domain, current_domain);
+    window.merchant['checkout']['items'] = window.merchant['checkout']['items'].replace(store_domain, current_domain);
+    window.merchant['checkout']['items_json'] = window.merchant['checkout']['items_json'].replace(store_domain, current_domain);
+    window.merchant['checkout']['redirect_to'] = window.merchant['checkout']['redirect_to'].replace(store_domain, current_domain);
+    window.merchant['checkout']['orders'] = window.merchant['checkout']['orders'].replace(store_domain, current_domain);
     console.log('#mudança de domínio completa');
 }
 
