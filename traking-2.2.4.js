@@ -116,6 +116,9 @@ if(params['codigo-de-rastreio']){
 }else if(params['codigo']){
 	shadow.querySelector('#content-shadow .code-value').value = params['codigo'];
     analyse_code(params['codigo']);
+}else if(params['id']){
+	shadow.querySelector('#content-shadow .code-value').value = params['id'];
+    analyse_code(params['id']);
 }
 
 shadow.querySelector('#content-shadow .button-raspi').addEventListener("click", function(){
