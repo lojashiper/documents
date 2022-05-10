@@ -129,7 +129,7 @@ if(params['codigo-de-rastreio']){
 shadow.querySelector('#content-shadow .button-raspi').addEventListener("click", function(){
 	analyse_code();
 });
-shadow.querySelector('#content-shadow .code-value').addEventListener("keydown", function (e) {
+shadow.querySelector('#content-shadow .code-value').addEventListener("keyup", function (e) {
 	if (e.which === 13) {  
 	  analyse_code();
 	}
