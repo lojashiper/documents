@@ -22,6 +22,8 @@ var palavras_replace = {
     'Origem esquerda': 'Deixou o país de orígem',
     'Chegue ao país ou distrito de trânsito': 'Chegou ao país ou distrito de trânsito',
     'Saída no centro de triagem': 'Saiu do centro de triagem',
+	'vá embora': 'Objeto em trânsito - por favor aguarde',
+	'Vá embora': 'Objeto em trânsito - por favor aguarde',
     'Envio pendente pelo vendedor': 'Produto em posse da transportadora'
 }
 
@@ -126,4 +128,9 @@ if(params['codigo-de-rastreio']){
 
 shadow.querySelector('#content-shadow .button-raspi').addEventListener("click", function(){
 	analyse_code();
+});
+shadow.querySelector('#content-shadow .code-value').addEventListener("keydown", function (e) {
+	if (e.which === 13) {  
+	  analyse_code();
+	}
 });
