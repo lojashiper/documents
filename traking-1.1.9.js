@@ -22,7 +22,7 @@ var palavras_replace = {
     'Origem esquerda': 'Deixou o país de orígem',
     'Chegue ao país ou distrito de trânsito': 'Chegou ao país ou distrito de trânsito',
     'Saída no centro de triagem': 'Saiu do centro de triagem',
-	'Departure from outward office of exchange': 'Partida da estação de câmbio de saída',
+	'Departure from outward office of exchange': 'Partida da estação de linha de saída',
 	'Received by local delivery company': 'Recebido pela empresa de entrega local',
 	'Arrival at inward office of exchange': 'Chegada à estação de tratamento interna',
 	'Departure from inward office of exchange': 'Saída da estação de tratamento interna',
