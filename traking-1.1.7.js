@@ -90,7 +90,7 @@ function create_result_traking(code_value, status_track){
                 && !state['status'].includes('Shenzhen')
 				&& !state['status'].includes('Taiwan')){
 					var state_date = new Date(state['date']);
-					var status_info = state['status'];
+					var status_info = state['status'].replace('  ', ' ');
                     status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i){return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")}).join("|") + ")", "g"), function(s){ return palavras_replace[s]});
 					shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend','<section class="time-line-data"><h3 class="year">'+ state_date.getDate() +' de '+ mes_date[state_date.getMonth()] +'<br> de '+ state_date.getFullYear() +'</h3><section><ul><li>'+ status_info +'</li><li></li><li class="timer">'+ pad_2digit(state_date.getHours()) +':'+ pad_2digit(state_date.getMinutes()) +'</li></ul></section></section>');
 			}
