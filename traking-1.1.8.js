@@ -25,8 +25,10 @@ var palavras_replace = {
 	'Departure from outward office of exchange': 'Partida da estação de câmbio de saída',
 	'Received by local delivery company': 'Recebido pela empresa de entrega local',
 	'Arrival at inward office of exchange': 'Chegada à estação de tratamento interna',
+	'Departure from inward office of exchange': 'Saída da estação de tratamento interna',
 	'Item presented to import Customs': 'Item apresentado para importação alfandegária',
 	'Held by customs': 'Item em análise pelos Correios',
+	'Final delivery': 'Entrega finalizada',
 	'vá embora': 'Objeto em trânsito - por favor aguarde',
 	'Vá embora': 'Objeto em trânsito - por favor aguarde',
     'Envio pendente pelo vendedor': 'Produto em posse da transportadora'
