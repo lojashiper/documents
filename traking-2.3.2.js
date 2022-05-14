@@ -76,20 +76,17 @@ async function get_auth_code() {
 
 async function get_tracker(code_value) {
 	if(!auth_code_generated) auth_code_generated = await get_auth_code();
-	var numero_tentativas = 0;
-	do{
-        var status_track = await fetch('https://api.lojashiper.com/api/?track='+ code_value + '&auth_user='+ auth_code_generated['data'], {
-		    method: 'get',
-		    redirect: 'follow'
-		}).then(async res => {
-		    return await res.json()
-		})
-	}while(numero_tentativas++ < 3 && status_track['status']);
+	var status_track = await fetch('https://api.lojashiper.com/api/?track='+ code_value + '&auth_user='+ auth_code_generated['data'], {
+		method: 'get',
+		redirect: 'follow'
+	}).then(async res => {
+		return await res.json()
+	});
 	return status_track;
 }
 
 function create_result_traking(code_value, status_track){
-	if(status_track['status'] == 'ok'){
+	if(status_track['status']){
 		shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-message" role="alert"><span>Devido ao surto de COVID-19, todos os processos de envio nacional e internacional estarão sujeitos a atrasos.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
 		status_track['data']['events'].forEach(function(event){
             var regex = /[!@#$%^&*【】()_+\-=\[\]{};':"\\|,.<>\/?]/;
