@@ -55,7 +55,7 @@ async function get_auth_code() {
             'user-agent': 'okhttp/3.12.12',
             'x-app': '1track'
 		},
-        body: {
+        body:  JSON.stringify({
             "os": "android",
             "type": "mobile",
             "uniqueId": "c49bd8d13f032088",
@@ -68,7 +68,7 @@ async function get_auth_code() {
             "app_version": "1.3.3",
             "token": "",
             "device": "SM-G950F"
-        }
+        })
 	});
     let data = await response.json();
     return data;
@@ -84,7 +84,6 @@ async function get_tracker(code_value) {
             'accept': 'application/json',
             'accept-encoding': 'gzip',
             'connection': 'Keep-Alive',
-            'content-length': '226',
             'content-type': 'application/json',
             'cookie': '_app_version_=1.1.1',
             'host': '1trackapp.com',
@@ -97,7 +96,8 @@ async function get_tracker(code_value) {
             "import": {},
             "lang": "pt",
             "country": "br"
-        })).then(async res => {
+        })
+		}).then(async res => {
 		    return await res.json()
 		})
 	}while(numero_tentativas++ < 3 && status_track['status']);
