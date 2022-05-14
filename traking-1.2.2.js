@@ -47,7 +47,7 @@ function disactivate_loading(){
 }
 
 async function get_tracker(code_value) {
-	let response = await fetch('https://traking-lojashiper.herokuapp.com/https://parcelsapp.com/api/v1/parcels/'+ track_code +'/Auto%20Detect/pt/Brazil/Default/android', {
+	let response = await fetch('https://traking-lojashiper.herokuapp.com/https://parcelsapp.com/api/v1/parcels/'+ code_value +'/Auto%20Detect/pt/Brazil/Default/android', {
         method: 'POST',
         headers: {
             'accept': 'application/json',
@@ -59,7 +59,7 @@ async function get_tracker(code_value) {
         },
         body: [{
             "slug":"ahkref",
-            "data":[false,false,1652547810263,0,2,1,false,"SM-G950F","universal8895","c49bd8d13f032080","samsung",null,"2.1.32.156",track_code,1001876574]
+            "data":[false,false,1652547810263,0,2,1,false,"SM-G950F","universal8895","c49bd8d13f032080","samsung",null,"2.1.32.156",code_value,1001876574]
         }]
     });
     let json_result = await response.json();
