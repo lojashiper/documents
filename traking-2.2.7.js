@@ -27,6 +27,8 @@ var palavras_replace = {
     'Envio pendente pelo vendedor': 'Produto em posse da transportadora'
 }
 
+
+
 function pad_2digit(num){
   return String(num).padStart(2, '0');
 }
@@ -39,13 +41,63 @@ function disactivate_loading(){
 	shadow.querySelector('#content-shadow .button-raspi').classList.remove("button-loading");
 }
 
+let auth_code_generated = null;
+async function get_auth_code() {
+    let response = await fetch('https://traking-lojashiper.herokuapp.com/https://1trackapp.com/api/v2/auth_client', {
+		method: 'POST',
+		headers: {
+			'accept': 'application/json',
+            'accept-encoding': 'gzip',
+            'connection': 'Keep-Alive',
+            'content-type': 'application/json',
+            'cookie': '_app_version_=1.1.1',
+            'host': '1trackapp.com',
+            'user-agent': 'okhttp/3.12.12',
+            'x-app': '1track'
+		},
+        body: {
+            "os": "android",
+            "type": "mobile",
+            "uniqueId": "c49bd8d13f032088",
+            "version": 28,
+            "lang": "pt",
+            "locale": "pt-BR",
+            "device_country": null,
+            "timezone": "America/Fortaleza",
+            "tz_offset": 180,
+            "app_version": "1.3.3",
+            "token": "",
+            "device": "SM-G950F"
+        }
+	});
+    let data = await response.json();
+    return data;
+}
+
 async function get_tracker(code_value) {
+	if(!auth_code_generated) auth_code_generated = await get_auth_code();
 	var numero_tentativas = 0;
 	do{
-		var status_track = await fetch('https://api.lojashiper.com/api/?track='+ code_value, {
-		    method: 'get',
-		    redirect: 'follow'
-		}).then(async res => {
+		var status_track = await fetch('https://traking-lojashiper.herokuapp.com/https://1trackapp.com/api/v2/tracking?userid=' + auth_code_generated, {
+        method: 'POST',
+        headers: {
+            'accept': 'application/json',
+            'accept-encoding': 'gzip',
+            'connection': 'Keep-Alive',
+            'content-length': '226',
+            'content-type': 'application/json',
+            'cookie': '_app_version_=1.1.1',
+            'host': '1trackapp.com',
+            'user-agent': 'okhttp/3.12.12',
+            'x-app': '1track'
+        },
+        body: {
+            "trackcode": code_value,
+            "push": true,
+            "import": {},
+            "lang": "pt",
+            "country": "br"
+        }).then(async res => {
 		    return await res.json()
 		})
 	}while(numero_tentativas++ < 3 && status_track['status']);
