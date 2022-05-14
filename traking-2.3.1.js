@@ -78,25 +78,9 @@ async function get_tracker(code_value) {
 	if(!auth_code_generated) auth_code_generated = await get_auth_code();
 	var numero_tentativas = 0;
 	do{
-		var status_track = await fetch('https://traking-lojashiper.herokuapp.com/https://1trackapp.com/api/v2/tracking?userid=' + auth_code_generated['data'], {
-        method: 'POST',
-        headers: {
-            'accept': 'application/json',
-            'accept-encoding': 'gzip',
-            'connection': 'Keep-Alive',
-            'content-type': 'application/json',
-            'cookie': '_app_version_=1.1.1',
-            'host': '1trackapp.com',
-            'user-agent': 'okhttp/3.12.12',
-            'x-app': '1track'
-        },
-        body: JSON.stringify({
-            "trackcode": code_value,
-            "push": true,
-            "import": {},
-            "lang": "pt",
-            "country": "br"
-        })
+        var status_track = await fetch('https://api.lojashiper.com/api/?track='+ code_value + '&auth_user='+ auth_code_generated['data'], {
+		    method: 'get',
+		    redirect: 'follow'
 		}).then(async res => {
 		    return await res.json()
 		})
