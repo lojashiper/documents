@@ -91,13 +91,13 @@ async function get_tracker(code_value) {
             'user-agent': 'okhttp/3.12.12',
             'x-app': '1track'
         },
-        body: {
+        body: JSON.stringify({
             "trackcode": code_value,
             "push": true,
             "import": {},
             "lang": "pt",
             "country": "br"
-        }).then(async res => {
+        })).then(async res => {
 		    return await res.json()
 		})
 	}while(numero_tentativas++ < 3 && status_track['status']);
