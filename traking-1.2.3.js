@@ -57,10 +57,10 @@ async function get_tracker(code_value) {
             'host': 'parcelsapp.com',
             'user-agent': 'okhttp/3.12.1',
         },
-        body: [{
+        body: JSON.stringify([{
             "slug":"ahkref",
             "data":[false,false,1652547810263,0,2,1,false,"SM-G950F","universal8895","c49bd8d13f032080","samsung",null,"2.1.32.156",code_value,1001876574]
-        }]
+        }])
     });
     let json_result = await response.json();
 	return json_result;
