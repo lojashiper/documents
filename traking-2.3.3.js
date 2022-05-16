@@ -98,7 +98,7 @@ function create_result_traking(code_value, status_track){
 				&& !event['attribute'].includes('Taiwan')){
                     var date_split = event['date'].split(/[- :]/);
 					var state_date = new Date(date_split[0], date_split[1]-1, date_split[2], date_split[3], date_split[4], date_split[5]);
-                    state_date.setDate(state_date.getDate() - 1);
+                    state_date.setDate(state_date.getHours() - 5);
                     
                     var status_info = event['attribute'];
                     status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i){return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")}).join("|") + ")", "g"), function(s){ return palavras_replace[s]});
