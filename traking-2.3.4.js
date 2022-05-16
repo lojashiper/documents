@@ -89,7 +89,7 @@ function create_result_traking(code_value, status_track){
 	if(status_track['status']){
 		shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend','<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">'+ code_value +'<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-message" role="alert"><span>Devido ao surto de COVID-19, todos os processos de envio nacional e internacional estarão sujeitos a atrasos.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
 		status_track['data']['events'].forEach(function(event){
-            var regex = /[!@#$%^&*【】()_+\-=\[\]{};':"\\|,.<>\/?]/;
+            var regex = /[!@#$%^&*【】_+\=\[\]{};':"\\|,.<>?]/;
 			if(!regex.test(event['attribute'])
                 && !event['attribute'].includes('Hong Kong')
 				&& !event['attribute'].includes('China')
@@ -98,8 +98,6 @@ function create_result_traking(code_value, status_track){
 				&& !event['attribute'].includes('Taiwan')){
                     var date_split = event['date'].split(/[- :]/);
 					var state_date = new Date(date_split[0], date_split[1]-1, date_split[2], date_split[3], date_split[4], date_split[5]);
-                    state_date.setDate(state_date.getHours() - 5);
-                    
                     var status_info = event['attribute'];
                     status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i){return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")}).join("|") + ")", "g"), function(s){ return palavras_replace[s]});
 					shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend','<section class="time-line-data"><h3 class="year">'+ state_date.getDate() +' de '+ mes_date[state_date.getMonth()] +'<br> de '+ state_date.getFullYear() +'</h3><section><ul><li>'+ status_info +'</li><li></li><li class="timer">'+ pad_2digit(state_date.getHours()) +':'+ pad_2digit(state_date.getMinutes()) +'</li></ul></section></section>');
