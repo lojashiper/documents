@@ -100,6 +100,7 @@ function create_result_traking(code_value, status_track){
 					var state_date = new Date(date_split[0], date_split[1]-1, date_split[2], date_split[3], date_split[4], date_split[5]);
                     var status_info = event['attribute'];
                     status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i){return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")}).join("|") + ")", "g"), function(s){ return palavras_replace[s]});
+					if(status_info == "Chegou ao destino") if(event['details']) status_info = event['details'];
 					shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend','<section class="time-line-data"><h3 class="year">'+ state_date.getDate() +' de '+ mes_date[state_date.getMonth()] +'<br> de '+ state_date.getFullYear() +'</h3><section><ul><li>'+ status_info +'</li><li></li><li class="timer">'+ pad_2digit(state_date.getHours()) +':'+ pad_2digit(state_date.getMinutes()) +'</li></ul></section></section>');
 			}
 		});
