@@ -38,6 +38,11 @@ var palavras_replace = {
     'Final delivery': 'Entrega finalizada',
     'vá embora': 'Objeto em trânsito - por favor aguarde',
     'Vá embora': 'Objeto em trânsito - por favor aguarde',
+    'Envio pendente pelo vendedor': 'Produto em posse da transportadora',
+    'Awaiting for you to pick-up': 'Aguardando retirada do pedido nos Correios',
+    'Objeto aguardando retirada no endereço indicado': 'Objeto aguardando retirada na agência dos Correios mais próxima de sua residência',
+    'Liberado da alfândega / despachado do centro de processamento (estação de câmbio interna)': 'Despachado do centro de processamento (estação de triagem interna)',
+    'Realizado pela alfândega': 'Item em análise pelos Correios',
     'Envio pendente pelo vendedor': 'Produto em posse da transportadora'
 }
 
@@ -108,20 +113,20 @@ function create_result_traking(code_value, status_track) {
         shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend', '<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">' + code_value + '<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-message" role="alert"><span>Devido ao surto de COVID-19, todos os processos de envio nacional e internacional estarão sujeitos a atrasos.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
         if (status_track['states'].length > 0) {
             status_track['states'].forEach(function(state) {
+                var status_info = state['status'].replace('  ', ' ');
+                status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i) {return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")}).join("|") + ")", "g"), function(s) {
+                    return palavras_replace[s]
+                });
+                
                 var regex = /[!@#$%^&*【】_+\=\[\]{};':"\\|<>?]/;
-                if (!regex.test(state['status']) &&
-                    !state['status'].includes('Hong Kong') &&
-                    !state['status'].includes('China') &&
-                    !state['status'].includes('Kunshan') &&
-                    !state['status'].includes('Shenzhen') &&
-                    !state['status'].includes('Taiwan')) {
+                if (!regex.test(status_info) &&
+                    !status_info.includes('Hong Kong') &&
+                    !status_info.includes('China') &&
+                    !status_info.includes('Kunshan') &&
+                    !status_info.includes('Shenzhen') &&
+                    !status_info.includes('Taiwan')) {
                     var state_date = new Date(state['date']);
-                    var status_info = state['status'].replace('  ', ' ');
-                    status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i) {
-                        return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")
-                    }).join("|") + ")", "g"), function(s) {
-                        return palavras_replace[s]
-                    });
+                    
                     shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend', '<section class="time-line-data"><h3 class="year">' + state_date.getDate() + ' de ' + mes_date[state_date.getMonth()] + '<br> de ' + state_date.getFullYear() + '</h3><section><ul><li>' + status_info + '</li><li></li><li class="timer">' + pad_2digit(state_date.getHours()) + ':' + pad_2digit(state_date.getMinutes()) + '</li></ul></section></section>');
                 }
             });
