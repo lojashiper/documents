@@ -21,6 +21,7 @@ var palavras_replace = {
     'Depart from facility to service provider': 'Encaminhado para linha de transporte',
     'Hand over to airline': 'Verificação de triagem finalizada',
     'Chegue ao destino': 'Chegou ao país de destino',
+    'Chegue no escritório de entrega local': 'Chegou ao depósito de entrega local',
     'Origem esquerda': 'Deixou o país de orígem',
     'Chegue ao país ou distrito de trânsito': 'Chegou ao país ou distrito de trânsito',
     'Saída no centro de triagem': 'Saiu do centro de triagem',
@@ -28,7 +29,10 @@ var palavras_replace = {
     'Vá embora': 'Objeto em trânsito - por favor aguarde',
     'Partiu do aeroporto de HONG KONG': 'Partiu do aeroporto do país de origem',
     'Scan Yanwen Pickup': 'Encomenda em triagem inicial',
-    'Instalação de Yanwen - Saída': 'Centro de triagem - Saída',
+    'Instalação de Yanwen - Saída': 'Centro de triagem - Em preparação para saída',
+    'Delivery unsuccessful': 'Entrega não realizada',
+    'Awaiting for you to pick-up': 'Aguardando retirada do pedido nos Correios',
+    'Objeto aguardando retirada no endereço indicado': 'Objeto aguardando retirada na agência dos Correios mais próxima de sua residência',
     'Liberado da alfândega / despachado do centro de processamento (estação de câmbio interna)': 'Despachado do centro de processamento (estação de triagem interna)',
     'Realizado pela alfândega': 'Item em análise pelos Correios',
     'Envio pendente pelo vendedor': 'Produto em posse da transportadora'
@@ -107,12 +111,12 @@ function create_result_traking(code_value, status_track) {
 
                 var regex = /[!@#$%^&*【】_+\=\[\]{};':"\\|,.<>?]/;
                 if (!regex.test(status_info) &&
-                    !event['attribute'].includes('Hong Kong') &&
-                    !event['attribute'].includes('China') &&
-                    !event['attribute'].includes('Yanwen') &&
-                    !event['attribute'].includes('Kunshan') &&
-                    !event['attribute'].includes('Shenzhen') &&
-                    !event['attribute'].includes('Taiwan')) {
+                    !status_info.includes('Hong Kong') &&
+                    !status_info.includes('China') &&
+                    !status_info.includes('Yanwen') &&
+                    !status_info.includes('Kunshan') &&
+                    !status_info.includes('Shenzhen') &&
+                    !status_info.includes('Taiwan')) {
                     var date_split = event['date'].split(/[- :]/);
                     var state_date = new Date(date_split[0], date_split[1] - 1, date_split[2], date_split[3], date_split[4], date_split[5]);
                     if (event['courier'] == "cainiao") state_date.setHours(state_date.getHours() - 12);
