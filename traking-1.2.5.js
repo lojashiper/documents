@@ -22,7 +22,12 @@ var palavras_replace = {
     'Hand over to airline': 'Verificação de triagem finalizada',
     'Chegue ao destino': 'Chegou ao país de destino',
     'Origem esquerda': 'Deixou o país de orígem',
+    'Arrive at local delivery office': 'Chegou no depósito de entrega local',
+    'Origem esquerda': 'Deixou o país de orígem',
+    'Out for delivery': 'Saiu para entrega',
+    'Delivery unsuccessful': 'Entrega não realizada',
     'Chegue ao país ou distrito de trânsito': 'Chegou ao país ou distrito de trânsito',
+    'La compagnia aerea è arrivata nel paese di destinazione': 'A companhia aérea chegou ao país de destino',
     'Saída no centro de triagem': 'Saiu do centro de triagem',
     'Departure from outward office of exchange': 'Partida da estação de linha de saída',
     'Received by local delivery company': 'Recebido pela empresa de entrega local',
@@ -101,24 +106,29 @@ async function get_tracker(code_value) {
 function create_result_traking(code_value, status_track) {
     if (!status_track['error']) {
         shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend', '<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">' + code_value + '<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-message" role="alert"><span>Devido ao surto de COVID-19, todos os processos de envio nacional e internacional estarão sujeitos a atrasos.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
-        status_track['states'].forEach(function(state) {
-            var regex = /[!@#$%^&*【】()_+\-=\[\]{};':"\\|,.<>\/?]/;
-            if (!regex.test(state['status']) &&
-                !state['status'].includes('Hong Kong') &&
-                !state['status'].includes('China') &&
-                !state['status'].includes('Kunshan') &&
-                !state['status'].includes('Shenzhen') &&
-                !state['status'].includes('Taiwan')) {
-                var state_date = new Date(state['date']);
-                var status_info = state['status'].replace('  ', ' ');
-                status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i) {
-                    return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")
-                }).join("|") + ")", "g"), function(s) {
-                    return palavras_replace[s]
-                });
-                shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend', '<section class="time-line-data"><h3 class="year">' + state_date.getDate() + ' de ' + mes_date[state_date.getMonth()] + '<br> de ' + state_date.getFullYear() + '</h3><section><ul><li>' + status_info + '</li><li></li><li class="timer">' + pad_2digit(state_date.getHours()) + ':' + pad_2digit(state_date.getMinutes()) + '</li></ul></section></section>');
-            }
-        });
+        if (status_track['states'].length > 0) {
+            status_track['states'].forEach(function(state) {
+                var regex = /[!@#$%^&*【】_+\=\[\]{};':"\\|<>?]/;
+                if (!regex.test(state['status']) &&
+                    !state['status'].includes('Hong Kong') &&
+                    !state['status'].includes('China') &&
+                    !state['status'].includes('Kunshan') &&
+                    !state['status'].includes('Shenzhen') &&
+                    !state['status'].includes('Taiwan')) {
+                    var state_date = new Date(state['date']);
+                    var status_info = state['status'].replace('  ', ' ');
+                    status_info = status_info.replace(new RegExp("(" + Object.keys(palavras_replace).map(function(i) {
+                        return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")
+                    }).join("|") + ")", "g"), function(s) {
+                        return palavras_replace[s]
+                    });
+                    shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend', '<section class="time-line-data"><h3 class="year">' + state_date.getDate() + ' de ' + mes_date[state_date.getMonth()] + '<br> de ' + state_date.getFullYear() + '</h3><section><ul><li>' + status_info + '</li><li></li><li class="timer">' + pad_2digit(state_date.getHours()) + ':' + pad_2digit(state_date.getMinutes()) + '</li></ul></section></section>');
+                }
+            });
+        }else {
+            var present_date = new Date();
+            shadow.querySelector('#content-shadow .timeline-container .timeline-sections').insertAdjacentHTML('beforeend', '<section class="time-line-data"><h3 class="year">' + present_date.getDate() + ' de ' + mes_date[present_date.getMonth()] + '<br> de ' + present_date.getFullYear() + '</h3><section><ul><li>Produto em posse da transportadora</li><li></li><li class="timer">' + pad_2digit(present_date.getHours()) + ':' + pad_2digit(present_date.getMinutes()) + '</li></ul></section></section>');
+        }
     } else {
         shadow.querySelector('#content-shadow').insertAdjacentHTML('beforeend', '<div id="rastreio-yampi"><div class="container-traking"><h1 class="title-h1-text"><span class="text-primary">Resultado</span></h1><h3 class="title-h3-text"><span class="badge-code-check">' + code_value + '<i class="fas fa-check"></i></span></h3><h3 class="title-h3-text"><div class="alert-warning-message" role="alert"><strong>Ops!</strong> <span>A transportadora ainda não atualizou o status de andamento do envio, tente novamente mais tarde.</span></div></h3><div class="timeline-container"><div class="item"><div id="timeline"><div><i class="icon-home"></i></div><br><div class="timeline-sections"></div></div></div><div class="timeline-border-bottom"></div></div></div></div>');
     }
