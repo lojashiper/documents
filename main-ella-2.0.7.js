@@ -39,7 +39,7 @@ function ReplaceSelectWithButtons(selectField, index) {
     if(selectId.toLowerCase().includes('kit') || selectId.toLowerCase().includes('kits')){
         options.forEach(function(button){
             if(button.value != 0 && button.value){
-                var topMessageBadge = '', topDiscountBadge = '', discountMessageBadge = '', marginBottom = 'mb-20';
+                var topMessageBadge = '', topDiscountBadge = '', discountMessageBadge = '', oldPriceProduct = '', marginBottom = 'mb-20';
                 selectField.parentNode.parentNode.classList.add("sku-selectkit");
                 var buttonOrder = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).order;
                 var priceSale = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).price_sale;
@@ -59,10 +59,12 @@ function ReplaceSelectWithButtons(selectField, index) {
                         discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ '+ (priceSale - priceDiscount).toString().replace('.',',') +'</strong> </div>'
                     }
                 }
+                if(priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ '+ priceSale.toString.replace('.',',') +'</div>';
+                var priceShowProduct = (priceDiscount)? priceDiscount.toString.replace('.',',') : priceSale.toString.replace('.',',');
                 var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
                 var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/75x75/filters:background_color(white):upscale()/" + buttonImage + "'";
                 var selectedButton = (button.value == selectValue)? 'selected' : '';
-                selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectkitbtn '+ marginBottom +' target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url('+ buttonImageLink +')"></div> <div class="kit-quantity"> '+ topMessageBadge +' <div class="kit-item-title-badge"> <div class="kit-item-title">'+ button.innerText +'</div> '+ discountMessageBadge +' </div> </div> </div> <div class="kit-content-right"> '+ topDiscountBadge +' <div class="kit-comparation-prices"> <div class="kit-old-value-price">R$ 276,00</div> <div class="kit-new-value-price">R$ 190,00</div> </div> </div> </div></div>');
+                selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectkitbtn '+ marginBottom +' target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url('+ buttonImageLink +')"></div> <div class="kit-quantity"> '+ topMessageBadge +' <div class="kit-item-title-badge"> <div class="kit-item-title">'+ button.innerText +'</div> '+ discountMessageBadge +' </div> </div> </div> <div class="kit-content-right"> '+ topDiscountBadge +' <div class="kit-comparation-prices"> '+ oldPriceProduct +' <div class="kit-new-value-price">R$ '+ priceShowProduct +'</div> </div> </div> </div></div>');
             }
         });
     }else if(selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')){
