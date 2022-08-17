@@ -36,20 +36,49 @@ function ReplaceSelectWithButtons(selectField, index) {
     });
     
     var options = selectField.querySelectorAll('option');
-    if(selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')){
+    if(selectId.toLowerCase().includes('kit') || selectId.toLowerCase().includes('kits')){
+        options.forEach(function(button){
+            if(button.value != 0 && button.value){
+                var topMessageBadge = '', topDiscountBadge = '', discountMessageBadge = '', marginBottom = 'mb-20';
+                selectField.parentNode.parentNode.classList.add("sku-selectkit");
+                var buttonOrder = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).order;
+                var priceSale = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).price_sale;
+                var priceDiscount = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).price_discount;
+                if(buttonOrder == 1){
+                    topMessageBadge = '<div class="kit-mostsell-badge">Mais Vendido</div>';
+                    if(priceDiscount){
+                        topDiscountBadge = '<div class="kit-discount-badge">-'+ ((1 - priceDiscount/priceSale).toFixed(2) * 100) +'%</div>';
+                        discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ '+ (priceSale - priceDiscount).toString().replace('.',',') +'</strong> </div>'
+                    }
+                }
+                else if(buttonOrder == 2){
+                    topMessageBadge = '<div class="kit-moreeconomy-badge">Maior Economia</div>';
+                    marginBottom = 'mb-5';
+                    if(priceDiscount){
+                        topDiscountBadge = '<div class="kit-discount-badge">-'+ ((1 - priceDiscount/priceSale).toFixed(2) * 100) +'%</div>';
+                        discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ '+ (priceSale - priceDiscount).toString().replace('.',',') +'</strong> </div>'
+                    }
+                }
+                var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
+                var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/75x75/filters:background_color(white):upscale()/" + buttonImage + "'";
+                var selectedButton = (button.value == selectValue)? 'selected' : '';
+                selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectkitbtn '+ marginBottom +' target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url('+ buttonImageLink +')"></div> <div class="kit-quantity"> '+ topMessageBadge +' <div class="kit-item-title-badge"> <div class="kit-item-title">'+ button.innerText +'</div> '+ discountMessageBadge +' </div> </div> </div> <div class="kit-content-right"> '+ topDiscountBadge +' <div class="kit-comparation-prices"> <div class="kit-old-value-price">R$ 276,00</div> <div class="kit-new-value-price">R$ 190,00</div> </div> </div> </div></div>');
+            }
+        });
+    }else if(selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')){
         options.forEach(function(button){
             if(button.value != 0 && button.value){
                 var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
                 var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/75x75/filters:background_color(white):upscale()/" + buttonImage + "'";
-                if(button.value == selectValue) selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectroundbtn target-' + selectId  + ' selected" onclick="clickButtonSelect(this,'+ index +')" style="background-image: url('+ buttonImageLink +')"></div>');
-                else selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectroundbtn target-' + selectId  + '" onclick="clickButtonSelect(this,'+ index +')" style="background-image: url('+ buttonImageLink +')"></div>');
+                var selectedButton = (button.value == selectValue)? 'selected' : '';
+                selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectroundbtn target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')" style="background-image: url('+ buttonImageLink +')"></div>');
             }
         });
     }else{
         options.forEach(function(button){
             if(button.value != 0 && button.value){
-                if(button.value == selectValue) selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn target-' + selectId  + ' selected" onclick="clickButtonSelect(this,'+ index +')">' + button.innerText + '</div>');
-                else selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn target-' + selectId  + '" onclick="clickButtonSelect(this,'+ index +')">' + button.innerText + '</div>');
+                var selectedButton = (button.value == selectValue)? 'selected' : '';
+                selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')">' + button.innerText + '</div>');
             }
         });
     }
