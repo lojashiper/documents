@@ -59,8 +59,8 @@ function ReplaceSelectWithButtons(selectField, index) {
                         discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ '+ (priceSale - priceDiscount).toString().replace('.',',') +'</strong> </div>'
                     }
                 }
-                if(priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ '+ priceSale.toString.replace('.',',') +'</div>';
-                var priceShowProduct = (priceDiscount)? priceDiscount.toString.replace('.',',') : priceSale.toString.replace('.',',');
+                if(priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ '+ priceSale.toString().replace('.',',') +'</div>';
+                var priceShowProduct = (priceDiscount)? priceDiscount.toString().replace('.',',') : priceSale.toString().replace('.',',');
                 var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
                 var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/75x75/filters:background_color(white):upscale()/" + buttonImage + "'";
                 var selectedButton = (button.value == selectValue)? 'selected' : '';
