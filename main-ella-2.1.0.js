@@ -198,8 +198,8 @@ function loading_on_product_page(){
 	    /* end:: Gatilho de número de compras */
         
         /* begin:: Stiky da informação do produto em Desktop */
-        checkElement('.main-product-reference').then((selector) => {
-            if(window.innerWidth < 700 && document.querySelector('.main-product-info) && document.querySelector('section.product-reviews')){
+        checkElement('section.product-reviews').then((selector) => {
+            if(window.innerWidth < 700 && document.querySelector('.main-product-info') && document.querySelector('section.product-reviews')){
                 window.onscroll = function(){
                     var element = document.querySelector('.main-product-content .main-product-info');
                     var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
