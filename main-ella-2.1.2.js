@@ -62,7 +62,7 @@ function ReplaceSelectWithButtons(selectField, index) {
                 if(priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ '+ priceSale.toFixed(2).toString().replace('.',',') +'</div>';
                 var priceShowProduct = (priceDiscount)? priceDiscount.toFixed(2).toString().replace('.',',') : priceSale.toFixed(2).toString().replace('.',',');
                 var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
-                var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/75x75/filters:background_color(white):upscale()/" + buttonImage + "'";
+                var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/60x60/filters:background_color(white):upscale()/" + buttonImage + "'";
                 var selectedButton = (button.value == selectValue)? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectkitbtn '+ marginBottom +' target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url('+ buttonImageLink +')"></div> <div class="kit-quantity"> '+ topMessageBadge +' <div class="kit-item-title-badge"> <div class="kit-item-title">'+ button.innerText +'</div> '+ discountMessageBadge +' </div> </div> </div> <div class="kit-content-right"> '+ topDiscountBadge +' <div class="kit-comparation-prices"> '+ oldPriceProduct +' <div class="kit-new-value-price">R$ '+ priceShowProduct +'</div> </div> </div> </div></div>');
             }
@@ -71,7 +71,7 @@ function ReplaceSelectWithButtons(selectField, index) {
         options.forEach(function(button){
             if(button.value != 0 && button.value){
                 var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
-                var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/75x75/filters:background_color(white):upscale()/" + buttonImage + "'";
+                var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/60x60/filters:background_color(white):upscale()/" + buttonImage + "'";
                 var selectedButton = (button.value == selectValue)? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectroundbtn target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')" style="background-image: url('+ buttonImageLink +')"></div>');
             }
@@ -222,10 +222,10 @@ function loading_on_product_page(){
 						element.style.position = 'fixed';
 						element.style.transform = 'translateY(-'+ ((heightElement - self.innerHeight) + limitTop + 40) +'px)';
 					}else{
-						element.style.position = 'unset';
-						element.style.left = 'unset';
-						element.style.width = 'unset';
-						element.style.transform = 'unset';
+						element.style.position = '';
+						element.style.left = '';
+						element.style.width = '';
+						element.style.transform = '';
 						if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
 					}
 
@@ -239,13 +239,15 @@ function loading_on_product_page(){
 					if (self.pageYOffset >= limitTop - 40){
 						element.style.width = widthElement + 'px';
 						element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
+						if(!document.querySelector('#stick-temporary-blank-div')) element.insertAdjacentHTML('beforebegin', '<div id="stick-temporary-blank-div" style="width: '+ widthElement +'px; height: '+ heightElement +'px"></div>');
 						element.style.position = 'fixed';
 						element.style.transform = 'translateY(-180px)';
 					}else{
-						element.style.position = 'unset';
-						element.style.left = 'unset';
-						element.style.width = 'unset';
-						element.style.transform = 'unset';
+						element.style.position = '';
+						element.style.left = '';
+						element.style.width = '';
+						element.style.transform = '';
+						if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
 					}
 
 					if ((self.pageYOffset +  heightElement) >= limitBottom - 100){
