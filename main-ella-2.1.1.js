@@ -200,7 +200,7 @@ function loading_on_product_page(){
 	
 	checkElement('section.product-reviews').then((selector) => {
 		/* begin:: Stiky da informação do produto em Desktop */
-		if(window.innerWidth < 700 && document.querySelector('.main-product-info') && document.querySelector('section.product-reviews')){
+		if(window.innerWidth > 700 && document.querySelector('.main-product-info') && document.querySelector('section.product-reviews')){
 			document.querySelector('section.product-specifications').classList.add('sticky');
 			window.onscroll = function(){
 				var element = document.querySelector('.main-product-content .main-product-info');
