@@ -196,69 +196,71 @@ function loading_on_product_page(){
 	        console.log('#gatilho de compras adicionado');
 	    }
 	    /* end:: Gatilho de número de compras */
-        
-        /* begin:: Stiky da informação do produto em Desktop */
-        checkElement('section.product-reviews').then((selector) => {
-            if(window.innerWidth < 700 && document.querySelector('.main-product-info') && document.querySelector('section.product-reviews')){
-                window.onscroll = function(){
-                    var element = document.querySelector('.main-product-content .main-product-info');
-                    var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
-                    var elementReviews = document.querySelector('section.product-reviews');
-                    var limitTop = element.offsetTop;
-                    var limitTopBottom = element.offsetTop + element.offsetHeight;
-                    var limitBottom = elementReviews.offsetTop;
-                    var heightElement = element.offsetHeight;
-                    var widthElement = element.offsetWidth;
-                    var widthElementLeftParent = elementLeftParent.offsetWidth;
-                    var startElementLeftParent = elementLeftParent.offsetLeft;
-
-                    if(self.innerHeight < heightElement){
-                        if ((self.pageYOffset + self.innerHeight) >= limitTopBottom + 40){
-                            element.style.width = widthElement + 'px';
-                            element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
-                            if(!document.querySelector('#stick-temporary-blank-div')) element.insertAdjacentHTML('beforebegin', '<div id="stick-temporary-blank-div" style="width: '+ widthElement +'px; height: '+ heightElement +'px"></div>');
-                            element.style.position = 'fixed';
-                            element.style.transform = 'translateY(-'+ ((heightElement - self.innerHeight) + limitTop + 40) +'px)';
-                        }else{
-                            element.style.position = 'unset';
-                            element.style.left = 'unset';
-                            element.style.width = 'unset';
-                            element.style.transform = 'unset';
-                            if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
-                        }
-
-                        if ((self.pageYOffset + self.innerHeight) >= limitBottom - 40){
-                            element.style.width = widthElement + 'px';
-                            element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
-                            element.style.position = 'fixed';
-                            element.style.transform = 'translateY('+ (-element.offsetTop + (limitBottom - self.pageYOffset) - heightElement - 80) +'px)';
-                        }
-                    }else{
-                        if (self.pageYOffset >= limitTop - 40){
-                            element.style.width = widthElement + 'px';
-                            element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
-                            element.style.position = 'fixed';
-                            element.style.transform = 'translateY(-180px)';
-                        }else{
-                            element.style.position = 'unset';
-                            element.style.left = 'unset';
-                            element.style.width = 'unset';
-                            element.style.transform = 'unset';
-                        }
-
-                        if ((self.pageYOffset +  heightElement) >= limitBottom - 100){
-                            element.style.width = widthElement + 'px';
-                            element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
-                            element.style.position = 'fixed';
-                            element.style.transform = 'translateY('+ (-200 + (limitBottom - self.pageYOffset) - heightElement - 80) +'px)';
-                        }
-                    }
-                }
-                console.log('#stiky da informação do produto');
-            }
-        });
-        /* end:: Stiky da informação do produto em Desktop */
     });
+	
+	checkElement('section.product-reviews').then((selector) => {
+		/* begin:: Stiky da informação do produto em Desktop */
+		if(window.innerWidth < 700 && document.querySelector('.main-product-info') && document.querySelector('section.product-reviews')){
+			document.querySelector('section.product-specifications').classList.add('sticky');
+			window.onscroll = function(){
+				var element = document.querySelector('.main-product-content .main-product-info');
+				var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
+				var elementReviews = document.querySelector('section.product-reviews');
+				var limitTop = element.offsetTop;
+				var limitTopBottom = element.offsetTop + element.offsetHeight;
+				var limitBottom = elementReviews.offsetTop;
+				var heightElement = element.offsetHeight;
+				var widthElement = element.offsetWidth;
+				var widthElementLeftParent = elementLeftParent.offsetWidth;
+				var startElementLeftParent = elementLeftParent.offsetLeft;
+
+				if(self.innerHeight < heightElement){
+					if ((self.pageYOffset + self.innerHeight) >= limitTopBottom + 40){
+						element.style.width = widthElement + 'px';
+						element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
+						if(!document.querySelector('#stick-temporary-blank-div')) element.insertAdjacentHTML('beforebegin', '<div id="stick-temporary-blank-div" style="width: '+ widthElement +'px; height: '+ heightElement +'px"></div>');
+						element.style.position = 'fixed';
+						element.style.transform = 'translateY(-'+ ((heightElement - self.innerHeight) + limitTop + 40) +'px)';
+					}else{
+						element.style.position = 'unset';
+						element.style.left = 'unset';
+						element.style.width = 'unset';
+						element.style.transform = 'unset';
+						if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
+					}
+
+					if ((self.pageYOffset + self.innerHeight) >= limitBottom - 40){
+						element.style.width = widthElement + 'px';
+						element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
+						element.style.position = 'fixed';
+						element.style.transform = 'translateY('+ (-element.offsetTop + (limitBottom - self.pageYOffset) - heightElement - 80) +'px)';
+					}
+				}else{
+					if (self.pageYOffset >= limitTop - 40){
+						element.style.width = widthElement + 'px';
+						element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
+						element.style.position = 'fixed';
+						element.style.transform = 'translateY(-180px)';
+					}else{
+						element.style.position = 'unset';
+						element.style.left = 'unset';
+						element.style.width = 'unset';
+						element.style.transform = 'unset';
+					}
+
+					if ((self.pageYOffset +  heightElement) >= limitBottom - 100){
+						element.style.width = widthElement + 'px';
+						element.style.left = (startElementLeftParent + widthElementLeftParent) +'px';
+						element.style.position = 'fixed';
+						element.style.transform = 'translateY('+ (-200 + (limitBottom - self.pageYOffset) - heightElement - 80) +'px)';
+					}
+				}
+			}
+			console.log('#stiky da informação do produto');
+		}
+		/* end:: Stiky da informação do produto em Desktop */
+	});
+        
 
     checkElement('.main-product-info .main-product-buy-button-holder').then((selector) => {
     	/* begin:: Informação do frete */
