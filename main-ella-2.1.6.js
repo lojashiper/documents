@@ -234,7 +234,7 @@ function loading_on_product_page() {
 				document.querySelector('section.product-specifications').classList.add('sticky');
                 var element = document.querySelector('.main-product-content .main-product-info');
                 var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
-                document.querySelector('.main-product-content .main-product-info').parentNode.style.marginBottom = -(element.offsetHeight - elementLeftParent.childNodes[0].offsetHeight - 85) + 'px';
+                document.querySelector('.main-product-holder').style.marginBottom = -(element.offsetHeight - elementLeftParent.childNodes[0].offsetHeight - 85) + 'px';
 				
                 window.onscroll = function() {
 					var element = document.querySelector('.main-product-content .main-product-info');
