@@ -249,7 +249,7 @@ function loading_on_product_page() {
 						if ((self.pageYOffset + self.innerHeight) >= limitTopBottom + 40) {
 							element.style.width = widthElement + 'px';
 							element.style.left = (startElementLeftParent + widthElementLeftParent) + 'px';
-							if (!document.querySelector('#stick-temporary-blank-div')) element.insertAdjacentHTML('beforebegin', '<div id="stick-temporary-blank-div" style="width: ' + widthElement + 'px; height: ' + heightElement + 'px"></div>');
+							if (!document.querySelector('#stick-temporary-blank-div')) element.insertAdjacentHTML('beforebegin', '<div id="stick-temporary-blank-div" style="width: ' + widthElement + 'px; height: ' + heightElement + 'px; position: absolute"></div>');
 							element.style.position = 'fixed';
 							element.style.transform = 'translateY(-' + ((heightElement - self.innerHeight) + limitTop + 40) + 'px)';
 						} else {
@@ -270,7 +270,7 @@ function loading_on_product_page() {
 						if (self.pageYOffset >= limitTop - 40) {
 							element.style.width = widthElement + 'px';
 							element.style.left = (startElementLeftParent + widthElementLeftParent) + 'px';
-							if (!document.querySelector('#stick-temporary-blank-div')) element.insertAdjacentHTML('beforebegin', '<div id="stick-temporary-blank-div" style="width: ' + widthElement + 'px; height: ' + heightElement + 'px"></div>');
+							if (!document.querySelector('#stick-temporary-blank-div')) element.insertAdjacentHTML('beforebegin', '<div id="stick-temporary-blank-div" style="width: ' + widthElement + 'px; height: ' + heightElement + 'px; position: absolute"></div>');
 							element.style.position = 'fixed';
 							element.style.transform = 'translateY(-180px)';
 						} else {
