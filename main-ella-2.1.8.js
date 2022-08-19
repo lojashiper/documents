@@ -264,9 +264,7 @@ function loading_on_product_page() {
 							element.style.left = (startElementLeftParent + widthElementLeftParent) + 'px';
 							element.style.position = 'fixed';
 							element.style.transform = 'translateY(' + (-element.offsetTop + (limitBottom - self.pageYOffset) - heightElement - 80) + 'px)';
-						}else{
-                            if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
-                        }
+						}
 					} else {
 						if (self.pageYOffset >= limitTop - 40) {
 							element.style.width = widthElement + 'px';
@@ -287,9 +285,7 @@ function loading_on_product_page() {
 							element.style.left = (startElementLeftParent + widthElementLeftParent) + 'px';
 							element.style.position = 'fixed';
 							element.style.transform = 'translateY(' + (-200 + (limitBottom - self.pageYOffset) - heightElement - 80) + 'px)';
-						}else{
-                            if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
-                        }
+						}
 					}
 				}
 				console.log('#stiky da informação do produto');
