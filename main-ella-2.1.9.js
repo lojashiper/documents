@@ -231,6 +231,7 @@ function loading_on_product_page() {
 		/* begin:: Stiky da informação do produto em Desktop */
 		checkElement('section.product-reviews').then((selector) => {
 			if (document.querySelector('.main-product-info') && document.querySelector('section.product-reviews')) {
+				document.querySelector('.main-product-holder').classList.add('sticky');
 				document.querySelector('section.product-specifications').classList.add('sticky');
                 window.onscroll = function() {
 					var element = document.querySelector('.main-product-content .main-product-info');
