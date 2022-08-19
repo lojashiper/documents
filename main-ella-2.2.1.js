@@ -237,10 +237,10 @@ function loading_on_product_page() {
 					var element = document.querySelector('.main-product-content .main-product-info').childNodes[0];
 					var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
 					var elementReviews = document.querySelector('section.product-reviews');
+					var heightElement = element.childNodes[0].offsetHeight;
 					var limitTop = element.offsetTop;
-					var limitTopBottom = element.offsetTop + element.offsetHeight;
+					var limitTopBottom = element.offsetTop + heightElement;
 					var limitBottom = elementReviews.offsetTop;
-					var heightElement = element.offsetHeight;
 					var widthElement = element.offsetWidth;
 					var widthElementLeftParent = elementLeftParent.offsetWidth;
 					var startElementLeftParent = elementLeftParent.offsetLeft;
