@@ -30,6 +30,7 @@ function clickButtonSelect(button, index) {
 function ReplaceSelectWithButtons(selectField, index) {
     var selectValue = selectField.value;
     var selectId = selectField.id;
+	var imageReduceYampi = 'https://images.yampi.io/unsafe/fit-in/60x60/filters:background_color(white):upscale()/';
 
     document.querySelectorAll('.product-customizations div.custom-select div[data-target="'+ selectId +'"]').forEach(function(select){
         select.remove();
@@ -61,8 +62,9 @@ function ReplaceSelectWithButtons(selectField, index) {
                 }
                 if(priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ '+ priceSale.toFixed(2).toString().replace('.',',') +'</div>';
                 var priceShowProduct = (priceDiscount)? priceDiscount.toFixed(2).toString().replace('.',',') : priceSale.toFixed(2).toString().replace('.',',');
-                var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
-                var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/60x60/filters:background_color(white):upscale()/" + buttonImage + "'";
+                var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
+                var buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                var buttonImageLink = "'"+ imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue)? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectkitbtn '+ marginBottom +' target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url('+ buttonImageLink +')"></div> <div class="kit-quantity"> '+ topMessageBadge +' <div class="kit-item-title-badge"> <div class="kit-item-title">'+ button.innerText +'</div> '+ discountMessageBadge +' </div> </div> </div> <div class="kit-content-right"> '+ topDiscountBadge +' <div class="kit-comparation-prices"> '+ oldPriceProduct +' <div class="kit-new-value-price">R$ '+ priceShowProduct +'</div> </div> </div> </div></div>');
             }
@@ -70,8 +72,9 @@ function ReplaceSelectWithButtons(selectField, index) {
     }else if(selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')){
         options.forEach(function(button){
             if(button.value != 0 && button.value){
-                var buttonImage = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data[0].url;
-                var buttonImageLink = "'https://images.yampi.io/unsafe/fit-in/60x60/filters:background_color(white):upscale()/" + buttonImage + "'";
+                var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
+                var buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                var buttonImageLink = "'"+ imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue)? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' +  + button.value + '" data-target="' + selectId  + '" class="selectbtn selectroundbtn target-' + selectId  + ' ' + selectedButton + '" onclick="clickButtonSelect(this,'+ index +')" style="background-image: url('+ buttonImageLink +')"></div>');
             }
