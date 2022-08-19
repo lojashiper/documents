@@ -232,10 +232,6 @@ function loading_on_product_page() {
 		checkElement('section.product-reviews').then((selector) => {
 			if (document.querySelector('.main-product-info') && document.querySelector('section.product-reviews')) {
 				document.querySelector('section.product-specifications').classList.add('sticky');
-                var element = document.querySelector('.main-product-content .main-product-info');
-                var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
-                document.querySelector('.main-product-holder').style.marginBottom = -(element.offsetHeight - elementLeftParent.childNodes[0].offsetHeight - 85) + 'px';
-				
                 window.onscroll = function() {
 					var element = document.querySelector('.main-product-content .main-product-info');
 					var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
@@ -269,10 +265,6 @@ function loading_on_product_page() {
 							element.style.position = 'fixed';
 							element.style.transform = 'translateY(' + (-element.offsetTop + (limitBottom - self.pageYOffset) - heightElement - 80) + 'px)';
 						}else{
-                            element.style.position = '';
-                            element.style.left = '';
-                            element.style.width = '';
-                            element.style.transform = '';
                             if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
                         }
 					} else {
@@ -296,10 +288,6 @@ function loading_on_product_page() {
 							element.style.position = 'fixed';
 							element.style.transform = 'translateY(' + (-200 + (limitBottom - self.pageYOffset) - heightElement - 80) + 'px)';
 						}else{
-                            element.style.position = '';
-                            element.style.left = '';
-                            element.style.width = '';
-                            element.style.transform = '';
                             if(document.querySelector('#stick-temporary-blank-div')) document.querySelector('#stick-temporary-blank-div').remove();
                         }
 					}
