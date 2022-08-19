@@ -234,7 +234,7 @@ function loading_on_product_page() {
 				document.querySelector('.main-product-holder').classList.add('sticky');
 				document.querySelector('section.product-specifications').classList.add('sticky');
                 window.onscroll = function() {
-					var element = document.querySelector('.main-product-content .main-product-info');
+					var element = document.querySelector('.main-product-content .main-product-info').childNodes[0];
 					var elementLeftParent = document.querySelector('.main-product-content .main-product-images');
 					var elementReviews = document.querySelector('section.product-reviews');
 					var limitTop = element.offsetTop;
