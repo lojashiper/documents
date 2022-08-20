@@ -66,7 +66,8 @@ function ReplaceSelectWithButtons(selectField, index) {
                 if (priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ ' + priceSale.toFixed(2).toString().replace('.', ',') + '</div>';
                 var priceShowProduct = (priceDiscount) ? priceDiscount.toFixed(2).toString().replace('.', ',') : priceSale.toFixed(2).toString().replace('.', ',');
                 var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
-                var buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                var buttonImage = buttonDataImages[0].url;
+				if (buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
                 var buttonImageLink = "'" + imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn selectkitbtn ' + marginBottom + ' target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url(' + buttonImageLink + ')"></div> <div class="kit-quantity"> ' + topMessageBadge + ' <div class="kit-item-title-badge"> <div class="kit-item-title">' + button.innerText + '</div> ' + discountMessageBadge + ' </div> </div> </div> <div class="kit-content-right"> ' + topDiscountBadge + ' <div class="kit-comparation-prices"> ' + oldPriceProduct + ' <div class="kit-new-value-price">R$ ' + priceShowProduct + '</div> </div> </div> </div></div>');
@@ -75,8 +76,10 @@ function ReplaceSelectWithButtons(selectField, index) {
     } else if (selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')) {
         options.forEach(function(button) {
             if (button.value != 0 && button.value) {
-                var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
-                var buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                var buttonOrder = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).order;
+				var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
+                var buttonImage = buttonDataImages[0].url;
+				if (buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
                 var buttonImageLink = "'" + imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn selectroundbtn target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')" style="background-image: url(' + buttonImageLink + ')"></div>');
