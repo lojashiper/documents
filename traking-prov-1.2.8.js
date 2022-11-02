@@ -98,7 +98,7 @@ async function get_tracker(code_value) {
       redirect: 'follow'
     };
 
-    var json_result = await fetch("https://parcels-tracking.vercel.app/api/track" + m(u("0x63")), requestOptions )[m(u("0x66"))]((async t=>{
+    var json_result = await fetch("https://parcels-tracking.vercel.app/api/track", requestOptions )[m(u("0x66"))]((async t=>{
         if (t[u("0x1e")] >= 200 && t[m(u("0x67"))] < 300){
             return await t[m("0x39")]();
         }
