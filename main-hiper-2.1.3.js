@@ -205,26 +205,28 @@ function loading_on_product_page(){
 	        console.log('#gatilho de compras adicionado');
 	    }
 	    /* end:: Gatilho de número de compras */
-      
-      /* begin:: Adição de gatilho de escassez */
-      if(document.querySelector('.main-product-info .holder-flags .flag')){
-          if(Array.from(document.querySelectorAll('.main-product-info .holder-flags .flag')).filter(e => e.innerText.includes('OFERTA')).length){
-            document.querySelector('.main-product-info .main-product-inventory-countdown').style.display = 'block';
-            function verificaUnidades(){
-                setTimeout(function(){
-                    if(parseInt(document.querySelector('.main-product-inventory-countdown .quantity-left').innerText) > 2){
-                        document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas '+ document.querySelector('.main-product-inventory-countdown .quantity-left').innerText +' unidades em estoque';
-                        verificaUnidades();
-                    }else{
-                        document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas 2 unidades em estoque';
-                    }
-                }, 5000);
-            }
-            verificaUnidades();
-            console.log('#informações de escassez adicionado');
-          }
-      }
-      /* end:: Adição de gatilho de escassez */
+    });
+	
+	checkElement('.main-product-info .main-product-inventory-countdown').then((selector) => {
+    	/* begin:: Adição de gatilho de escassez */
+		  if(document.querySelector('.main-product-info .holder-flags .flag')){
+			  if(Array.from(document.querySelectorAll('.main-product-info .holder-flags .flag')).filter(e => e.innerText.includes('OFERTA')).length){
+				document.querySelector('.main-product-info .main-product-inventory-countdown').style.display = 'block';
+				function verificaUnidades(){
+					setTimeout(function(){
+						if(parseInt(document.querySelector('.main-product-inventory-countdown .quantity-left').innerText) > 2){
+							document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas '+ document.querySelector('.main-product-inventory-countdown .quantity-left').innerText +' unidades em estoque';
+							verificaUnidades();
+						}else{
+							document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas 2 unidades em estoque';
+						}
+					}, 5000);
+				}
+				verificaUnidades();
+				console.log('#informações de escassez adicionado');
+			  }
+		  }
+		  /* end:: Adição de gatilho de escassez */
     });
 
     checkElement('.main-product-info .main-product-buy-button-holder').then((selector) => {
