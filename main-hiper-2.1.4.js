@@ -210,7 +210,7 @@ function loading_on_product_page(){
 	checkElement('.main-product-info .main-product-inventory-countdown').then((selector) => {
     	/* begin:: Adição de gatilho de escassez */
 		  if(document.querySelector('.main-product-info .holder-flags .flag')){
-			  if(Array.from(document.querySelectorAll('.main-product-info .holder-flags .flag')).filter(e => e.innerText.includes('OFERTA')).length){
+			  if((Array.from(document.querySelectorAll('.main-product-info .holder-flags .flag')).filter(e => e.innerText.includes('OFERTA')).length) && (window.location.href.search("[?&]utm_source=") != -1)){
 				document.querySelector('.main-product-info .main-product-inventory-countdown').style.display = 'block';
 				function verificaUnidades(){
 					setTimeout(function(){
