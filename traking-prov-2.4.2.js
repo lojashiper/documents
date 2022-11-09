@@ -55,31 +55,8 @@ function disactivate_loading() {
 let auth_code_generated = null;
 async function get_auth_code() {
     let response = await fetch('https://api.lojashiper.com/api/token.php', {
-        method: 'POST',
-        headers: {
-            'accept': 'application/json',
-            'accept-encoding': 'gzip',
-            'connection': 'Keep-Alive',
-            'content-type': 'application/json',
-            'cookie': '_app_version_=1.1.1',
-            'host': '1trackapp.com',
-            'user-agent': 'okhttp/3.12.12',
-            'x-app': '1track'
-        },
-        body: JSON.stringify({
-            "os": "android",
-            "type": "mobile",
-            "uniqueId": "c49bd8d13f032088",
-            "version": 28,
-            "lang": "pt",
-            "locale": "pt-BR",
-            "device_country": null,
-            "timezone": "America/Fortaleza",
-            "tz_offset": 180,
-            "app_version": "1.3.3",
-            "token": "",
-            "device": "SM-G950F"
-        })
+        method: 'get',
+        redirect: 'follow'
     });
     let data = await response.json();
     return data;
