@@ -1,0 +1,768 @@
+:root {
+    --background-color:white;
+    --main-color:#0046be;
+    --sec-color:#ccc;
+    --three-color:#ffffff;
+
+    --background-cartao-pix: #3bb54a;
+    --letras-cartao-pix: #fff;
+    --background-boleto: #a2a2a2;
+    --letras-boleto: #fff;
+}
+@keyframes animaButton {
+  0%{transform: scale(1);}
+  100%{transform: scale(1.05);}
+}
+
+header div.holder-logo a{
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: center;
+    background-size: contain;
+    background-image: url(//images.yampi.me/assets/stores/lojashiper/uploads/banners/6127e576a1692.png);
+}
+header .holder-logo .logo .img-logo {
+    visibility: hidden;
+}
+
+header .topbar-trigger svg, header .item-security svg{
+  fill: #FFFFFF;
+}
+
+.holder-cols-checkout .holder-container-resume .item-image img{
+    border-radius: 5px;
+}
+
+footer img.security-label {
+    display: none;
+}
+
+@media (max-width: 500px){
+  header .item-security svg {
+      width: 80px !important;
+  }
+}
+
+.box-checkout.box-resume:not(.opened) span.cart_total.-mobile.mt7::after {
+    content: "ou 12x no cartão";
+    display: block;
+    color: #333;
+    line-height: 1;
+    font-size: 11px;
+    margin-top: 3px;
+    font-weight: 500;
+}
+.holder-cols-checkout .box-checkout.box-resume .cart_total {
+    color: #00a801 !important;
+}
+
+@media (max-width: 1060px){
+  body:not(.upsell).checkout .content.clearfix::after, body:not(.upsell).custom-checkout .content.clearfix::after{
+      content: "Atendimento";
+      width: 100%;
+      background-image: url(//cdn.jsdelivr.net/gh/lojashiper/documents/secure-label.svg);
+      height: 70px;
+      display: flex;
+      background-repeat: no-repeat;
+      background-position-x: center;
+      align-items: flex-end;
+      text-align: center;
+      justify-content: center;
+      color: #333333;
+      font-weight: 400;
+      font-size: 14px;
+      margin-top: 10px;
+  }
+    footer::before {
+      content: "\1F4E8  E-mail: sac@lojashiper.com \A \1F551  Horário: Segunda à Sexta, das 9 às \A 17 horas (exceto feriados). ";
+      display: flex;
+      justify-content: center;
+      line-height: 1.4;
+      white-space: pre-line;
+      text-align: center;
+      color: #696969;
+      margin-bottom: 12px;
+      margin-top: -8px;
+      font-size: 13px;
+    }
+  /*
+    footer .container.flex.between::before {
+        content: "Formas de pagamento";
+        background: url(//icons.yampi.me/svg/card-amex.svg) no-repeat calc(50% - 90px) 25px, url(https://icons.yampi.me/svg/card-visa.svg) no-repeat calc(50% - 45px) 25px, url(https://icons.yampi.me/svg/card-diners.svg) no-repeat calc(50% + 0px) 25px, url(https://icons.yampi.me/svg/card-mastercard.svg) no-repeat calc(50% + 45px) 25px, url(https://icons.yampi.me/svg/card-discover.svg) no-repeat calc(50% + 90px) 25px;
+        background-size: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        justify-items: center;
+        width: 100%;
+        height: 55px;
+        color: #333333;
+        font-weight: 400;
+        font-size: 14px;
+    }
+    footer .container .black-60::before {
+        content: "";
+        background: url(//icons.yampi.me/svg/card-aura.svg) no-repeat calc(50% - 90px) 0px, url(https://icons.yampi.me/svg/card-hipercard.svg) no-repeat calc(50% - 45px) 0px, url(https://icons.yampi.me/svg/card-elo.svg) no-repeat calc(50% + 0px) 0px, url(https://icons.yampi.me/svg/card-billet.svg) no-repeat calc(50% + 45px) 0px, url(https://icons.yampi.me/svg/card-hiper.svg) no-repeat calc(50% + 90px) 0px;
+        background-size: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        justify-items: center;
+        width: 100%;
+        height: 45px;
+        color: #191919;
+        font-weight: 400;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    footer .black-60 div:last-child::before {
+        content: "";
+        background: url(https://icons.yampi.me/svg/card-pix.svg) no-repeat 50% 0px;
+        background-size: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        justify-items: center;
+        width: 100%;
+        height: 45px;
+        color: #191919;
+        font-weight: 400;
+        font-size: 14px;
+        margin-top: -10px;
+    }
+  */
+  footer .payment-methods-holder .-title{
+      font-size: 0px !important;
+  }
+  footer .payment-methods-holder .-payment-list {
+      display: none;
+  }
+  footer .payment-methods-holder::before {
+      content: "Formas de pagamento";
+      background: url(//icons.yampi.me/svg/card-amex.svg) no-repeat calc(50% - 90px) 25px, url(https://icons.yampi.me/svg/card-visa.svg) no-repeat calc(50% - 45px) 25px, url(https://icons.yampi.me/svg/card-diners.svg) no-repeat calc(50% + 0px) 25px, url(https://icons.yampi.me/svg/card-mastercard.svg) no-repeat calc(50% + 45px) 25px, url(https://icons.yampi.me/svg/card-discover.svg) no-repeat calc(50% + 90px) 25px;
+      background-size: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      justify-items: center;
+      width: 100%;
+      height: 55px;
+      color: #333333;
+      font-weight: 400;
+      font-size: 14px;
+      margin-top: 10px;
+  }
+  footer .payment-methods-holder .-title::before {
+      content: "";
+      background: url(//icons.yampi.me/svg/card-aura.svg) no-repeat calc(50% - 90px) 0px, url(https://icons.yampi.me/svg/card-hipercard.svg) no-repeat calc(50% - 45px) 0px, url(https://icons.yampi.me/svg/card-elo.svg) no-repeat calc(50% + 0px) 0px, url(https://icons.yampi.me/svg/card-billet.svg) no-repeat calc(50% + 45px) 0px, url(https://icons.yampi.me/svg/card-hiper.svg) no-repeat calc(50% + 90px) 0px;
+      background-size: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      justify-items: center;
+      width: 100%;
+      height: 45px;
+      color: #191919;
+      font-weight: 400;
+      font-size: 14px;
+      margin-top: 5px;
+  }
+  footer .payment-methods-holder .-title::after {
+      content: "";
+      background: url(https://icons.yampi.me/svg/card-pix.svg) no-repeat 50% 0px;
+      background-size: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      justify-items: center;
+      width: 100%;
+      height: 45px;
+      color: #191919;
+      font-weight: 400;
+      font-size: 14px;
+      margin-top: -10px;
+  }
+
+  /*
+    footer span.block.medium.f14.mb2::before {
+        content: "Selos de segurança";
+        background-image: url(//cdn.jsdelivr.net/gh/lojashiper/documents/selos-lojashiper.svg) !important;
+        background-position-y: 25px;
+        background-position-x: center;
+        background-repeat: no-repeat;
+        display: flex;
+        background-size: 18rem;
+        justify-content: center;
+        align-items: baseline;
+        justify-items: center;
+        width: 100%;
+        height: 70px;
+        color: #191919;
+        font-weight: 400;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+  */
+  footer .store-info-holder {
+      margin-top: 5px;
+  }
+  footer .store-info-holder .-store-name{
+      font-size: 0px !important;
+  }
+  footer .store-info-holder::before {
+    content: "Selos de segurança";
+    background: url(//api.lojashiper.com/api/label.php?height=35) no-repeat calc(50% - 96px) 22px/auto auto, url(//cdn.jsdelivr.net/gh/lojashiper/documents/secure-labels.svg) no-repeat calc(50% + 65px) 25px/10.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    justify-items: center;
+    width: 100%;
+    height: 70px;
+    color: #191919;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+
+    footer div.black-60 {
+        width: 100%;
+      display: contents;
+    }
+
+  footer div.black-60 div:first-child {
+      order: 2;
+      margin-top: 2px;
+  }
+  footer div.black-60 div:last-child {
+      order: 1;
+  }
+
+    footer .black-60 span.block.medium.f14.mb2 {
+        font-size: 0px;
+    }
+    footer .black-60 span.f11.black-50 {
+        font-size: 0px;
+    }
+
+    footer .container {
+        border-top: 0px !important;
+        padding: 10px 0 0px;
+      text-align: center;
+    }
+
+    footer::after {
+        content: "© 2022 Lojas Hiper CNPJ: 41.345.301/0001-34 | Rua dos dominicanos - Boa vista - Curitiba/PR - CEP: 82540-140. As fotos aqui veiculadas, logotipo e marca são de propriedade do site www.lojashiper.com. É vedada a sua reprodução, total ou parcial, sem a expressa autorização da administradora do site. Caso os produtos ou condições comerciais apresentem divergências de valores, o preço válido é o do Carrinho. \A® Todos os direitos reservados.";
+        white-space: pre-wrap;
+        padding: 13px 10px 20px;
+        padding-bottom: 0px;
+        width: calc(100% - 20px);
+        color: rgba(34, 34, 34, 0.5);
+        font-size: 12px;
+        border-top: 1px solid rgba(34, 34, 34, 0.1);
+        text-align: center;
+        display: flex;
+      margin-top: 20px;
+      margin-bottom: 10px;
+        line-height: 1.2;
+    }
+}
+
+@media (min-width: 1060px){
+  header .inner-header .item-security {
+      margin-top: 5px !important;
+  }
+  /*
+    footer .container.flex.between::before {
+        content: "Formas de pagamento";
+        background: url(//icons.yampi.me/svg/card-amex.svg) no-repeat calc(50% - 240px) 25px, url(https://icons.yampi.me/svg/card-visa.svg) no-repeat calc(50% - 192px) 25px, url(https://icons.yampi.me/svg/card-diners.svg) no-repeat calc(50% - 144px) 25px, url(https://icons.yampi.me/svg/card-mastercard.svg) no-repeat calc(50% - 96px) 25px, url(https://icons.yampi.me/svg/card-discover.svg) no-repeat calc(50% - 48px) 25px, url(//icons.yampi.me/svg/card-aura.svg) no-repeat calc(50% + 0px) 25px, url(//icons.yampi.me/svg/card-hipercard.svg) no-repeat calc(50% + 48px) 25px, url(//icons.yampi.me/svg/card-elo.svg) no-repeat calc(50% + 96px) 25px, url(//icons.yampi.me/svg/card-billet.svg) no-repeat calc(50% + 144px) 25px, url(//icons.yampi.me/svg/card-hiper.svg) no-repeat calc(50% + 192px) 25px, url(//icons.yampi.me/svg/card-pix.svg) no-repeat calc(50% + 240px) 25px;
+        background-size: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        justify-items: center;
+        width: 100%;
+        height: 55px;
+        color: #333333;
+        font-weight: 400;
+        font-size: 14px;
+    }
+  */
+  footer .payment-methods-holder {
+      width: 50%;
+      display: inline-block;
+      vertical-align: top;
+  }
+  footer .payment-methods-holder .-title{
+      font-size: 0px !important;
+  }
+  footer .payment-methods-holder .-payment-list {
+      display: none;
+  }
+  footer .payment-methods-holder::before {
+      content: "Formas de pagamento";
+      background: url(//icons.yampi.me/svg/card-amex.svg) no-repeat calc(50% - 240px) 25px, url(https://icons.yampi.me/svg/card-visa.svg) no-repeat calc(50% - 192px) 25px, url(https://icons.yampi.me/svg/card-diners.svg) no-repeat calc(50% - 144px) 25px, url(https://icons.yampi.me/svg/card-mastercard.svg) no-repeat calc(50% - 96px) 25px, url(https://icons.yampi.me/svg/card-discover.svg) no-repeat calc(50% - 48px) 25px, url(//icons.yampi.me/svg/card-aura.svg) no-repeat calc(50% + 0px) 25px, url(//icons.yampi.me/svg/card-hipercard.svg) no-repeat calc(50% + 48px) 25px, url(//icons.yampi.me/svg/card-elo.svg) no-repeat calc(50% + 96px) 25px, url(//icons.yampi.me/svg/card-billet.svg) no-repeat calc(50% + 144px) 25px, url(//icons.yampi.me/svg/card-hiper.svg) no-repeat calc(50% + 192px) 25px, url(//icons.yampi.me/svg/card-pix.svg) no-repeat calc(50% + 240px) 25px;
+      background-size: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      justify-items: center;
+      width: 100%;
+      height: 55px;
+      color: #333333;
+      font-weight: 400;
+      font-size: 14px;
+  }
+
+  /*
+    footer span.block.medium.f14.mb2::before {
+        content: "Selos de segurança";
+        background-image: url(//cdn.jsdelivr.net/gh/lojashiper/documents/selos-lojashiper.svg) !important;
+        background-position-y: 25px;
+        background-position-x: center;
+        background-repeat: no-repeat;
+        display: flex;
+        background-size: 18rem;
+        justify-content: center;
+        align-items: baseline;
+        justify-items: center;
+        width: 100%;
+        height: 70px;
+        color: #191919;
+        font-weight: 400;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+  */
+  footer .store-info-holder {
+      width: 50%;
+      display: inline-block;
+      vertical-align: top;
+  }
+  footer .store-info-holder .-store-name{
+      font-size: 0px !important;
+  }
+  footer .store-info-holder::before {
+    content: "Selos de segurança";
+    background: url(//api.lojashiper.com/api/label.php?height=35) no-repeat calc(50% - 96px) 22px/auto auto, url(//cdn.jsdelivr.net/gh/lojashiper/documents/secure-labels.svg) no-repeat calc(50% + 65px) 25px/10.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    justify-items: center;
+    width: 100%;
+    height: 70px;
+    color: #191919;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  footer .payment-methods-holder+* {
+      margin-top: unset;
+  } 
+  footer div[class$=-holder]+.security-label {
+      margin-top: 15px;
+  }
+
+    footer div.black-60 {
+        width: 100%;
+    }
+
+    footer .black-60 span.block.medium.f14.mb2 {
+        font-size: 0px;
+    }
+    footer .black-60 span.f11.black-50 {
+        font-size: 0px;
+    }
+
+    footer .container {
+        border-top: 0px !important;
+        padding: 10px 0 0px;
+    }
+
+    footer::after {
+        content: "© 2022 Lojas Hiper CNPJ: 41.345.301/0001-34 | Rua dos dominicanos - Boa vista - Curitiba/PR - CEP: 82540-140. As fotos aqui veiculadas, logotipo e marca são de propriedade do site www.lojashiper.com. É vedada a sua reprodução, total ou parcial, sem a expressa autorização da administradora do site. Caso os produtos ou condições comerciais apresentem divergências de valores, o preço válido é o do Carrinho. \A® Todos os direitos reservados.";
+        padding: 13px 0 20px;
+        white-space: pre-wrap;
+        width: 100%;
+        color: rgba(34, 34, 34, 0.5);
+        font-size: 12px;
+        border-top: 1px solid rgba(34, 34, 34, 0.1);
+        max-width: 1040px;
+        text-align: center;
+        margin: 0 auto;
+      margin-top: 20px;
+        display: flex;
+    }
+
+    .inner-body::after {
+        content: "";
+        width: 100%;
+        background-image: url(//cdn.jsdelivr.net/gh/lojashiper/documents/secure-label.svg);
+        height: 55px;
+        display: block;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: top;
+    }
+}
+
+/*------------------------*/
+
+.table-cart tbody tr.even {
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.payments .mercadopago-flag{
+    display: none !important;
+}
+
+.col-checkout .js-box-resume-title .-title::before {
+    content: "Resumo do pedido";
+    visibility: visible;
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+}
+.col-checkout .js-box-resume-title .items__count {
+    font-size: 14px;
+}
+
+.holder-cols-checkout .box-checkout.box-resume .cart_total .icon-arrow-left {
+    margin-left: 15px !important;
+}
+.holder-cols-checkout .box-checkout.active .title {
+    color: var(--main-color) !important;
+}
+.col-checkout .js-box-resume-title .-title {
+    visibility: hidden;
+    white-space: nowrap;
+    font-size: 0px !important;
+}
+.col-checkout .js-box-resume-title .items__count {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+}
+.holder-cols-checkout .box-checkout.active .title {
+    color: var(--main-color) !important;
+}
+.cart-resume.mt10 {
+    background: #fbfbfb;
+}
+
+.checkout-step.active .info {
+    color: #444;
+}
+header {
+    background: var(--main-color);
+}
+
+header .container.clearfix {
+    background-color: #0046BE;
+}
+@media (max-width: 1060px){
+  .container {
+    padding: 0 15px;
+  }
+  .jp-card-container{
+    margin: 15px -20vw 0px!important;
+    max-width: calc(100% + 20vw) !important;
+    width: 100vw !important;
+    height: 55vw!important;
+  }
+  .holder-cols-checkout .box-checkout.box-resume:not(.opened){
+    background: #ffffff !important;
+  }
+  .holder-cols-checkout .box-checkout.box-resume .holder-container-resume{
+    margin-top: 0px !important;
+  }
+}
+
+@media (min-width: 1060px){
+  .box-addresses div.infos span.mt15,
+  .box-addresses div.infos span:not(.zipcode):not(.mb5):not(.icon):not(.icon-pencil):not(.edit){
+    display: none;
+  }
+  
+  .cart header .inner-header .item-security.pull-right.black-70::before {
+    content: "";
+    background-image: url(//cdn.jsdelivr.net/gh/lojashiper/documents/etapas-carrinho.svg) !important;
+    display: block;
+    height: 46px;
+    background-position-x: right;
+    background-size: contain;
+    width: 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .checkout header .inner-header .item-security.pull-right.black-70::before, .custom-checkout header .inner-header .item-security.pull-right.black-70::before {
+    content: "";
+    background-image: url(//cdn.jsdelivr.net/gh/lojashiper/documents/etapas-checkout.svg) !important;
+    display: block;
+    height: 46px;
+    background-position-x: right;
+    background-size: contain;
+    width: 100%;
+    background-repeat: no-repeat;
+  }
+  header .inner-header .item-security.pull-right.black-70{
+    width: 50%;
+  }
+  header .inner-header .item-security.pull-right.black-70 img, header .inner-header .item-security.pull-right.black-70 svg{
+    display:none;
+  }
+  header .holder-logo{
+    max-width: 165px;
+    width: unset;
+  }
+  header .inner-header{
+    display: block;
+  }
+  header .inner-header .item-security{
+    margin-top: 20px;
+  }
+}
+.holder-countdown{
+  border-bottom-right-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+.checkout-step .holder-icon{
+  line-height: 26px;
+  width: 25px;
+  height: 25px;
+}
+
+/*
+.orderbumps_offer-total{
+  color: #ffffff;
+  background-color: #e70c15;
+}
+.orderbump{
+  border: 1px dashed #3bb54a !important;
+}
+.orderbump_button{
+  background-color: #e70c15;
+}
+*/
+
+.orderbump_price, .holder-cols-checkout .cart-resume .detail.total, .green, .c-green-2{
+  color: #00a801 !important;
+}
+
+.checkout-step.enabled .holder-icon{
+  background-color: #00a801 !important;
+}
+.checkout-step.enabled .connect{
+  background-color: #00a801 !important;
+  border-radius: 20px;
+}
+.c-text-success-2 {
+    color: #00a801 !important;
+}
+
+
+.holder-cols-checkout .box-checkout.active .box-title .holder-number{
+  background-color: #0046be !important;
+  width: 22px;
+  height: 22px;
+}
+
+.holder-cols-checkout .holder-container-resume .item-holder {
+    padding: 10px 0;
+}
+
+.holder-cols-checkout .payments .payment-header .discount-flag{
+  background: #3bb54a;
+}
+
+.f11.black-50::after {
+    content: 'Nosso horário de Atendimento: \A Seg à Sex das 9 às 12hrs | 14 às 17hrs \A\A CNPJ: 31.371.402/0001-26\A © Todos os direitos reservados.';
+    display: block;
+    margin-top: 15px;
+    white-space: pre-wrap;
+    line-height: 1.8;
+}
+
+.payments .payment.credit-card,
+.payments .payment.pix {
+    border-color: var(--background-cartao-pix) !important
+}
+.payments .payment.billet {
+    border-color: var(--background-boleto) !important
+}
+
+.payments .payment label.payment-header {
+    position: relative;
+    display: flex
+}
+.payments .payment label[for=payment-billet].payment-header:after {
+    background: var(--background-boleto) !important;
+    display: block;
+    line-height: inherit;
+    color: var(--letras-boleto) !important;
+    padding: 4px 5px;
+    border-radius: 3px;
+    position: absolute;
+    font-weight: 700;
+    font-size: 10px;
+    right: 10px;
+    letter-spacing: .03em;
+    top: 26%;
+    content: 'APROVAÇÃO EM 3 DIAS'
+}
+.payments .payment label[for=payment-credit-card].payment-header:after,
+.payments .payment label[for=payment-pix].payment-header:after {
+    background: var(--background-cartao-pix) !important;
+    display: block;
+    line-height: inherit;
+    color: var(--letras-cartao-pix) !important;
+    padding: 4px 5px;
+    border-radius: 3px;
+    position: absolute;
+    font-weight: 700;
+    font-size: 10px;
+    right: 10px;
+    letter-spacing: .03em;
+    top: 26%;
+    content: 'APROVAÇÃO IMEDIATA'
+}
+.payments .payment label[for=payment-credit-card].payment-header:after {
+    top: 16%
+}
+
+body:not(.upsell) .box-payment .box-content::before {
+    content: 'Processado por';
+    height: 23px;
+    color: #333;
+    width: 185px;
+    margin-top: 20px;
+    font-size: 12px;
+    display: flex;
+    background-size: contain;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-image: url(//github.bubbstore.com/svg/mercadopago.svg);
+    align-content: center;
+    align-items: center;
+}
+.checkout-finalization .-gateway.appmax::after {
+    content: '';
+    color: #333;
+    width: 100%;
+    margin-top: 12px;
+    height: 29px;
+    font-size: 12px;
+    display: flex;
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-image: url(//github.bubbstore.com/svg/mercadopago.svg);
+    align-content: center;
+    align-items: center;
+}
+.checkout-finalization .-gateway.appmax img.-gateway-logo {
+    display: none;
+}
+
+.lgpd-message{
+    display: none;
+}
+form#form-signup, form#form-customer{
+    margin-bottom: -15px;
+}
+
+#form-promocode .promocode_discount::after {
+    content: " + Frete Grátis";
+    margin-left: 2px;
+}
+
+.detail.total .description {
+    font-size: 14px;
+}
+.detail.total .value.js-cart-total {
+    text-align: right;
+}
+.detail.total .value.js-cart-total::after {
+    content: "em até 12x no cartão";
+    display: block;
+    color: #333;
+    line-height: 1;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+body.upsell .holder-upsells h3{
+    font-size: 25px;
+}
+body.upsell .holder-upsells p {
+    margin: 15px 0 0;
+    line-height: 1.2;
+}
+body.upsell .holder-cols-checkout .box-checkout h4.product-title, body.upsell .holder-cols-checkout .box-checkout span.price{
+    display: none;
+}
+body.upsell .holder-cols-checkout .box-checkout .box-content::after {
+    content: 'Aproveite agora mesmo! Essa oferta só é válida durante 15 minutos.';
+    display: block;
+    margin-top: 32px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+body.upsell .holder-cols-checkout .box-checkout{
+    padding: 10px 0 0 0;
+}
+@media (max-width: 320px){
+  body.upsell .holder-cols-checkout .box-checkout{
+      padding: 10px 15px 0 !important;
+  }
+}
+
+body.upsell .box-checkout.box-payment.active.upsell::after {
+    content: '✅ Este outro pedido terá o mesmo Prazo de Entrega do primeiro.\A \A ✅ O Endereço de Entrega será o mesmo do primeiro. \A\A ✅ Garantia e Frete Grátis também são inclusos no Segundo Pedido.';
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    display: block;
+}
+
+body.upsell .box-checkout.box-payment.active.upsell button.btn-primary{
+    animation-name: animaButton;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    box-shadow: 0px 2px 15px -10px var(--primary-btn-color);
+    margin: 15px auto 10px;
+}
+body.upsell .holder-cols-checkout a.btn-secundary {
+    background-color: unset;
+    color: #2c2c2c;
+    text-decoration: underline;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+.holder-cols-checkout .holder-container-resume .item-holder-quantity-price::after {
+    content: "OFERTA EXCLUSIVA";
+    margin-left: 8px;
+    margin-top: -1px;
+    font-size: 11px;
+    padding: 4px 6px;
+    color: #ffffff;
+    font-weight: 600;
+    background: #0046be;
+    border-radius: 3px;
+    display: inline-block;
+    position: absolute;
+    align-self: center;
+}
+.holder-countdown .countdown-text+.countdown-timer {
+    margin-top: 3px;
+}
