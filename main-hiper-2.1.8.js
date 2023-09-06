@@ -43,12 +43,12 @@ const addBuyButton = async (link_button) => {
   });
 };
 
-const createDestiny = (destiny_option, sku_product) => {
+const createDestiny = (destiny_option, sku_product, utm_params) => {
     if(destiny_option == 'ADO'){
-        const destiny_url = 'https://compra.lojashiper.com/v/' + sku_product;
+        const destiny_url = 'https://compra.lojashiper.com/v/' + sku_product + utm_params;
         addBuyButton(destiny_url);
     } else if(destiny_option == 'VEG'){
-        const destiny_url = 'https://pay.lojashiper.com/' + sku_product;
+        const destiny_url = 'https://pay.lojashiper.com/' + sku_product + utm_params;
         addBuyButton(destiny_url);
     } else if(destiny_option == 'AVI'){
         fetch("https://api-checkout.avizz.com.br/checkout/lojas-hiper-checkout-avizz.myshopify.com", {
@@ -63,7 +63,7 @@ const createDestiny = (destiny_option, sku_product) => {
         })
       .then((response) => response.json())
       .then((data) => {
-        const destiny_url = data['checkoutUrl'];
+        const destiny_url = data['checkoutUrl'] + utm_params;
         addBuyButton(destiny_url);
       });
     } else if(destiny_option == 'ABM'){
@@ -79,7 +79,7 @@ const createDestiny = (destiny_option, sku_product) => {
         })
       .then((response) => response.json())
       .then((data) => {
-        const destiny_url = data['checkoutUrl'];
+        const destiny_url = data['checkoutUrl'] + utm_params;
         addBuyButton(destiny_url);
       });
     }
@@ -327,7 +327,7 @@ function loading_on_product_page(){
     	console.log('#informação do vendedor adicionado');
 	    /* end:: Informação do vendedor */
 
-      /* begin:: Mudança de destino */
+		/* begin:: Mudança de destino */
 		const utm_params = window.location.search;
 		const brand_name = window.data['product']['data']['brand']['data']['name'];
 		if(brand_name.includes('-')){
@@ -335,7 +335,7 @@ function loading_on_product_page(){
 			const sku_product = window.data['product']['data']['sku'];
 			if(destiny_mode == 'CHEU'){
 				const destiny_option = brand_name.split('-')[1];
-				createDestiny(destiny_option, sku_product);
+				createDestiny(destiny_option, sku_product, utm_params);
 			} else if(destiny_mode == 'TEAB'){
 				const random_number = Math.floor(Math.random() * 10);
 				const random_option_number = (random_number % 2 === 0)? 0 : 1;
@@ -343,7 +343,7 @@ function loading_on_product_page(){
 				const destiny_option = destiny_options[random_option_number];
 				const skus_product = sku_product.split('-');
 				const sku_option = skus_product[random_option_number];
-				createDestiny(destiny_option, sku_option);
+				createDestiny(destiny_option, sku_option, utm_params);
 			}
 		}
       console.log('#mudança de destino adicionado');
