@@ -328,22 +328,24 @@ function loading_on_product_page(){
 	    /* end:: Informação do vendedor */
 
       /* begin:: Mudança de destino */
-      const utm_params = window.location.search;
-      const brand_name = window.data['product']['data']['brand']['data']['name'];
-      const destiny_mode = brand_name.split('-')[0];
-      const sku_product = window.data['product']['data']['sku'];
-      if(destiny_mode == 'CHEU'){
-          const destiny_option = brand_name.split('-')[1];
-          createDestiny(destiny_option, sku_product);
-      } else if(destiny_mode == 'TEAB'){
-          const random_number = Math.floor(Math.random() * 10);
-          const random_option_number = (random_number % 2 === 0)? 0 : 1;
-          const destiny_options = [brand_name.split('-')[1], brand_name.split('-')[2]];
-          const destiny_option = destiny_options[random_option_number];
-          const skus_product = sku_product.split('-');
-          const sku_option = skus_product[random_option_number];
-          createDestiny(destiny_option, sku_option);
-      }
+		const utm_params = window.location.search;
+		const brand_name = window.data['product']['data']['brand']['data']['name'];
+		if(brand_name.includes('-')){
+			const destiny_mode = brand_name.split('-')[0];
+			const sku_product = window.data['product']['data']['sku'];
+			if(destiny_mode == 'CHEU'){
+				const destiny_option = brand_name.split('-')[1];
+				createDestiny(destiny_option, sku_product);
+			} else if(destiny_mode == 'TEAB'){
+				const random_number = Math.floor(Math.random() * 10);
+				const random_option_number = (random_number % 2 === 0)? 0 : 1;
+				const destiny_options = [brand_name.split('-')[1], brand_name.split('-')[2]];
+				const destiny_option = destiny_options[random_option_number];
+				const skus_product = sku_product.split('-');
+				const sku_option = skus_product[random_option_number];
+				createDestiny(destiny_option, sku_option);
+			}
+		}
       console.log('#mudança de destino adicionado');
       /* end:: Mudança de destino */
     });
