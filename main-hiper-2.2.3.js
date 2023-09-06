@@ -14,7 +14,7 @@ function getJSON(n, e) {
 };
 
 const createBuyButton = (element, parent_element, link_button, eventFunction) => {
-    const href_button = (link_button == '#') ? '' : 'href="' + link_button + '"';
+    const href_button = (link_button == '#') ? '' : link_button;
     if(element) {
         if(!parent_element.querySelector('.buy-button-custom')) {
             element.classList.add('hidden-button');
@@ -38,7 +38,7 @@ const createBuyButton = (element, parent_element, link_button, eventFunction) =>
 };
 
 const createBuyFloatingButton = (element_floating, parent_element, link_button, eventFunction) => {
-    const href_button = (link_button == '#') ? '' : 'href="' + link_button + '"';
+    const href_button = (link_button == '#') ? '' : link_button;
     if(element_floating) {
         if(!parent_element.querySelector('.buy-floating-button-custom')) {
             element_floating.classList.add('hidden-button');
