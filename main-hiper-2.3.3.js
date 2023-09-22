@@ -221,7 +221,14 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: "{\"items\":[{\"product_id\":"+ sku_product_dynamic +"}]}",
+                        body: JSON.stringify({
+                            "currency": "BRL",
+                            "item_count": 1,
+                            "items": [{
+                                "product_id": sku_product_dynamic,
+                                "quantity": 1
+                            }]
+                        }),
                         redirect: 'follow'
                     })
                     .then((response) => response.json())
@@ -244,7 +251,14 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: "{\"items\":[{\"product_id\":"+ sku_product +"}]}",
+                    "body": JSON.stringify({
+                        "currency": "BRL",
+                        "item_count": 1,
+                        "items": [{
+                            "product_id": sku_product,
+                            "quantity": 1
+                        }]
+                    }),
                     redirect: 'follow'
                 })
                 .then((response) => response.json())
