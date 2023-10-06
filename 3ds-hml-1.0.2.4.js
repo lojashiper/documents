@@ -34,14 +34,18 @@ class Adiq3ds {
   }
 
   Authorization3ds() {
-    configureSongbird(this.cardNumberId, this.validateCallback);
-    getTokenAuthorization3ds()
-      .then((e) => {
-        this.threeDsCode = e;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    return new Promise((resolve, reject) => {
+      configureSongbird(this.cardNumberId, this.validateCallback);
+      getTokenAuthorization3ds()
+        .then((e) => {
+          this.threeDsCode = e;
+          resolve();
+        })
+        .catch((error) => {
+          console.error(error);
+          reject(error);
+        });
+    });
   }
 
   InitChallenge(e, o, n) {
