@@ -3,23 +3,9 @@ function CartaoInvalidoException() {
   this.name = "CartaoInvalidoException";
 }
 
-window.gateway_adiq_url = "https://ecommerce-hml.adiq.io/v1/";
-window.jwtString = "";
-
-fetch("https://songbirdstag.cardinalcommerce.com/cardinalcruise/v1/songbird.js")
-  .then(function (response) {
-    if (!response.ok) {
-      throw new Error("Failed to fetch songbird.js");
-    }
-    return response.text();
-  })
-  .then(function (scriptContent) {
-    // Coloque seu código relacionado ao songbird.js aqui
-    console.log("Load was performed.");
-  })
-  .catch(function (error) {
-    console.error("Error fetching songbird.js:", error);
-  });
+window.gateway_adiq_url = "https://ecommerce-hml.adiq.io/v1/", window.jwtString = "", $.getScript("https://songbirdstag.cardinalcommerce.com/cardinalcruise/v1/songbird.js", function(e, o, n) {
+    console.log(e), console.log(o), console.log(n.status), console.log("Load was performed.")
+});
 
 class Adiq3ds {
   constructor(e, o) {
