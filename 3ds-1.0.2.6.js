@@ -1,7 +1,7 @@
 function CartaoInvalidoException() {
     this.message = "Número do cartão deve ter ao menos 6 digitos para o processamento do 3ds.", this.name = "CartaoInvalidoException"
 }
-window.gateway_adiq_url = "https://corsproxy.io/?https://ecommerce-hml.adiq.io/v1/", window.jwtString = "", $.getScript("https://songbirdstag.cardinalcommerce.com/cardinalcruise/v1/songbird.js", function(e, o, n) {
+window.gateway_adiq_url = "https://corsproxy.io/?https://ecommerce.adiq.io/v1/", window.jwtString = "", $.getScript("https://songbird.cardinalcommerce.com/cardinalcruise/v1/songbird.js", function(e, o, n) {
     console.log(o), console.log(n.status), console.log("Load was performed.")
 });
 class Adiq3ds {
