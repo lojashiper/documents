@@ -24,7 +24,7 @@ function addView(){
         redirect: 'follow'
     })
     .then(response => response.json())
-    .then(response => console.log("Add view: " + response))
+    .then(response => console.log("Add view: " + response['views']))
     .catch(error => console.log("Error Add view: " + error));
 }
 
@@ -37,7 +37,7 @@ function addConversion(link){
         redirect: 'follow'
     })
     .then(response => response.json())
-    .then(response => console.log("Add conversion: " + response))
+    .then(response => console.log("Add conversion: " + response['conversions']))
     .catch(error => console.log("Error Add conversion: " + error))
     .finally(() => {
       window.location.href = link;
