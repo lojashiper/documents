@@ -51,10 +51,7 @@ const createBuyButton = (element, parent_element, link_button, eventFunction) =>
             element.classList.add('hidden-button');
 
             const linkButton = document.createElement('a');
-            if(href_button){
-                linkButton.href = href_button;
-                linkButton.onClick = 'addConversion("'+ href_button +'")'
-            }
+            if(href_button) linkButton.setAttribute('onClick', 'addConversion("'+ href_button +'")');
             
             linkButton.className = 'loader-button btn btn-primary buy-button-custom -clean';
             linkButton.innerHTML = 'Comprar agora <svg viewBox="0 0 36 8"><circle cx="4" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".1"></animate></circle> <circle cx="18" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".2"></animate></circle> <circle cx="32" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".3"></animate></circle></svg>';
@@ -79,7 +76,7 @@ const createBuyFloatingButton = (element_floating, parent_element, link_button, 
             element_floating.classList.add('hidden-button');
 
             const linkButton = document.createElement('a');
-            if (href_button) linkButton.href = href_button;
+            if(href_button) linkButton.setAttribute('onClick', 'addConversion("'+ href_button +'")');
             linkButton.className = 'loader-button btn btn-primary buy-floating-button-custom -clean';
             linkButton.style = 'padding: unset';
             linkButton.innerHTML = 'Comprar agora <svg viewBox="0 0 36 8"><circle cx="4" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".1"></animate></circle> <circle cx="18" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".2"></animate></circle> <circle cx="32" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".3"></animate></circle></svg>';
