@@ -1,7 +1,7 @@
-const random_model = (Date.now() % 2)? 'A' : 'B';
+const random_model = (Date.now() % 2) ? 'A' : 'B';
 
 const checkElement = async selector => {
-    while (document.querySelector(selector) === null) {
+    while(document.querySelector(selector) === null) {
         await new Promise(resolve => requestAnimationFrame(resolve))
     }
     return document.querySelector(selector);
@@ -22,50 +22,50 @@ function getJSON(n, e) {
     }, s.send()
 }
 
-function addView(){
-    fetch("https://x8ki-letl-twmt.n7.xano.io/api:NYydPTYL/add_view?model="+ random_model, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        redirect: 'follow'
-    })
-    .then(response => response.json())
-    .then(response => console.log("Add view: " + response['views']))
-    .catch(error => console.log("Error Add view: " + error));
+function addView() {
+    fetch("https://x8ki-letl-twmt.n7.xano.io/api:NYydPTYL/add_view?model=" + random_model, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            redirect: 'follow'
+        })
+        .then(response => response.json())
+        .then(response => console.log("Add view: " + response['views']))
+        .catch(error => console.log("Error Add view: " + error));
 }
 
-function addConversion(link){
-    fetch("https://x8ki-letl-twmt.n7.xano.io/api:NYydPTYL/add_conversion?model="+ random_model, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        redirect: 'follow'
-    })
-    .then(response => response.json())
-    .then(response => console.log("Add conversion: " + response['conversions']))
-    .catch(error => console.log("Error Add conversion: " + error))
-    .finally(() => {
-      window.location.href = link;
-    });
+function addConversion(link) {
+    fetch("https://x8ki-letl-twmt.n7.xano.io/api:NYydPTYL/add_conversion?model=" + random_model, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            redirect: 'follow'
+        })
+        .then(response => response.json())
+        .then(response => console.log("Add conversion: " + response['conversions']))
+        .catch(error => console.log("Error Add conversion: " + error))
+        .finally(() => {
+            window.location.href = link;
+        });
 }
 
 const createBuyButton = (element, parent_element, link_button, eventFunction) => {
     const href_button = (link_button == '#') ? '' : link_button;
-    if (element) {
-        if (!parent_element.querySelector('.buy-button-custom')) {
+    if(element) {
+        if(!parent_element.querySelector('.buy-button-custom')) {
             element.classList.add('hidden-button');
 
             const linkButton = document.createElement('a');
-            if(href_button) linkButton.setAttribute('onClick', 'addConversion(\''+ href_button +'\')');
-            
+            if(href_button) linkButton.setAttribute('onClick', 'addConversion(\'' + href_button + '\')');
+
             linkButton.className = 'loader-button btn btn-primary buy-button-custom -clean';
             linkButton.innerHTML = 'Comprar agora <svg viewBox="0 0 36 8"><circle cx="4" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".1"></animate></circle> <circle cx="18" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".2"></animate></circle> <circle cx="32" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".3"></animate></circle></svg>';
 
             element.insertAdjacentElement('afterend', linkButton);
 
-            if (eventFunction != null) {
+            if(eventFunction != null) {
                 linkButton.addEventListener('click', async () => {
                     linkButton.classList.add('sending');
                     await eventFunction();
@@ -78,19 +78,19 @@ const createBuyButton = (element, parent_element, link_button, eventFunction) =>
 
 const createBuyFloatingButton = (element_floating, parent_element, link_button, eventFunction) => {
     const href_button = (link_button == '#') ? '' : link_button;
-    if (element_floating) {
-        if (!parent_element.querySelector('.buy-floating-button-custom')) {
+    if(element_floating) {
+        if(!parent_element.querySelector('.buy-floating-button-custom')) {
             element_floating.classList.add('hidden-button');
 
             const linkButton = document.createElement('a');
-            if(href_button) linkButton.setAttribute('onClick', 'addConversion(\''+ href_button +'\')');
+            if(href_button) linkButton.setAttribute('onClick', 'addConversion(\'' + href_button + '\')');
             linkButton.className = 'loader-button btn btn-primary buy-floating-button-custom -clean';
             linkButton.style = 'padding: unset';
             linkButton.innerHTML = 'Comprar agora <svg viewBox="0 0 36 8"><circle cx="4" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".1"></animate></circle> <circle cx="18" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".2"></animate></circle> <circle cx="32" cy="4" r="4"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin=".3"></animate></circle></svg>';
 
             element_floating.insertAdjacentElement('afterend', linkButton);
 
-            if (eventFunction != null) {
+            if(eventFunction != null) {
                 linkButton.addEventListener('click', async () => {
                     linkButton.classList.add('sending');
                     await eventFunction();
@@ -136,8 +136,8 @@ const addBuyButtons = (link_button, eventFunction = null) => {
 const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, variations_length, random_option_number) => {
     const default_buy_button = document.querySelector('.main-product-buy-button-holder > button.btn-primary');
 
-    if (destiny_option == 'ADO') {
-        if (variations_length) {
+    if(destiny_option == 'ADO') {
+        if(variations_length) {
             const dynamic_sku = document.querySelector('.reference-availability .main-product-reference span').innerText;
             const sku_product_dynamic = (destiny_mode == 'TEAB') ? dynamic_sku.split('-')[random_option_number] : dynamic_sku;
             const destiny_url = 'https://compra.lojashiper.com/v/' + sku_product_dynamic + utm_params;
@@ -155,8 +155,8 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
             addBuyButtons(destiny_url);
         }
 
-    } else if (destiny_option == 'VEG') {
-        if (variations_length) {
+    } else if(destiny_option == 'VEG') {
+        if(variations_length) {
             const dynamic_sku = document.querySelector('.reference-availability .main-product-reference span').innerText;
             const sku_product_dynamic = (destiny_mode == 'TEAB') ? dynamic_sku.split('-')[random_option_number] : dynamic_sku;
             const destiny_url = 'https://pay.lojashiper.com/' + sku_product_dynamic + utm_params;
@@ -174,8 +174,8 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
             addBuyButtons(destiny_url);
         }
 
-    } else if (destiny_option == 'SUI') {
-        if (variations_length) {
+    } else if(destiny_option == 'SUI') {
+        if(variations_length) {
             const dynamic_sku = document.querySelector('.reference-availability .main-product-reference span').innerText;
             const sku_product_dynamic = (destiny_mode == 'TEAB') ? dynamic_sku.split('-')[random_option_number] : dynamic_sku;
             const destiny_url = 'https://checkout.suitpay.app/checkout/' + sku_product_dynamic + utm_params;
@@ -193,8 +193,8 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
             addBuyButtons(destiny_url);
         }
 
-    } else if (destiny_option == 'AVI') {
-        if (variations_length) {
+    } else if(destiny_option == 'AVI') {
+        if(variations_length) {
             const dynamic_sku = document.querySelector('.reference-availability .main-product-reference span').innerText;
             const sku_product_dynamic = (destiny_mode == 'TEAB') ? dynamic_sku.split('-')[random_option_number] : dynamic_sku;
 
@@ -225,7 +225,7 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
                     })
                     .then((response) => response.json())
                     .then((data) => {
-                        const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?','&') : data['checkoutUrl'] + utm_params;
+                        const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?', '&') : data['checkoutUrl'] + utm_params;
                         window.location.href = destiny_url;
                     })
                     .catch(err => {
@@ -262,13 +262,13 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
                 })
                 .then((response) => response.json())
                 .then((data) => {
-                    const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?','&') : data['checkoutUrl'] + utm_params;
+                    const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?', '&') : data['checkoutUrl'] + utm_params;
                     addBuyButtons(destiny_url);
                 });
         }
 
-    } else if (destiny_option == 'ABM') {
-        if (variations_length) {
+    } else if(destiny_option == 'ABM') {
+        if(variations_length) {
             const dynamic_sku = document.querySelector('.reference-availability .main-product-reference span').innerText;
             const sku_product_dynamic = (destiny_mode == 'TEAB') ? dynamic_sku.split('-')[random_option_number] : dynamic_sku;
 
@@ -299,7 +299,7 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
                     })
                     .then((response) => response.json())
                     .then((data) => {
-                        const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?','&') : data['checkoutUrl'] + utm_params;
+                        const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?', '&') : data['checkoutUrl'] + utm_params;
                         window.location.href = destiny_url;
                     })
                     .catch(err => {
@@ -336,7 +336,7 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
                 })
                 .then((response) => response.json())
                 .then((data) => {
-                    const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?','&') : data['checkoutUrl'] + utm_params;
+                    const destiny_url = data['checkoutUrl'].includes('?') ? data['checkoutUrl'] + utm_params.replace('?', '&') : data['checkoutUrl'] + utm_params;
                     addBuyButtons(destiny_url);
                 });
         }
@@ -345,7 +345,7 @@ const createDestiny = (destiny_mode, destiny_option, sku_product, utm_params, va
 
 function verifyElement(selects, index) {
     setTimeout(function() {
-        if (selects[index].length > 1) {
+        if(selects[index].length > 1) {
             selects[index].selectedIndex = 1;
             selects[index].dispatchEvent(new Event('change'));
         } else verifyElement(selects, index);
@@ -363,7 +363,7 @@ function clickButtonSelect(button, index) {
     document.querySelector('.product-customizations div.custom-select select[name="' + button.getAttribute('data-target') + '"]').dispatchEvent(new Event('change'));
 
     document.querySelectorAll('.product-customizations div.custom-select select').forEach(function(select, i) {
-        if (i > index) waitElementToReplace(select, i);
+        if(i > index) waitElementToReplace(select, i);
     });
 }
 
@@ -377,9 +377,9 @@ function ReplaceSelectWithButtons(selectField, index) {
     });
 
     var options = selectField.querySelectorAll('option');
-    if (selectId.toLowerCase().includes('kit') || selectId.toLowerCase().includes('kits')) {
+    if(selectId.toLowerCase().includes('kit') || selectId.toLowerCase().includes('kits')) {
         options.forEach(function(button) {
-            if (button.value != 0 && button.value) {
+            if(button.value != 0 && button.value) {
                 var topMessageBadge = '',
                     topDiscountBadge = '',
                     discountMessageBadge = '',
@@ -389,37 +389,37 @@ function ReplaceSelectWithButtons(selectField, index) {
                 var buttonOrder = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).order;
                 var priceSale = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).price_sale;
                 var priceDiscount = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).price_discount;
-                if (buttonOrder == 1) {
+                if(buttonOrder == 1) {
                     topMessageBadge = '<div class="kit-mostsell-badge">Mais Vendido</div>';
-                    if (priceDiscount) {
+                    if(priceDiscount) {
                         topDiscountBadge = '<div class="kit-discount-badge">-' + ((1 - priceDiscount / priceSale).toFixed(2) * 100) + '%</div>';
                         discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ ' + (priceSale - priceDiscount).toString().replace('.', ',') + '</strong> </div>'
                     }
-                } else if (buttonOrder == 2) {
+                } else if(buttonOrder == 2) {
                     topMessageBadge = '<div class="kit-moreeconomy-badge">Maior Economia</div>';
                     marginBottom = 'mb-5';
-                    if (priceDiscount) {
+                    if(priceDiscount) {
                         topDiscountBadge = '<div class="kit-discount-badge">-' + ((1 - priceDiscount / priceSale).toFixed(2) * 100) + '%</div>';
                         discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ ' + (priceSale - priceDiscount).toString().replace('.', ',') + '</strong> </div>'
                     }
                 }
-                if (priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ ' + priceSale.toFixed(2).toString().replace('.', ',') + '</div>';
+                if(priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ ' + priceSale.toFixed(2).toString().replace('.', ',') + '</div>';
                 var priceShowProduct = (priceDiscount) ? priceDiscount.toFixed(2).toString().replace('.', ',') : priceSale.toFixed(2).toString().replace('.', ',');
                 var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
                 var buttonImage = buttonDataImages[0].url;
-                if (buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                if(buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
                 var buttonImageLink = "'" + imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn selectkitbtn ' + marginBottom + ' target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url(' + buttonImageLink + ')"></div> <div class="kit-quantity"> ' + topMessageBadge + ' <div class="kit-item-title-badge"> <div class="kit-item-title">' + button.innerText + '</div> ' + discountMessageBadge + ' </div> </div> </div> <div class="kit-content-right"> ' + topDiscountBadge + ' <div class="kit-comparation-prices"> ' + oldPriceProduct + ' <div class="kit-new-value-price">R$ ' + priceShowProduct + '</div> </div> </div> </div></div>');
             }
         });
-    } else if (selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')) {
+    } else if(selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')) {
         options.forEach(function(button) {
-            if (button.value != 0 && button.value) {
+            if(button.value != 0 && button.value) {
                 var buttonOrder = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).order;
                 var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
                 var buttonImage = buttonDataImages[0].url;
-                if (buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                if(buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
                 var buttonImageLink = "'" + imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn selectroundbtn target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')" style="background-image: url(' + buttonImageLink + ')"></div>');
@@ -427,7 +427,7 @@ function ReplaceSelectWithButtons(selectField, index) {
         });
     } else {
         options.forEach(function(button) {
-            if (button.value != 0 && button.value) {
+            if(button.value != 0 && button.value) {
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')">' + button.innerText + '</div>');
             }
@@ -439,7 +439,7 @@ function ReplaceSelectWithButtons(selectField, index) {
 
 function waitElementToReplace(select, index) {
     setTimeout(function() {
-        if (select.value != 0) {
+        if(select.value != 0) {
             ReplaceSelectWithButtons(select, index);
         } else waitElementToReplace(select, index);
     }, 50);
@@ -449,13 +449,13 @@ function loading_on_all_pages() {
     window.addEventListener('load', function() {
         checkElement('#app .header-content .logo').then((selector) => {
             document.querySelector('.header-content .logo').addEventListener('click', function(his, event) {
-                if (his.target.parentElement.classList.contains('opened')) {
-                    if (his.clientX > 60 && his.clientX < 80) {
+                if(his.target.parentElement.classList.contains('opened')) {
+                    if(his.clientX > 60 && his.clientX < 80) {
                         document.querySelector('.header-content').classList.remove('opened');
                         document.querySelector('.header-content .holder-search').style.display = 'none';
                     }
                 } else {
-                    if (his.clientX > 60 && his.clientX < 80) {
+                    if(his.clientX > 60 && his.clientX < 80) {
                         document.querySelector('.header-content').classList.add('opened');
                         document.querySelector('.header-content .holder-search').style.animation = 'slide-bottom .5s cubic-bezier(.25,.46,.45,.94) both';
                         document.querySelector('.header-content .holder-search').style.display = 'block';
@@ -464,7 +464,7 @@ function loading_on_all_pages() {
             });
 
             document.querySelector('.header .header-hightlightbar .container').addEventListener('click', function(his, event) {
-                if (his.offsetX <= (his.target.offsetWidth + 15) && his.offsetX > (his.target.offsetWidth - 15)) {
+                if(his.offsetX <= (his.target.offsetWidth + 15) && his.offsetX > (his.target.offsetWidth - 15)) {
                     his.target.parentNode.remove();
                 }
             });
@@ -493,18 +493,18 @@ function loading_on_home_page() {
 function loading_on_product_page(model) {
     /* begin:: Converte Select para Botão */
     checkElement('#app .product-customizations').then((selector) => {
-        if (document.querySelector('.product-customizations div.custom-select select')) {
+        if(document.querySelector('.product-customizations div.custom-select select')) {
             var selects = document.querySelectorAll('.product-customizations div.custom-select select');
             selects.forEach(function(select, index) {
-                if (index + 1 < selects.length) {
+                if(index + 1 < selects.length) {
                     select.addEventListener('change', function() {
-                        if (document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
+                        if(document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
                         select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-' + select.id + ' info-sku-option">' + select.options[select.selectedIndex].text + '</div>');
                         verifyElement(selects, index + 1);
                     });
-                } else if (index + 1 == selects.length) {
+                } else if(index + 1 == selects.length) {
                     select.addEventListener('change', function() {
-                        if (document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
+                        if(document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
                         select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-' + select.id + ' info-sku-option">' + select.options[select.selectedIndex].text + '</div>');
                     });
                 }
@@ -528,32 +528,35 @@ function loading_on_product_page(model) {
         console.log('#numero de produtos vendidos adicionado');
     });
     /* end:: Número de produtos vendidos */
-    
+
     checkElement('.main-product-info').then((selector) => {
-          /* begin:: Informação de estoque */
-          if (document.querySelector('.main-product-info .holder-flags .flag')) {
-              document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px;display: flex;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #e93639;">.</span> <span class="unidades-disponiveis" style="margin-top: 5px;font-weight: 600;font-size: 13px;color: #e93639;">Poucas unidades disponíveis</span></div></div>');
-          } else {
-              document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px; display: flex; color: #3bb54a;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #379543;">.</span> <span style="margin-top: 5px; font-weight: 600; font-size: 13px;">Produto em estoque</span></div></div>');
-          }
-          console.log('#informação de estoque adicionado');
-          /* end:: Informação de estoque */
+        /* begin:: Informação de estoque */
+        if(document.querySelector('.main-product-info .holder-flags .flag')) {
+            document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px;display: flex;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #e93639;">.</span> <span class="unidades-disponiveis" style="margin-top: 5px;font-weight: 600;font-size: 13px;color: #e93639;">Poucas unidades disponíveis</span></div></div>');
+        } else {
+            document.querySelector('.main-product-info .main-product-prices').insertAdjacentHTML('afterend', '<div class="section-estoque" style="margin-bottom: 23px;"><div style="font-size: 1rem; line-height: 1; font-weight: 600; color: rgb(87, 87, 87);">Estoque</div><div style="margin-top: 2px; display: flex; color: #3bb54a;"><span style="font-size: 50px;line-height: 0;margin-right: 10px;color: #379543;">.</span> <span style="margin-top: 5px; font-weight: 600; font-size: 13px;">Produto em estoque</span></div></div>');
+        }
+        console.log('#informação de estoque adicionado');
+        /* end:: Informação de estoque */
     });
 
     checkElement('.main-product-info .main-product-inventory-countdown').then((selector) => {
         /* begin:: Adição de gatilho de escassez */
-        if (document.querySelector('.main-product-info .holder-flags .flag')) {
-            if ((Array.from(document.querySelectorAll('.main-product-info .holder-flags .flag')).filter(e => e.innerText.includes('OFERTA')).length) && (window.location.href.search("[?&]utm_source=") != -1)) {
+        if(document.querySelector('.main-product-info .holder-flags .flag')) {
+            if((Array.from(document.querySelectorAll('.main-product-info .holder-flags .flag')).filter(e => e.innerText.includes('OFERTA')).length) && (window.location.href.search("[?&]utm_source=") != -1)) {
                 document.querySelector('.main-product-info .main-product-inventory-countdown').style.display = 'block';
                 const product_quatity_left = document.querySelector('.main-product-inventory-countdown .quantity-left');
                 const observer_product_left = new MutationObserver(function(mutationsList, observer_product_left) {
-                    if (parseInt(product_quatity_left.innerText) > 2) {
+                    if(parseInt(product_quatity_left.innerText) > 2) {
                         document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas ' + product_quatity_left.innerText + ' unidades em estoque';
                     } else {
                         document.querySelector('.section-estoque .unidades-disponiveis').innerText = 'Apenas 2 unidades em estoque';
                     }
                 });
-                observer_product_left.observe(product_quatity_left, { childList: true, subtree: true });
+                observer_product_left.observe(product_quatity_left, {
+                    childList: true,
+                    subtree: true
+                });
                 console.log('#informações de escassez adicionado');
             }
         }
@@ -577,7 +580,7 @@ function loading_on_product_page(model) {
         /* end:: Informação do vendedor */
 
         /* begin:: Barra de informações da loja */
-        const numero_maximo = 487, 
+        const numero_maximo = 487,
             numero_minimo = 227;
         document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<div class="store-info-bar" style="order:8;display:flex;justify-content:space-between;margin-top:15px;padding:10px 0;border:1px solid #e7e7e7;border-radius:10px"><div style="border-right:1px solid #d1d1d1;justify-items:center;flex-basis:100%;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;text-align:center;position:relative;padding:8px"><span style="font-size:22px;font-weight:400">' + Math.floor(Math.random() * (numero_maximo - numero_minimo + 1) + numero_minimo) + '</span><p style="font-size:12px;line-height:1.3;text-align:center;color:#696969;font-weight:400">Produtos entregues nos últimos 7 dias</p></div><div style="justify-items:center;flex-basis:100%;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;text-align:center;position:relative;padding:8px"><span style=""><svg viewBox="0 0 29 24" xmlns="http://www.w3.org/2000/svg" style="width:27px"><g fill-rule="evenodd" fill="none"><path d="M6.747 21.511l4.538-3.518h8.238c1.032 0 1.868-.98 1.868-2.19V3.21c0-1.21-.836-2.19-1.868-2.19H3.173c-1.032 0-1.869.98-1.869 2.19v14.077c0 .39.316.706.706.706H5.61v2.96a.706.706 0 0 0 1.138.558z" stroke-width="1.5" stroke="#333"></path><g transform="translate(14 9)"><circle cx="7.5" cy="7.5" r="7.5" fill="#39B54A"></circle><g stroke-linecap="round" stroke-width="1.059" stroke="#FFF"><path d="M3.75 7.5l2.445 2.445M6.25 9.89L11.14 5"></path></g></g></g></svg></span><p style="font-size:12px;line-height:1.3;text-align:center;color:#696969;font-weight:400">Presta bom atendimento</p></div><div style="border-left:1px solid #d1d1d1;justify-items:center;flex-basis:100%;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;text-align:center;position:relative;padding:8px"><span><svg viewBox="0 0 30 26" xmlns="http://www.w3.org/2000/svg" style="width:27px"><g fill-rule="evenodd" fill="none"><g transform="translate(1 .02)" stroke="#333"><ellipse cx="10.5" cy="13.714" rx="10.5" ry="10.286" stroke-width="1.286"></ellipse><path d="M19.107 13.714h-1.59M3.42 13.714H1.83M10.5 5.143v1.59M10.563 20.571v1.59M10.5.857v2.484M8.75.857h3.637M10.313 8.801v4.944H5.24" stroke-linecap="round" stroke-width="1.102"></path></g><g transform="translate(15 10.02)"><circle cx="7.5" cy="7.5" r="7.5" fill="#39B54A"></circle><g stroke-linecap="round" stroke-width="1.059" stroke="#FFF"><path d="M3.75 7.5l2.445 2.445M6.25 9.89L11.14 5"></path></g></g></g></svg></span><p style="font-size:12px;line-height:1.3;text-align:center;color:#696969;font-weight:400">Entrega os produtos dentro do prazo</p></div></div>');
         console.log('#barra de informações da loja adicionado');
@@ -587,13 +590,13 @@ function loading_on_product_page(model) {
         const utm_params = window.location.search,
             brand_name = window.data['product']['data']['brand']['data']['name'],
             variations_length = window.data['product']['data']['variations']['data']['length'];
-        if (brand_name.includes('-')) {
+        if(brand_name.includes('-')) {
             const destiny_mode = brand_name.split('-')[0],
-            sku_product = window.data['product']['data']['sku'];
-            if (destiny_mode == 'CHEU') {
+                sku_product = window.data['product']['data']['sku'];
+            if(destiny_mode == 'CHEU') {
                 const destiny_option = brand_name.split('-')[1];
                 createDestiny(destiny_mode, destiny_option, sku_product, utm_params, variations_length, 0);
-            } else if (destiny_mode == 'TEAB') {
+            } else if(destiny_mode == 'TEAB') {
                 const random_number = Math.floor(Math.random() * 10);
                 const random_option_number = (random_number % 2 === 0) ? 0 : 1;
                 const destiny_options = [brand_name.split('-')[1], brand_name.split('-')[2]];
@@ -610,7 +613,7 @@ function loading_on_product_page(model) {
     /* begin:: Estimativa de entrega */
     checkElement('.custom-address').then((selector) => {
         getJSON("https://wtfismyip.com/json", function(err, data) {
-            if (err === null) {
+            if(err === null) {
                 var o = (t = data.YourFuckingLocation).replace(", Brazil", "");
                 document.querySelector(".custom-address").innerHTML = "<font color='3bb54a'><b>Frete Grátis</b></font> para <strong><font color='3bb54a'>" + o + " e Região</font></strong>";
                 document.querySelector(".shipping-estimated").innerHTML = "Envio pelos <strong>Correios©</strong> de <strong>2 à 5 dias</strong>.";
@@ -630,7 +633,7 @@ function loading_on_product_page(model) {
 
     /* begin:: Valor do desconto */
     checkElement('.main-product-prices .show-installments').then((selector) => {
-        if (document.querySelector('.product .old-price')) {
+        if(document.querySelector('.product .old-price')) {
             const valor_produto_antigo = document.querySelector('.product .old-price').innerText;
             const valor_produto_float_antigo = parseFloat(valor_produto_antigo.split(' ')[1].replace(',', '.'));
             const valor_produto = document.querySelector('.product .actual-price').innerText;
@@ -642,40 +645,82 @@ function loading_on_product_page(model) {
     });
     /* end:: Valor do desconto */
 
-    if(model == 'B'){
-      checkElement('section.product-specifications[class*="product_specifications"]').then((selector) => {
+    if(model == 'B') {
+        checkElement('section.product-specifications[class*="product_specifications"]').then((selector) => {
             document.querySelector('section.product-specifications[class*="product_specifications"]').style.display = 'none';
             document.querySelector('section.product-specifications[class*="product_specifications"]').insertAdjacentHTML('beforebegin', '<section class="product-specifications product-test-model-b"><div class=container><div class=product-main-infos style=text-align:left;display:grid;gap:30px;line-height:1.6;padding-bottom:30px> <h1 style=color:#008a00>Chega de sofrer com MARCAS, MANCHAS, CICATRIZES, MELASMAS e ESPINHAS no Rosto!</h1><div class="product-description closed" style=display:grid;gap:20px><p><strong>Conheça a Base Color Velvet</strong>, a solução número 1 para seus problemas de pele. Desenvolvida com <strong>tecnologia avançada</strong>, esta base corretiva é a solução para<strong> cobrir completamente</strong> <strong>Manchas</strong>, <strong>Acnes</strong>, <strong>Espinhas</strong>, <strong>Melasmas </strong>e <strong>Cicatrizes </strong>do rosto, garantindo uma <strong>pele impecável</strong> durante seu <strong>dia-a-dia</strong>. Veja resultados visíveis em simples aplicações.</p><p style=display:none>Diferente de todas as bases que você já conheceu, a Base Color Velvet é uma base corretiva que se adapta a <strong>todos os tons de pele</strong>, proporcionando um <strong>resultado natural</strong> e <strong>sem exageros</strong>. E o melhor de tudo? Você não precisa se preocupar com a aparência pegajosa ou oleosa, <strong>mesmo após horas de uso</strong>.</p><p style=display:none>Com <strong>acabamento natural e duradouro</strong>, essa base é <strong>hipoalergênica</strong>, <strong>segura para todo tipo de pele</strong> e não testada em animais. E não para por aí, a fórmula da Base Color Velvet é livre de corantes, fragrâncias sintéticas, derivados de petróleo e parabenos.</p><p style=display:none><strong>Experimente a Base Color Velvet</strong> e descubra como ter uma<strong> pele impecável todos os dias</strong>!</p><div style=font-size:15px;font-weight:600;color:#008a00 class=more-less>+ Ler mais</div></div></div><div class="accordion mt20" style=text-align:left><div class="accordion-option closed" style="border-top:1px solid #ffe7ec"><div class="title closed" style="padding:18px 0;display:flex;align-items:center;justify-content:space-between"> <h2 style=font-size:18px>Como escolher a cor?</h2><span style=font-size:20px;font-weight:600;width:12px;display:flex>+</span></div><div class=description style=margin-top:10px;margin-bottom:20px;line-height:1.5;gap:20px;display:none><p>Excelente pergunta! A Base Color Velvet é uma <strong>base inovadora</strong> que <strong>se adapta a todos os tons de pele</strong>, eliminando a necessidade daquele processo complicado e muitas vezes duvidoso de escolher um tom que pode não ficar bom na pele (principalmente em compras online onde não é possível provar). Você não precisa se preocupar em selecionar uma cor específica, pois nossa <strong>tecnologia avançada</strong> garante que a base <strong>se ajuste perfeitamente ao seu tom de pele</strong></p><p>Isso significa que, independentemente do seu tom de pele, a Base Color Velvet <strong>proporcionará uma cobertura uniforme e natural</strong>. É a base perfeita para todos! Portanto, você pode ficar tranquila sabendo que, ao escolher a Base Color Velvet, você está optando por uma base que <strong>se adequa a você</strong>, independentemente de sua cor de pele, proporcionando um <strong>acabamento impecável e duradouro</strong>. Experimente e descubra a diferença!</p></div></div><div class="accordion-option closed" style="border-top:1px solid #ffe7ec"><div class="title closed" style="padding:15px 0;display:flex;align-items:center;justify-content:space-between"> <h2 style=font-size:18px>Qual a diferença entre outras bases?</h2><span style=font-size:20px;font-weight:600;width:12px;display:flex>+</span></div><div class=description style=margin-top:10px;margin-bottom:20px;line-height:1.5;gap:20px;display:none><p>A Base Color Velvet se destaca das demais bases no mercado devido à sua <strong>cobertura completa e natural</strong>, que <strong>oculta manchas</strong>, <strong>acnes</strong>, <strong>espinhas</strong>, <strong>cicatrizes</strong> e <strong>melasmas</strong>, sem criar uma aparência pesada.</p><p>Além disso, sua tecnologia avançada de aplicação, <strong>controle de oleosidade</strong>, durabilidade <strong>à prova d\'água e proteção solar FPS40</strong> a tornam uma escolha muito superior. Ela é hipoalergênica, ética e livre de químicos nocivos, refletindo um compromisso com a qualidade e a saúde da pele, <strong>diferenciando-a claramente das demais bases disponíveis</strong>.</p></div></div><div class="accordion-option closed" style="border-top:1px solid #ffe7ec"><div class="title closed" style="padding:15px 0;display:flex;align-items:center;justify-content:space-between"> <h2 style=font-size:18px>Ela pode ser usada em peles maduras?</h2><span style=font-size:20px;font-weight:600;width:12px;display:flex>+</span></div><div class=description style=margin-top:10px;margin-bottom:20px;line-height:1.5;gap:20px;display:none><p>Sim, a Base Color Velvet é adequada a qualquer tipo de pele, <strong>incluindo peles maduras</strong>. A fórmula avançada desta base corretiva é projetada para oferecer uma cobertura suave e uniforme, enquanto também hidrata a pele. Isso significa que, mesmo se você tiver uma pele madura, a Base Color Velvet pode <strong>ajudar a disfarçar imperfeições</strong>, <strong>rugas</strong> ou <strong>linhas finas</strong>, proporcionando um <strong>acabamento natural e duradouro</strong>.</p><p>Além disso, sua composição é hipoalergênica, o que a torna segura para todos os tipos de pele, incluindo peles maduras. Portanto, você pode usar a Base Color Velvet com confiança, sabendo que ela atenderá às suas necessidades, <strong>independentemente da sua faixa etária</strong>.</p></div></div><div class="accordion-option closed" style="border-top:1px solid #ffe7ec"><div class="title closed" style="padding:15px 0;display:flex;align-items:center;justify-content:space-between"> <h2 style=font-size:18px>O resultado é garantido?</h2><span style=font-size:20px;font-weight:600;width:12px;display:flex>+</span></div><div class=description style=margin-top:10px;margin-bottom:20px;line-height:1.5;gap:20px;display:none><p>Absolutamente! Confiamos tanto na eficácia da Base Color Velvet que oferecemos uma <strong>garantia sólida de 30 dias</strong> em todas as compras. Isso significa que <strong>você pode experimentar a Base Color Velvet sem riscos</strong>.</p><p>Se, por <strong>qualquer motivo</strong>, você não estiver satisfeito com os resultados ou sua experiência com o produto, estamos prontos para <strong>reembolsar integralmente o seu investimento</strong>. Com a garantia de 30 dias, você tem tempo suficiente para <strong>ver a transformação em sua pele</strong> e <strong>sentir a diferença</strong> que a Base Color Velvet pode fazer. Portanto, não hesite em experimentar a Base Color Velvet e descobrir os benefícios de uma pele impecável. <strong>Estamos ao seu lado</strong> durante essa jornada.</p></div></div></div></div></section>');
-            document.querySelector('.product-specifications.product-test-model-b .product-main-infos .more-less').addEventListener('click', e => {
-                if(e.target.parentNode.matches('.opened')){
-                    e.target.parentNode.classList.remove('opened');
-                    e.target.parentNode.classList.add('closed');
-                    e.target.parentNode.querySelectorAll('p:nth-last-child(-n + 4)').forEach(element => element.style.display = 'none');
-                    e.target.innerText = '+ Ler mais';
-                }else{
-                    e.target.parentNode.classList.remove('closed');
-                    e.target.parentNode.classList.add('opened');
-                    e.target.parentNode.querySelectorAll('p:nth-last-child(-n + 4)').forEach(element => element.style.display = 'block');
-                    e.target.innerText = '– Ler menos';
-                }
+            window.addEventListener('load', function(){
+                document.querySelector('.product-specifications.product-test-model-b .product-main-infos .more-less').addEventListener('click', e => {
+                    if(e.target.parentNode.matches('.opened')) {
+                        e.target.parentNode.classList.remove('opened');
+                        e.target.parentNode.classList.add('closed');
+                        e.target.parentNode.querySelectorAll('p:nth-last-child(-n + 4)').forEach(element => element.style.display = 'none');
+                        e.target.innerText = '+ Ler mais';
+                    } else {
+                        e.target.parentNode.classList.remove('closed');
+                        e.target.parentNode.classList.add('opened');
+                        e.target.parentNode.querySelectorAll('p:nth-last-child(-n + 4)').forEach(element => element.style.display = 'block');
+                        e.target.innerText = '– Ler menos';
+                    }
+                });
+                document.querySelectorAll('.product-specifications.product-test-model-b .accordion .accordion-option').forEach(option => {
+                    option.querySelector('.title').addEventListener('click', e => {
+                        var element = (e.target.matches('div')) ? e.target : (e.target.matches('h2') || e.target.matches('span')) ? e.target.parentNode : null;
+                        if(element && element.parentNode.matches('.opened')) {
+                            element.parentNode.classList.remove('opened');
+                            element.parentNode.classList.add('closed');
+                            element.parentNode.querySelector('.description').style.display = 'none';
+                            element.querySelector('span').innerText = '+';
+                        } else if(element) {
+                            element.parentNode.classList.remove('closed');
+                            element.parentNode.classList.add('opened');
+                            element.parentNode.querySelector('.description').style.display = 'grid';
+                            element.querySelector('span').innerText = '–';
+                        }
+                    });
+                });
             });
-            document.querySelectorAll('.product-specifications.product-test-model-b .accordion .accordion-option').forEach(option => {
-                option.querySelector('.title').addEventListener('click', e => {
-                    var element = (e.target.matches('div'))? e.target : (e.target.matches('h2') || e.target.matches('span'))? e.target.parentNode : null;
-                    if(element && element.parentNode.matches('.opened')){
-                        element.parentNode.classList.remove('opened');
-                        element.parentNode.classList.add('closed');
-                        element.parentNode.querySelector('.description').style.display = 'none';
-                        element.querySelector('span').innerText = '+';
-                    }else if(element){
-                        element.parentNode.classList.remove('closed');
-                        element.parentNode.classList.add('opened');
-                        element.parentNode.querySelector('.description').style.display = 'grid';
-                        element.querySelector('span').innerText = '–';
+
+            document.querySelector('section.product-specifications[class*="product_specifications"]').insertAdjacentHTML('beforebegin', '<section class="product-video product-test-model-b" style=margin-top:30px><div class=container style=width:100%;height:420px;position:relative;overflow:hidden><div style="display:block;position:absolute;width:100%;height:100%;background-image:url(//images.yampi.me/assets/stores/pontodeamor/uploads/banners/6532d862b4d10.jpg);background-size:cover;background-position-x:center;background-repeat:no-repeat;margin:0 -16px;z-index:-1"></div><div style="display:block;position:absolute;width:100%;height:100%;background:linear-gradient(90deg,#e8dbcf 10%,#e6d8cf 10% 20%,#d7c8c5 20% 30%,#ab9f9e 30% 40%,#5f5a51 40% 50%,#453401 50% 60%,#937763 60% 70%,#c0a199 70% 80%,#b89f9d 80% 90%,#7d7779 90% 100%),linear-gradient(90deg,#ecded4 10%,#e9dad2 10% 20%,#dac9c6 20% 30%,#b5a6a5 30% 40%,#857a75 40% 50%,#827161 50% 60%,#b19486 60% 70%,#d0aea5 70% 80%,#c5a8a2 80% 90%,#928381 90% 100%),linear-gradient(90deg,#f4e3de 10%,#f0ddd8 10% 20%,#e1cbc8 20% 30%,#c9b3b2 30% 40%,#b6a3a1 40% 50%,#bea9a3 50% 60%,#d8bab0 60% 70%,#e6c1b5 70% 80%,#d7b3a9 80% 90%,#b1968f 90% 100%),linear-gradient(90deg,#f8e5e0 10%,#f3ded9 10% 20%,#e6cbc6 20% 30%,#d4b7b4 30% 40%,#c7afac 40% 50%,#ccb4b0 50% 60%,#dbbdb3 60% 70%,#e1bdaf 70% 80%,#d5b0a2 80% 90%,#bb9c93 90% 100%),linear-gradient(90deg,#f2ded4 10%,#eed7ce 10% 20%,#e2c5bc 20% 30%,#cbaca5 30% 40%,#b29792 40% 50%,#a9918a 50% 60%,#b2998c 60% 70%,#bea090 70% 80%,#bc9d90 80% 90%,#af938c 90% 100%),linear-gradient(90deg,#e5cdbc 10%,#e1c7b8 10% 20%,#d0b4a8 20% 30%,#ae9289 30% 40%,#816658 40% 50%,#634e2c 50% 60%,#786547 60% 70%,#98836f 70% 80%,#a78f82 80% 90%,#a48d86 90% 100%),linear-gradient(90deg,#d8baa5 10%,#d0b3a1 10% 20%,#b69c91 20% 30%,#87736a 30% 40%,#4b3c0b 40% 50%,#3e3101 50% 60%,#75653b 60% 70%,#9e8a75 70% 80%,#af988a 80% 90%,#ae968a 90% 100%),linear-gradient(90deg,#d6b4a1 10%,#c9ab9a 10% 20%,#a48f85 20% 30%,#6e665d 30% 40%,#474929 40% 50%,#6a6237 50% 60%,#9c8a6c 60% 70%,#bba38e 70% 80%,#c3a998 80% 90%,#bda292 90% 100%),linear-gradient(90deg,#dfc2b2 10%,#d1b7a9 10% 20%,#ab9a8e 20% 30%,#797467 30% 40%,#615f46 40% 50%,#817658 50% 60%,#aa987d 60% 70%,#c2ac95 70% 80%,#c5ac9a 80% 90%,#bda191 90% 100%),linear-gradient(90deg,#ebd4c6 10%,#dfcbbc 10% 20%,#beb0a0 20% 30%,#908874 30% 40%,#6e6548 40% 50%,#786a49 50% 60%,#998a6d 60% 70%,#b0a087 70% 80%,#b5a18e 80% 90%,#ae9487 90% 100%);background-position:0 0,0 11%,0 22%,0 33%,0 44%,0 56%,0 67%,0 78%,0 89%,0 100%;background-size:100% 10%;filter:blur(24px);background-repeat:no-repeat;transform:scale(1.2);margin:0 -16px;z-index:-2"></div><div style=display:grid;height:100%;width:100%;align-items:center;align-content:center;gap:25px><div style=text-align:center;line-height:1.5;display:grid;gap:15px><div> <h2 style="color:#fff;font-size:15px;text-shadow:0 0 20px #19191980">Veja nossa base em ação!</h2></div><div> <h1 style="color:#fff;font-size:24px;text-shadow:0 0 20px #19191980">Viva sua vida muito mais sorridente e confiante.</h1></div><div style="color:#fff;text-shadow:0 0 20px #19191980"> <p>A aplicação é muito rápida e sem necessidade de nenhum conhecimento avançado de maquiagem.</p></div></div><div style=display:flex;justify-content:center;align-items:center><div style=width:85px;height:85px;display:flex;background-color:#fff;border-radius:50px;justify-content:center;align-items:center><span style="display:block;background-color:#191919;height:30px;width:30px;clip-path:polygon(0% 100%,50% 0%,100% 100%);transform:rotate(90deg);margin-left:5px"></span></div></div></div></div> <svg xmlns=http://www.w3.org/2000/svg fill=none viewBox="0 0 375 37" style=margin-top:-37px;display:block><path fill=#FFFFFF d="M182.46 19.887c50.21-8.545 127.391-31.16 191.554-13.039 2.466.697 3.986 3.03 3.986 5.985V37H-.828C-.862 31.228-2.16 25.898 2.94 26.5c38.074 4.498 124.439 2.762 179.521-6.613Z"></path></svg></section>');
+            document.querySelector('section.product-specifications[class*="product_specifications"]').insertAdjacentHTML('beforebegin', '<div class="modal-background modal-product-video"><div id="modal-product-video" class="modal" style="border-radius: 10px;padding: 0px;display: flex;align-items: center;justify-content: center;width: fit-content;overflow: hidden;border: 0 !important;background-color: transparent;"><div class="flex -between" style="display: block;position: absolute;top: 15px;right: 15px"> <div class="close-modal" style="background-color: #ffffff;border-radius: 50px;width: 30px;height: 30px;display: flex;margin: 0;padding: 0;opacity: 1;justify-content: center;align-items: center;-webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;"><span style="font-weight: 600;">X</span></div></div> <iframe width="315" height="560" src="https://www.youtube.com/embed/hY_Mul5EyDQ?si=0kgglRpMhg9n3eJQ&amp;controls=0" title="Base Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div></div>');
+            window.addEventListener('load', function(){
+                document.querySelector('.product-video .container').addEventListener('click', e => {
+                    var modal_element = document.querySelector('.modal-product-video');
+                    if(!modal_element.matches('.active')) modal_element.classList.add('active');
+                });
+                document.querySelector('.modal-product-video').addEventListener('click', e => {
+                    var modal_element = document.querySelector('.modal-product-video');
+                    var iframe_element = document.querySelector('.modal-product-video iframe');
+                    if(modal_element.matches('.active')){
+                    	modal_element.classList.remove('active');
+                    	iframe_element.src = iframe_element.src;
+                    }
+                });
+                document.querySelector('.modal-product-video .close-modal').addEventListener('click', e => {
+                    var modal_element = document.querySelector('.modal-product-video');
+                    var iframe_element = document.querySelector('.modal-product-video iframe');
+                    if(modal_element.matches('.active')){
+                    	modal_element.classList.remove('active');
+                    	iframe_element.src = iframe_element.src;
                     }
                 });
             });
-      });
+
+            document.querySelector('section.product-specifications[class*="product_specifications"]').insertAdjacentHTML('beforebegin', '<section class="product-features product-test-model-b" style="margin-top:30px"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.css"><div class="content" style="padding:16px"><div class="product-features-headline" style="text-align:center;padding:0 5px 15px"> <h2 style="font-size:15px;font-weight:600;color:#008a00"> Seu rosto renovado! </h2></div><div class="product-features-title" style="text-align:center;padding:0 20px 30px"> <h1>O que pode melhorar?</h1></div><div></div><div id="keen-slider-features" class="keen-slider" style="max-width:600px"><div class="keen-slider__slide number-slide1" style="min-width: calc(80% - 4.8px); max-width: calc(80% - 4.8px); transform: translate3d(-808.782px, 0px, 0px);"><div class="slider-content" style="display:grid;gap:12px;margin-right:20px;line-height:1.5"><div class="image" style="position: relative;width: 100%"> <div style="position: absolute;top: 0;left: 0;width:100%;height:100%;z-index: -1;overflow: hidden;border-radius: 10px;"><div style="display: block;width:100%;height:100%;background: linear-gradient(90deg,rgb(183,177,163) 10%,rgb(190,185,173) 10% 20%,rgb(203,199,191) 20% 30%,rgb(208,206,202) 30% 40%,rgb(202,203,202) 40% 50%,rgb(191,198,200) 50% 60%,rgb(187,199,202) 60% 70%,rgb(191,204,207) 70% 80%,rgb(197,206,208) 80% 90%,rgb(201,204,205) 90% 100%),linear-gradient(90deg,rgb(187,174,163) 10%,rgb(193,179,168) 10% 20%,rgb(203,187,179) 20% 30%,rgb(208,192,186) 30% 40%,rgb(203,192,189) 40% 50%,rgb(194,192,192) 50% 60%,rgb(189,194,196) 60% 70%,rgb(191,197,199) 70% 80%,rgb(195,195,196) 80% 90%,rgb(197,189,189) 90% 100%),linear-gradient(90deg,rgb(192,166,158) 10%,rgb(197,164,155) 10% 20%,rgb(206,161,150) 20% 30%,rgb(210,161,149) 30% 40%,rgb(206,166,158) 40% 50%,rgb(198,175,171) 50% 60%,rgb(192,180,180) 60% 70%,rgb(190,178,178) 70% 80%,rgb(189,167,166) 80% 90%,rgb(188,154,150) 90% 100%),linear-gradient(90deg,rgb(191,147,143) 10%,rgb(198,146,138) 10% 20%,rgb(211,144,130) 20% 30%,rgb(216,145,126) 30% 40%,rgb(211,149,134) 40% 50%,rgb(200,157,148) 50% 60%,rgb(191,162,159) 60% 70%,rgb(188,158,156) 70% 80%,rgb(186,143,138) 80% 90%,rgb(183,124,113) 90% 100%),linear-gradient(90deg,rgb(180,117,116) 10%,rgb(193,129,122) 10% 20%,rgb(215,149,134) 20% 30%,rgb(226,159,139) 30% 40%,rgb(218,156,137) 40% 50%,rgb(200,149,136) 50% 60%,rgb(187,145,140) 60% 70%,rgb(184,143,140) 70% 80%,rgb(185,138,128) 80% 90%,rgb(184,126,107) 90% 100%),linear-gradient(90deg,rgb(166,87,85) 10%,rgb(184,115,108) 10% 20%,rgb(215,155,141) 20% 30%,rgb(232,174,156) 30% 40%,rgb(227,168,150) 40% 50%,rgb(206,149,137) 50% 60%,rgb(186,135,130) 60% 70%,rgb(178,134,130) 70% 80%,rgb(182,137,126) 80% 90%,rgb(186,137,114) 90% 100%),linear-gradient(90deg,rgb(158,72,68) 10%,rgb(175,103,94) 10% 20%,rgb(208,145,131) 20% 30%,rgb(230,167,150) 30% 40%,rgb(232,166,150) 40% 50%,rgb(214,149,138) 50% 60%,rgb(189,131,128) 60% 70%,rgb(171,123,122) 70% 80%,rgb(173,126,115) 80% 90%,rgb(183,130,104) 90% 100%),linear-gradient(90deg,rgb(155,74,71) 10%,rgb(168,91,82) 10% 20%,rgb(193,120,104) 20% 30%,rgb(216,141,121) 30% 40%,rgb(223,147,130) 40% 50%,rgb(211,141,131) 50% 60%,rgb(186,126,125) 60% 70%,rgb(163,112,113) 70% 80%,rgb(160,104,95) 80% 90%,rgb(172,103,75) 90% 100%),linear-gradient(90deg,rgb(152,73,74) 10%,rgb(160,82,77) 10% 20%,rgb(177,99,83) 20% 30%,rgb(191,114,92) 30% 40%,rgb(195,122,102) 40% 50%,rgb(187,123,112) 50% 60%,rgb(170,117,116) 60% 70%,rgb(155,106,109) 70% 80%,rgb(152,92,89) 80% 90%,rgb(158,79,58) 90% 100%),linear-gradient(90deg,rgb(146,63,70) 10%,rgb(153,77,77) 10% 20%,rgb(163,98,86) 20% 30%,rgb(165,107,86) 30% 40%,rgb(157,104,82) 40% 50%,rgb(146,101,87) 50% 60%,rgb(143,105,103) 60% 70%,rgb(148,108,112) 70% 80%,rgb(150,100,103) 80% 90%,rgb(146,80,77) 90% 100%);background-position: 0 0,0 11%,0 22%,0 33%,0 44%,0 56%,0 67%,0 78%,0 89%,0 100%;background-size:100% 10%;filter:blur(24px);background-repeat:no-repeat;transform:scale(1.2);"></div></div> <img src="//images.yampi.io/unsafe/fit-in/400x400/filters:background_color(white):upscale()/https://images.yampi.me/assets/stores/lojashiper/uploads/images/base-color-velvet-para-todos-os-tons-de-pele-compre-1-e-leve-2-64c085e47beb6-large.jpg" style="border-radius:10px;width:100%;height:100%"></div><div class="title"> <h2 style="font-size:17px">Marcas ou Espinhas</h2></div><div class="description"><p>Seja livre para revelar sua verdadeira beleza. A Base Color Velvet é a chave para ocultar marcas e imperfeições causadas por espinhas e suas sequelas.</p></div></div></div><div class="keen-slider__slide number-slide2" style="min-width: calc(80% - 4.8px); max-width: calc(80% - 4.8px); transform: translate3d(-808.782px, 0px, 0px);"><div class="slider-content" style="display:grid;gap:12px;margin-right:20px;line-height:1.5"><div class="image" style="position: relative;width: 100%"> <div style="position: absolute;top: 0;left: 0;width:100%;height:100%;z-index: -1;overflow: hidden;border-radius: 10px;"><div style="display: block;width:100%;height:100%;background: linear-gradient(90deg,rgb(174,151,117) 10%,rgb(162,140,110) 10% 20%,rgb(134,118,100) 20% 30%,rgb(117,110,108) 30% 40%,rgb(125,119,124) 40% 50%,rgb(132,118,123) 50% 60%,rgb(121,90,95) 60% 70%,rgb(103,51,48) 70% 80%,rgb(111,73,54) 80% 90%,rgb(136,118,98) 90% 100%),linear-gradient(90deg,rgb(171,144,110) 10%,rgb(166,140,110) 10% 20%,rgb(157,134,116) 20% 30%,rgb(152,135,129) 30% 40%,rgb(152,137,137) 40% 50%,rgb(146,127,127) 50% 60%,rgb(131,98,97) 60% 70%,rgb(123,79,67) 70% 80%,rgb(141,107,88) 80% 90%,rgb(167,145,125) 90% 100%),linear-gradient(90deg,rgb(166,130,99) 10%,rgb(174,139,114) 10% 20%,rgb(190,158,142) 20% 30%,rgb(198,170,160) 30% 40%,rgb(190,166,159) 40% 50%,rgb(169,144,137) 50% 60%,rgb(149,115,104) 60% 70%,rgb(154,113,94) 70% 80%,rgb(182,148,127) 80% 90%,rgb(209,183,162) 90% 100%),linear-gradient(90deg,rgb(168,130,109) 10%,rgb(179,143,124) 10% 20%,rgb(200,167,152) 20% 30%,rgb(212,182,171) 30% 40%,rgb(205,178,170) 40% 50%,rgb(183,156,149) 50% 60%,rgb(162,129,118) 60% 70%,rgb(167,130,111) 70% 80%,rgb(195,162,142) 80% 90%,rgb(223,195,175) 90% 100%),linear-gradient(90deg,rgb(177,148,135) 10%,rgb(180,151,138) 10% 20%,rgb(187,161,149) 20% 30%,rgb(195,172,164) 30% 40%,rgb(197,175,171) 40% 50%,rgb(187,163,162) 50% 60%,rgb(171,141,137) 60% 70%,rgb(166,132,120) 70% 80%,rgb(185,154,136) 80% 90%,rgb(210,183,166) 90% 100%),linear-gradient(90deg,rgb(187,164,155) 10%,rgb(182,160,151) 10% 20%,rgb(175,155,147) 20% 30%,rgb(179,162,158) 30% 40%,rgb(191,173,174) 40% 50%,rgb(195,172,175) 50% 60%,rgb(183,154,153) 60% 70%,rgb(170,135,126) 70% 80%,rgb(176,143,129) 80% 90%,rgb(195,168,155) 90% 100%),linear-gradient(90deg,rgb(189,167,160) 10%,rgb(186,163,156) 10% 20%,rgb(184,160,154) 20% 30%,rgb(193,169,167) 30% 40%,rgb(207,183,184) 40% 50%,rgb(210,184,184) 50% 60%,rgb(199,165,161) 60% 70%,rgb(185,144,132) 70% 80%,rgb(188,148,133) 80% 90%,rgb(204,172,160) 90% 100%),linear-gradient(90deg,rgb(183,155,148) 10%,rgb(186,156,149) 10% 20%,rgb(196,163,158) 20% 30%,rgb(213,180,176) 30% 40%,rgb(225,193,190) 40% 50%,rgb(223,190,185) 50% 60%,rgb(207,168,158) 60% 70%,rgb(193,146,130) 70% 80%,rgb(200,154,137) 80% 90%,rgb(218,180,167) 90% 100%),linear-gradient(90deg,rgb(173,135,128) 10%,rgb(176,137,131) 10% 20%,rgb(189,149,143) 20% 30%,rgb(211,171,165) 30% 40%,rgb(226,188,181) 40% 50%,rgb(223,185,175) 50% 60%,rgb(200,158,145) 60% 70%,rgb(180,129,111) 70% 80%,rgb(187,136,121) 80% 90%,rgb(212,167,156) 90% 100%),linear-gradient(90deg,rgb(164,119,111) 10%,rgb(160,114,107) 10% 20%,rgb(162,118,109) 20% 30%,rgb(184,144,134) 30% 40%,rgb(209,170,160) 40% 50%,rgb(211,171,160) 50% 60%,rgb(183,139,128) 60% 70%,rgb(146,89,77) 70% 80%,rgb(148,89,79) 80% 90%,rgb(182,132,124) 90% 100%);background-position: 0 0,0 11%,0 22%,0 33%,0 44%,0 56%,0 67%,0 78%,0 89%,0 100%;background-size:100% 10%;filter:blur(24px);background-repeat:no-repeat;transform:scale(1.2);"></div></div> <img src="//images.yampi.io/unsafe/fit-in/400x400/filters:background_color(white):upscale()/https://images.yampi.me/assets/stores/lojashiper/uploads/images/base-color-velvet-para-todos-os-tons-de-pele-compre-1-e-leve-2-64c085e47ff07-large.jpg" style="border-radius:10px;width:100%;height:100%"></div><div class="title"> <h2 style="font-size:17px">Manchas ou Melasma</h2></div><div class="description"><p>Diga adeus às preocupações com manchas e melasmas. A Base Color Velvet é a solução para uma pele uniforme e radiante.</p></div></div></div><div class="keen-slider__slide number-slide3" style="min-width: calc(80% - 4.8px); max-width: calc(80% - 4.8px); transform: translate3d(-808.782px, 0px, 0px);"><div class="slider-content" style="display:grid;gap:12px;margin-right:20px;line-height:1.5"><div class="image" style="position: relative;width: 100%"> <div style="position: absolute;top: 0;left: 0;width:100%;height:100%;z-index: -1;overflow: hidden;border-radius: 10px;"><div style="display: block;width:100%;height:100%;background: linear-gradient(90deg,rgb(145,116,71) 10%,rgb(144,111,72) 10% 20%,rgb(138,97,70) 20% 30%,rgb(128,81,62) 30% 40%,rgb(119,80,61) 40% 50%,rgb(124,100,81) 50% 60%,rgb(138,121,106) 60% 70%,rgb(147,128,114) 70% 80%,rgb(143,115,97) 80% 90%,rgb(129,87,46) 90% 100%),linear-gradient(90deg,rgb(155,123,81) 10%,rgb(154,120,83) 10% 20%,rgb(151,111,85) 20% 30%,rgb(146,104,84) 30% 40%,rgb(141,106,85) 40% 50%,rgb(140,117,97) 50% 60%,rgb(144,127,112) 60% 70%,rgb(148,129,116) 70% 80%,rgb(148,120,102) 80% 90%,rgb(145,104,69) 90% 100%),linear-gradient(90deg,rgb(169,135,98) 10%,rgb(170,134,101) 10% 20%,rgb(173,134,108) 20% 30%,rgb(175,136,114) 30% 40%,rgb(174,141,118) 40% 50%,rgb(167,144,122) 50% 60%,rgb(156,141,124) 60% 70%,rgb(151,136,123) 70% 80%,rgb(160,133,115) 80% 90%,rgb(173,133,103) 90% 100%),linear-gradient(90deg,rgb(168,139,106) 10%,rgb(172,140,110) 10% 20%,rgb(180,144,119) 20% 30%,rgb(187,151,128) 30% 40%,rgb(187,157,133) 40% 50%,rgb(178,157,136) 50% 60%,rgb(164,153,136) 60% 70%,rgb(161,148,135) 70% 80%,rgb(173,149,132) 80% 90%,rgb(191,154,127) 90% 100%),linear-gradient(90deg,rgb(154,133,105) 10%,rgb(160,135,110) 10% 20%,rgb(172,141,119) 20% 30%,rgb(180,147,127) 30% 40%,rgb(178,152,132) 40% 50%,rgb(171,156,138) 50% 60%,rgb(168,159,144) 60% 70%,rgb(174,162,148) 70% 80%,rgb(185,163,147) 80% 90%,rgb(195,163,141) 90% 100%),linear-gradient(90deg,rgb(145,130,105) 10%,rgb(152,131,109) 10% 20%,rgb(164,135,117) 20% 30%,rgb(169,137,123) 30% 40%,rgb(165,142,127) 40% 50%,rgb(162,151,137) 50% 60%,rgb(170,162,150) 60% 70%,rgb(183,171,158) 70% 80%,rgb(194,171,157) 80% 90%,rgb(197,167,148) 90% 100%),linear-gradient(90deg,rgb(154,136,110) 10%,rgb(160,136,114) 10% 20%,rgb(169,137,120) 20% 30%,rgb(172,138,125) 30% 40%,rgb(168,143,130) 40% 50%,rgb(164,152,140) 50% 60%,rgb(171,164,153) 60% 70%,rgb(185,171,161) 70% 80%,rgb(197,173,160) 80% 90%,rgb(203,170,152) 90% 100%),linear-gradient(90deg,rgb(167,142,115) 10%,rgb(171,142,118) 10% 20%,rgb(179,142,124) 20% 30%,rgb(183,146,131) 30% 40%,rgb(180,152,136) 40% 50%,rgb(173,158,143) 50% 60%,rgb(170,162,151) 60% 70%,rgb(178,165,156) 70% 80%,rgb(195,168,157) 80% 90%,rgb(210,173,153) 90% 100%),linear-gradient(90deg,rgb(162,138,110) 10%,rgb(167,138,114) 10% 20%,rgb(178,141,122) 20% 30%,rgb(186,148,130) 30% 40%,rgb(185,155,136) 40% 50%,rgb(174,158,141) 50% 60%,rgb(163,156,144) 60% 70%,rgb(167,156,146) 70% 80%,rgb(187,162,148) 80% 90%,rgb(209,172,149) 90% 100%),linear-gradient(90deg,rgb(142,124,98) 10%,rgb(150,126,102) 10% 20%,rgb(167,132,112) 20% 30%,rgb(179,141,122) 30% 40%,rgb(179,148,129) 40% 50%,rgb(167,150,132) 50% 60%,rgb(154,148,134) 60% 70%,rgb(157,149,137) 70% 80%,rgb(179,158,140) 80% 90%,rgb(202,169,143) 90% 100%);background-position: 0 0,0 11%,0 22%,0 33%,0 44%,0 56%,0 67%,0 78%,0 89%,0 100%;background-size:100% 10%;filter:blur(24px);background-repeat:no-repeat;transform:scale(1.2);"></div></div> <img src="//images.yampi.io/unsafe/fit-in/400x400/filters:background_color(white):upscale()/https://images.yampi.me/assets/stores/lojashiper/uploads/images/base-color-velvet-para-todos-os-tons-de-pele-compre-1-e-leve-2-64c085e481f8f-large.jpg" style="border-radius:10px;width:100%;height:100%"></div><div class="title"> <h2 style="font-size:17px">Rugas ou Linhas de Exp.</h2></div><div class="description"><p>Recupere a juventude da sua pele. A Base Color Velvet é a sua aliada para suavizar rugas e linhas de expressão, revelando uma pele mais jovem e radiante.</p></div></div></div><div class="keen-slider__slide number-slide4" style="min-width: calc(80% - 4.8px); max-width: calc(80% - 4.8px); transform: translate3d(-808.782px, 0px, 0px);"><div class="slider-content" style="display:grid;gap:12px;margin-right:20px;line-height:1.5"><div class="image" style="position: relative;width: 100%"> <div style="position: absolute;top: 0;left: 0;width:100%;height:100%;z-index: -1;overflow: hidden;border-radius: 10px;"><div style="display: block;width:100%;height:100%;background: linear-gradient(90deg,rgb(197,195,170) 10%,rgb(187,179,155) 10% 20%,rgb(167,144,123) 20% 30%,rgb(166,129,115) 30% 40%,rgb(187,158,148) 40% 50%,rgb(207,190,180) 50% 60%,rgb(209,201,191) 60% 70%,rgb(193,189,179) 70% 80%,rgb(174,165,156) 80% 90%,rgb(162,145,136) 90% 100%),linear-gradient(90deg,rgb(182,179,156) 10%,rgb(177,166,144) 10% 20%,rgb(171,141,120) 20% 30%,rgb(178,133,116) 30% 40%,rgb(194,157,143) 40% 50%,rgb(204,182,170) 50% 60%,rgb(199,189,178) 60% 70%,rgb(184,177,167) 70% 80%,rgb(169,157,147) 80% 90%,rgb(165,142,129) 90% 100%),linear-gradient(90deg,rgb(152,143,124) 10%,rgb(161,140,120) 10% 20%,rgb(180,136,114) 20% 30%,rgb(197,141,118) 30% 40%,rgb(205,155,133) 40% 50%,rgb(198,166,148) 50% 60%,rgb(180,165,152) 60% 70%,rgb(165,155,144) 70% 80%,rgb(163,143,129) 80% 90%,rgb(171,136,114) 90% 100%),linear-gradient(90deg,rgb(149,129,114) 10%,rgb(162,130,114) 10% 20%,rgb(187,135,115) 20% 30%,rgb(206,144,119) 30% 40%,rgb(211,154,127) 40% 50%,rgb(198,159,136) 50% 60%,rgb(177,157,140) 60% 70%,rgb(162,150,136) 70% 80%,rgb(165,142,124) 80% 90%,rgb(178,136,108) 90% 100%),linear-gradient(90deg,rgb(179,155,141) 10%,rgb(183,150,135) 10% 20%,rgb(192,140,124) 20% 30%,rgb(204,141,119) 30% 40%,rgb(211,154,129) 40% 50%,rgb(207,168,145) 50% 60%,rgb(192,172,154) 60% 70%,rgb(177,166,151) 70% 80%,rgb(176,154,136) 80% 90%,rgb(185,144,118) 90% 100%),linear-gradient(90deg,rgb(200,178,164) 10%,rgb(198,168,154) 10% 20%,rgb(197,146,131) 20% 30%,rgb(204,138,119) 30% 40%,rgb(213,155,134) 40% 50%,rgb(214,175,156) 50% 60%,rgb(201,182,167) 60% 70%,rgb(186,174,161) 70% 80%,rgb(183,160,145) 80% 90%,rgb(191,150,127) 90% 100%),linear-gradient(90deg,rgb(189,173,162) 10%,rgb(191,163,152) 10% 20%,rgb(198,143,129) 20% 30%,rgb(208,137,118) 30% 40%,rgb(214,152,131) 40% 50%,rgb(207,167,150) 50% 60%,rgb(188,167,157) 60% 70%,rgb(171,156,149) 70% 80%,rgb(175,147,135) 80% 90%,rgb(192,147,125) 90% 100%),linear-gradient(90deg,rgb(146,139,134) 10%,rgb(158,134,127) 10% 20%,rgb(182,126,112) 20% 30%,rgb(201,130,107) 30% 40%,rgb(203,140,117) 40% 50%,rgb(183,142,126) 50% 60%,rgb(150,129,126) 60% 70%,rgb(131,112,117) 70% 80%,rgb(150,114,109) 80% 90%,rgb(180,132,108) 90% 100%),linear-gradient(90deg,rgb(82,89,90) 10%,rgb(104,88,87) 10% 20%,rgb(141,92,82) 20% 30%,rgb(165,104,83) 30% 40%,rgb(166,114,90) 40% 50%,rgb(141,109,94) 50% 60%,rgb(97,87,90) 60% 70%,rgb(72,65,83) 70% 80%,rgb(111,79,81) 80% 90%,rgb(152,108,84) 90% 100%),linear-gradient(90deg,rgb(1,47,48) 10%,rgb(19,39,43) 10% 20%,rgb(55,29,35) 20% 30%,rgb(85,50,38) 30% 40%,rgb(100,74,54) 40% 50%,rgb(88,83,69) 50% 60%,rgb(44,74,76) 60% 70%,rgb(1,59,75) 70% 80%,rgb(65,65,70) 80% 90%,rgb(115,85,65) 90% 100%);background-position: 0 0,0 11%,0 22%,0 33%,0 44%,0 56%,0 67%,0 78%,0 89%,0 100%;background-size:100% 10%;filter:blur(24px);background-repeat:no-repeat;transform:scale(1.2);"></div></div> <img src="//images.yampi.io/unsafe/fit-in/400x400/filters:background_color(white):upscale()/https://images.yampi.me/assets/stores/lojashiper/uploads/images/base-color-velvet-para-todos-os-tons-de-pele-compre-1-e-leve-2-64f22efb315d3-large.jpg" style="border-radius:10px;width:100%;height:100%"></div><div class="title"> <h2 style="font-size:17px">Riscos ou Cicatrizes</h2></div><div class="description"><p>Descubra a magia da Base Color Velvet e veja como ela transforma riscos e cicatrizes em lembranças do passado.</p></div></div></div></div></div></section>');
+            window.addEventListener('load', function(){
+                add_script(document.querySelector('section.product-features'), '//cdn.jsdelivr.net/npm/keen-slider@6.8.5/keen-slider.min.js', (loaded) => {
+                   var slider = new KeenSlider("#keen-slider-features", {
+                       loop: true,
+                       mode: "snap",
+                       rtl: false,
+                       slides: { perView: "auto" }
+                   });
+                });
+            });
+
+            document.querySelector('section.product-specifications[class*="product_specifications"]').insertAdjacentHTML('beforebegin', '<section class="product-original product-test-model-b" style=margin-top:30px><div class=content><div><div class=title style="text-align:center;padding:0 5px 15px"><h2 style=font-size:15px;font-weight:600;color:#008a00>Compra garantida!</h2></div><div class=title style="padding:0 15px 16px;text-align:center"> <h1>Produto Original</h1></div><div style="display:block;width:100%;padding:0 10px"><img src=https://s3.sa-east-1.amazonaws.com/king-assets.yampi.me/dooki/64f0ea47d269e/64f0ea47d26a2.jpg data-src=https://s3.sa-east-1.amazonaws.com/king-assets.yampi.me/dooki/64f0ea47d269e/64f0ea47d26a2.jpg alt=64f0ea47d26a2.jpg style=width:100%></div></div></div></section>');
+            console.log('#descrição de produto modelo b adicionado');
+        });
     }
 
     /* begin:: Selos de segurança */
@@ -691,7 +736,7 @@ console.log('#iniciando definição de script');
 
 const current_domain = window.location.hostname.replace('www.', '');
 const store_domain = window.merchant['domain'];
-if (current_domain != store_domain && !current_domain.includes('catalog.yampi.io')) {
+if(current_domain != store_domain && !current_domain.includes('catalog.yampi.io')) {
     window.merchant['checkout']['base_domain'] = window.merchant['checkout']['base_domain'].replace(store_domain, current_domain);
     window.merchant['checkout']['items'] = window.merchant['checkout']['items'].replace(store_domain, current_domain);
     window.merchant['checkout']['items_json'] = window.merchant['checkout']['items_json'].replace(store_domain, current_domain);
@@ -700,10 +745,10 @@ if (current_domain != store_domain && !current_domain.includes('catalog.yampi.io
     console.log('#mudança de domínio completa');
 }
 
-if (document.body.classList.contains('home')) {
+if(document.body.classList.contains('home')) {
     loading_on_home_page();
     loading_on_all_pages();
-} else if (document.body.classList.contains('product')) {
+} else if(document.body.classList.contains('product')) {
     addView();
     loading_on_product_page(random_model);
     loading_on_all_pages();
