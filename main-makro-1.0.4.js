@@ -219,7 +219,7 @@ function loading_on_product_page() {
         /* end:: Bandeiras de cartões */
 
         /* begin:: Informação do vendedor */
-        document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido e entregue por <span class="text-primary">Lojas Hiper</span></p>');
+        document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<p class="prod-current-seller" id="sold-by">Vendido e entregue por <span class="text-primary">Lojas Makro</span></p>');
         console.log('#informação do vendedor adicionado');
         /* end:: Informação do vendedor */
     });
