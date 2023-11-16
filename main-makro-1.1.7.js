@@ -191,7 +191,7 @@ function loading_on_product_page() {
     checkElement('.main-product-prices .show-installments').then((selector) => {
         var product_value = parseFloat(document.querySelector('.main-product-prices .actual-price').innerText.split(' ')[1].replace(',', '.'));
         var pix_value = (product_value * 0.95).toFixed(2);
-        var pix_discount = product_value - product_value;
+        var pix_discount = product_value - pix_value;
         document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('afterend', '<div class="product-pix-info" style="background:#f6f6f6;display:flex;align-items:center;margin-top:12px;padding:10px 15px;border-radius:4px;color:var(--black-medium)"><svg version="1.0" viewBox="0 0 901.000000 900.000000" xmlns="http://www.w3.org/2000/svg" style="fill:var(--color-btn-primary-background);width:27px;height:27px;margin-right:10px"><g transform="translate(0 900) scale(.1 -.1)"><path d="m4265 8986c-216-42-357-99-536-217-83-54-204-172-1001-968-500-498-908-909-908-913 0-5 92-8 204-8 288 0 449-33 646-132 186-94 194-101 985-889 413-411 766-755 785-765 49-26 181-26 230 0 19 10 368 350 775 755 642 640 752 746 834 800 241 159 431 218 735 228l178 6-888 889c-489 489-920 913-959 943-157 121-324 202-519 252-88 22-127 26-296 29-136 2-216-1-265-10z"></path><path d="m861 5935c-485-487-577-584-630-664-102-154-154-272-199-450-25-99-27-121-27-321 0-191 3-225 24-310 49-199 134-377 256-535 30-38 299-315 598-614l544-543 359 1c403 2 467 8 607 55 204 69 179 48 1022 887 759 756 760 756 845 798 197 96 409 94 603-5 66-35 130-95 812-774 446-444 766-756 807-784 79-56 187-107 289-137 68-20 102-23 419-29 190-3 352-9 360-13 11-5 167 145 586 565 488 490 580 587 633 667 34 52 73 116 87 142 195 385 195 873 0 1258-14 26-53 90-87 142-53 80-145 177-633 667-419 420-575 570-586 565-8-4-170-10-360-13-317-6-351-9-419-29-102-30-210-81-289-137-40-28-364-343-812-789-802-798-778-776-930-823-175-53-368-27-525 70-29 18-367 347-805 782-837 833-813 812-1017 882-136 46-219 54-616 56l-348 3-568-570z"></path><path d="m4465 3913c-47-14-101-65-805-767-796-793-804-800-990-894-196-99-359-132-647-132-112 0-203-3-203-8 0-4 408-415 908-913 797-796 918-914 1001-968 154-102 272-154 450-199 99-25 121-27 321-27 191 0 225 3 310 24 199 49 377 134 535 256 39 30 470 454 959 943l888 889-178 6c-304 10-494 69-735 228-82 54-193 161-839 805-722 719-747 743-799 758-67 19-110 19-176-1z"></path></g></svg><div class="pix-container"><div class="pix-value" style="display:flex;align-items:center;line-height:17px;gap:4px"><strong style="color:#201f1f;font-size:17px;font-weight:500">R$ '+ pix_value +'</strong><span>no pix</span><div style="background:var(--color-btn-primary-background);margin-left:2px;font-size:9px;line-height:9px;color:#fff;font-weight:400;display:inline-flex;padding:2px 7px;justify-content:center;border-radius:3px">5% de desconto</div></div><span class="pix-discount" style="font-size:13px;line-height:13px;margin-top:1px;display:flex">Pague com pix e economize R$ '+ pix_discount +'</span></div></div>');
         
         var section_product_price = document.querySelector('.main-product-prices .actual-price.price');
@@ -206,8 +206,10 @@ function loading_on_product_page() {
         });
         
         observer_product_price.observe(section_product_price, {
+            characterData: false, 
+            attributes: false, 
             childList: true,
-            characterData: true
+            subtree: false
         });
         console.log('#tipos de pagamento adicionado');
     });
