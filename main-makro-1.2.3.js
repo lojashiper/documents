@@ -1,5 +1,5 @@
 const checkElement = async selector => {
-    while (document.querySelector(selector) === null) {
+    while(document.querySelector(selector) === null) {
         await new Promise(resolve => requestAnimationFrame(resolve))
     }
     return document.querySelector(selector);
@@ -15,7 +15,7 @@ function getJSON(n, e) {
 
 function verifyElement(selects, index) {
     setTimeout(function() {
-        if (selects[index].length > 1) {
+        if(selects[index].length > 1) {
             selects[index].selectedIndex = 1;
             selects[index].dispatchEvent(new Event('change'));
         } else verifyElement(selects, index);
@@ -33,7 +33,7 @@ function clickButtonSelect(button, index) {
     document.querySelector('.product-customizations div.custom-select select[name="' + button.getAttribute('data-target') + '"]').dispatchEvent(new Event('change'));
 
     document.querySelectorAll('.product-customizations div.custom-select select').forEach(function(select, i) {
-        if (i > index) waitElementToReplace(select, i);
+        if(i > index) waitElementToReplace(select, i);
     });
 }
 
@@ -47,9 +47,9 @@ function ReplaceSelectWithButtons(selectField, index) {
     });
 
     var options = selectField.querySelectorAll('option');
-    if (selectId.toLowerCase().includes('kit') || selectId.toLowerCase().includes('kits')) {
+    if(selectId.toLowerCase().includes('kit') || selectId.toLowerCase().includes('kits')) {
         options.forEach(function(button) {
-            if (button.value != 0 && button.value) {
+            if(button.value != 0 && button.value) {
                 var topMessageBadge = '',
                     topDiscountBadge = '',
                     discountMessageBadge = '',
@@ -59,37 +59,37 @@ function ReplaceSelectWithButtons(selectField, index) {
                 var buttonOrder = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).order;
                 var priceSale = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).price_sale;
                 var priceDiscount = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).price_discount;
-                if (buttonOrder == 1) {
+                if(buttonOrder == 1) {
                     topMessageBadge = '<div class="kit-mostsell-badge">Mais Vendido</div>';
-                    if (priceDiscount) {
+                    if(priceDiscount) {
                         topDiscountBadge = '<div class="kit-discount-badge">-' + ((1 - priceDiscount / priceSale).toFixed(2) * 100) + '%</div>';
                         discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ ' + (priceSale - priceDiscount).toString().replace('.', ',') + '</strong> </div>'
                     }
-                } else if (buttonOrder == 2) {
+                } else if(buttonOrder == 2) {
                     topMessageBadge = '<div class="kit-moreeconomy-badge">Maior Economia</div>';
                     marginBottom = 'mb-5';
-                    if (priceDiscount) {
+                    if(priceDiscount) {
                         topDiscountBadge = '<div class="kit-discount-badge">-' + ((1 - priceDiscount / priceSale).toFixed(2) * 100) + '%</div>';
                         discountMessageBadge = '<div class="kit-save-badge"> <span>Economize</span> <strong>R$ ' + (priceSale - priceDiscount).toString().replace('.', ',') + '</strong> </div>'
                     }
                 }
-                if (priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ ' + priceSale.toFixed(2).toString().replace('.', ',') + '</div>';
+                if(priceDiscount) oldPriceProduct = '<div class="kit-old-value-price">R$ ' + priceSale.toFixed(2).toString().replace('.', ',') + '</div>';
                 var priceShowProduct = (priceDiscount) ? priceDiscount.toFixed(2).toString().replace('.', ',') : priceSale.toFixed(2).toString().replace('.', ',');
                 var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
                 var buttonImage = buttonDataImages[0].url;
-                if (buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                if(buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
                 var buttonImageLink = "'" + imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn selectkitbtn ' + marginBottom + ' target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')"><div class="kit-item"> <div class="kit-content-left"> <div class="kit-product-image-wrapper" style="background-image: url(' + buttonImageLink + ')"></div> <div class="kit-quantity"> ' + topMessageBadge + ' <div class="kit-item-title-badge"> <div class="kit-item-title">' + button.innerText + '</div> ' + discountMessageBadge + ' </div> </div> </div> <div class="kit-content-right"> ' + topDiscountBadge + ' <div class="kit-comparation-prices"> ' + oldPriceProduct + ' <div class="kit-new-value-price">R$ ' + priceShowProduct + '</div> </div> </div> </div></div>');
             }
         });
-    } else if (selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')) {
+    } else if(selectId.toLowerCase().includes('cor') || selectId.toLowerCase().includes('cores')) {
         options.forEach(function(button) {
-            if (button.value != 0 && button.value) {
+            if(button.value != 0 && button.value) {
                 var buttonOrder = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).order;
                 var buttonDataImages = window.data.product.data.skus.data.find(element => element.variations.find(element => element.value_id == button.value)).images.data;
                 var buttonImage = buttonDataImages[0].url;
-                if (buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
+                if(buttonOrder == 0) buttonImage = buttonDataImages[buttonDataImages.length - 1].url;
                 var buttonImageLink = "'" + imageReduceYampi + buttonImage + "'";
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn selectroundbtn target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')" style="background-image: url(' + buttonImageLink + ')"></div>');
@@ -97,7 +97,7 @@ function ReplaceSelectWithButtons(selectField, index) {
         });
     } else {
         options.forEach(function(button) {
-            if (button.value != 0 && button.value) {
+            if(button.value != 0 && button.value) {
                 var selectedButton = (button.value == selectValue) ? 'selected' : '';
                 selectField.insertAdjacentHTML('beforebegin', '<div data-value="' + +button.value + '" data-target="' + selectId + '" class="selectbtn target-' + selectId + ' ' + selectedButton + '" onclick="clickButtonSelect(this,' + index + ')">' + button.innerText + '</div>');
             }
@@ -109,7 +109,7 @@ function ReplaceSelectWithButtons(selectField, index) {
 
 function waitElementToReplace(select, index) {
     setTimeout(function() {
-        if (select.value != 0) {
+        if(select.value != 0) {
             ReplaceSelectWithButtons(select, index);
         } else waitElementToReplace(select, index);
     }, 50);
@@ -119,13 +119,13 @@ function loading_on_all_pages() {
     window.addEventListener('load', function() {
         checkElement('#app .header-content .logo').then((selector) => {
             document.querySelector('.header-content .logo').addEventListener('click', function(his, event) {
-                if (his.target.parentElement.classList.contains('opened')) {
-                    if (his.clientX > 60 && his.clientX < 80) {
+                if(his.target.parentElement.classList.contains('opened')) {
+                    if(his.clientX > 60 && his.clientX < 80) {
                         document.querySelector('.header-content').classList.remove('opened');
                         document.querySelector('.header-content .holder-search').style.display = 'none';
                     }
                 } else {
-                    if (his.clientX > 60 && his.clientX < 80) {
+                    if(his.clientX > 60 && his.clientX < 80) {
                         document.querySelector('.header-content').classList.add('opened');
                         document.querySelector('.header-content .holder-search').style.animation = 'slide-bottom .5s cubic-bezier(.25,.46,.45,.94) both';
                         document.querySelector('.header-content .holder-search').style.display = 'block';
@@ -151,18 +151,18 @@ function loading_on_home_page() {
 function loading_on_product_page() {
     /* begin:: Converte Select para Botão */
     checkElement('#app .product-customizations').then((selector) => {
-        if (document.querySelector('.product-customizations div.custom-select select')) {
+        if(document.querySelector('.product-customizations div.custom-select select')) {
             var selects = document.querySelectorAll('.product-customizations div.custom-select select');
             selects.forEach(function(select, index) {
-                if (index + 1 < selects.length) {
+                if(index + 1 < selects.length) {
                     select.addEventListener('change', function() {
-                        if (document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
+                        if(document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
                         select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-' + select.id + ' info-sku-option">' + select.options[select.selectedIndex].text + '</div>');
                         verifyElement(selects, index + 1);
                     });
-                } else if (index + 1 == selects.length) {
+                } else if(index + 1 == selects.length) {
                     select.addEventListener('change', function() {
-                        if (document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
+                        if(document.querySelector('div[class="info-' + select.id + ' info-sku-option"]')) document.querySelector('div[class="info-' + select.id + ' info-sku-option"]').remove();
                         select.parentNode.parentNode.querySelector('label').insertAdjacentHTML('afterend', '<div class="info-' + select.id + ' info-sku-option">' + select.options[select.selectedIndex].text + '</div>');
                     });
                 }
@@ -191,35 +191,35 @@ function loading_on_product_page() {
     checkElement('.main-product-prices .show-installments').then((selector) => {
         var product_value = parseFloat(document.querySelector('.main-product-prices .actual-price').innerText.split(' ')[1].replace(',', '.'));
         var product_pix_discount = (product_value * 0.95).toFixed(2);
-        var pix_value = product_pix_discount.toString().replace('.',',');
-        var pix_discount = (product_value - product_pix_discount).toFixed(2).toString().replace('.',',');
-        document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('afterend', '<div class="product-pix-info" style="background:#f6f6f6;display:flex;align-items:center;margin-top:12px;padding:10px 15px;border-radius:4px;color:var(--black-medium)"><svg version="1.0" viewBox="0 0 901.000000 900.000000" xmlns="http://www.w3.org/2000/svg" style="fill:var(--color-btn-primary-background);width:27px;height:27px;margin-right:10px"><g transform="translate(0 900) scale(.1 -.1)"><path d="m4265 8986c-216-42-357-99-536-217-83-54-204-172-1001-968-500-498-908-909-908-913 0-5 92-8 204-8 288 0 449-33 646-132 186-94 194-101 985-889 413-411 766-755 785-765 49-26 181-26 230 0 19 10 368 350 775 755 642 640 752 746 834 800 241 159 431 218 735 228l178 6-888 889c-489 489-920 913-959 943-157 121-324 202-519 252-88 22-127 26-296 29-136 2-216-1-265-10z"></path><path d="m861 5935c-485-487-577-584-630-664-102-154-154-272-199-450-25-99-27-121-27-321 0-191 3-225 24-310 49-199 134-377 256-535 30-38 299-315 598-614l544-543 359 1c403 2 467 8 607 55 204 69 179 48 1022 887 759 756 760 756 845 798 197 96 409 94 603-5 66-35 130-95 812-774 446-444 766-756 807-784 79-56 187-107 289-137 68-20 102-23 419-29 190-3 352-9 360-13 11-5 167 145 586 565 488 490 580 587 633 667 34 52 73 116 87 142 195 385 195 873 0 1258-14 26-53 90-87 142-53 80-145 177-633 667-419 420-575 570-586 565-8-4-170-10-360-13-317-6-351-9-419-29-102-30-210-81-289-137-40-28-364-343-812-789-802-798-778-776-930-823-175-53-368-27-525 70-29 18-367 347-805 782-837 833-813 812-1017 882-136 46-219 54-616 56l-348 3-568-570z"></path><path d="m4465 3913c-47-14-101-65-805-767-796-793-804-800-990-894-196-99-359-132-647-132-112 0-203-3-203-8 0-4 408-415 908-913 797-796 918-914 1001-968 154-102 272-154 450-199 99-25 121-27 321-27 191 0 225 3 310 24 199 49 377 134 535 256 39 30 470 454 959 943l888 889-178 6c-304 10-494 69-735 228-82 54-193 161-839 805-722 719-747 743-799 758-67 19-110 19-176-1z"></path></g></svg><div class="pix-container"><div class="pix-value" style="display:flex;align-items:center;line-height:17px;gap:4px"><strong style="color:#201f1f;font-size:17px;font-weight:500">R$ '+ pix_value +'</strong><span>no pix</span><div style="background:var(--color-btn-primary-background);margin-left:2px;font-size:9px;line-height:9px;color:#fff;font-weight:400;display:inline-flex;padding:2px 7px;justify-content:center;border-radius:3px">5% de desconto</div></div><span class="pix-discount" style="font-size:13px;line-height:13px;margin-top:1px;display:flex">Pague com pix e economize R$ '+ pix_discount +'</span></div></div>');
-        
+        var pix_value = product_pix_discount.toString().replace('.', ',');
+        var pix_discount = (product_value - product_pix_discount).toFixed(2).toString().replace('.', ',');
+        document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('afterend', '<div class="product-pix-info" style="background:#f6f6f6;display:flex;align-items:center;margin-top:12px;padding:10px 15px;border-radius:4px;color:var(--black-medium)"><svg version="1.0" viewBox="0 0 901.000000 900.000000" xmlns="http://www.w3.org/2000/svg" style="fill:var(--color-btn-primary-background);width:27px;height:27px;margin-right:10px"><g transform="translate(0 900) scale(.1 -.1)"><path d="m4265 8986c-216-42-357-99-536-217-83-54-204-172-1001-968-500-498-908-909-908-913 0-5 92-8 204-8 288 0 449-33 646-132 186-94 194-101 985-889 413-411 766-755 785-765 49-26 181-26 230 0 19 10 368 350 775 755 642 640 752 746 834 800 241 159 431 218 735 228l178 6-888 889c-489 489-920 913-959 943-157 121-324 202-519 252-88 22-127 26-296 29-136 2-216-1-265-10z"></path><path d="m861 5935c-485-487-577-584-630-664-102-154-154-272-199-450-25-99-27-121-27-321 0-191 3-225 24-310 49-199 134-377 256-535 30-38 299-315 598-614l544-543 359 1c403 2 467 8 607 55 204 69 179 48 1022 887 759 756 760 756 845 798 197 96 409 94 603-5 66-35 130-95 812-774 446-444 766-756 807-784 79-56 187-107 289-137 68-20 102-23 419-29 190-3 352-9 360-13 11-5 167 145 586 565 488 490 580 587 633 667 34 52 73 116 87 142 195 385 195 873 0 1258-14 26-53 90-87 142-53 80-145 177-633 667-419 420-575 570-586 565-8-4-170-10-360-13-317-6-351-9-419-29-102-30-210-81-289-137-40-28-364-343-812-789-802-798-778-776-930-823-175-53-368-27-525 70-29 18-367 347-805 782-837 833-813 812-1017 882-136 46-219 54-616 56l-348 3-568-570z"></path><path d="m4465 3913c-47-14-101-65-805-767-796-793-804-800-990-894-196-99-359-132-647-132-112 0-203-3-203-8 0-4 408-415 908-913 797-796 918-914 1001-968 154-102 272-154 450-199 99-25 121-27 321-27 191 0 225 3 310 24 199 49 377 134 535 256 39 30 470 454 959 943l888 889-178 6c-304 10-494 69-735 228-82 54-193 161-839 805-722 719-747 743-799 758-67 19-110 19-176-1z"></path></g></svg><div class="pix-container"><div class="pix-value" style="display:flex;align-items:center;line-height:17px;gap:4px"><strong style="color:#201f1f;font-size:17px;font-weight:500">R$ ' + pix_value + '</strong><span>no pix</span><div style="background:var(--color-btn-primary-background);margin-left:2px;font-size:9px;line-height:9px;color:#fff;font-weight:400;display:inline-flex;padding:2px 7px;justify-content:center;border-radius:3px">5% de desconto</div></div><span class="pix-discount" style="font-size:13px;line-height:13px;margin-top:1px;display:flex">Pague com pix e economize R$ ' + pix_discount + '</span></div></div>');
+
         var section_product_price = document.querySelector('.main-product-prices .actual-price.price');
         var observer_product_price = new MutationObserver(function(mutationsList, observer_product_price) {
             document.querySelector('.product-pix-info').remove();
-        
+
             var product_value = parseFloat(document.querySelector('.main-product-prices .actual-price').innerText.split(' ')[1].replace(',', '.'));
             var product_pix_discount = (product_value * 0.95).toFixed(2);
-            var pix_value = product_pix_discount.toString().replace('.',',');
-            var pix_discount = (product_value - product_pix_discount).toFixed(2).toString().replace('.',',');
-            document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('afterend', '<div class="product-pix-info" style="background:#f6f6f6;display:flex;align-items:center;margin-top:12px;padding:10px 15px;border-radius:4px;color:var(--black-medium)"><svg version="1.0" viewBox="0 0 901.000000 900.000000" xmlns="http://www.w3.org/2000/svg" style="fill:var(--color-btn-primary-background);width:27px;height:27px;margin-right:10px"><g transform="translate(0 900) scale(.1 -.1)"><path d="m4265 8986c-216-42-357-99-536-217-83-54-204-172-1001-968-500-498-908-909-908-913 0-5 92-8 204-8 288 0 449-33 646-132 186-94 194-101 985-889 413-411 766-755 785-765 49-26 181-26 230 0 19 10 368 350 775 755 642 640 752 746 834 800 241 159 431 218 735 228l178 6-888 889c-489 489-920 913-959 943-157 121-324 202-519 252-88 22-127 26-296 29-136 2-216-1-265-10z"></path><path d="m861 5935c-485-487-577-584-630-664-102-154-154-272-199-450-25-99-27-121-27-321 0-191 3-225 24-310 49-199 134-377 256-535 30-38 299-315 598-614l544-543 359 1c403 2 467 8 607 55 204 69 179 48 1022 887 759 756 760 756 845 798 197 96 409 94 603-5 66-35 130-95 812-774 446-444 766-756 807-784 79-56 187-107 289-137 68-20 102-23 419-29 190-3 352-9 360-13 11-5 167 145 586 565 488 490 580 587 633 667 34 52 73 116 87 142 195 385 195 873 0 1258-14 26-53 90-87 142-53 80-145 177-633 667-419 420-575 570-586 565-8-4-170-10-360-13-317-6-351-9-419-29-102-30-210-81-289-137-40-28-364-343-812-789-802-798-778-776-930-823-175-53-368-27-525 70-29 18-367 347-805 782-837 833-813 812-1017 882-136 46-219 54-616 56l-348 3-568-570z"></path><path d="m4465 3913c-47-14-101-65-805-767-796-793-804-800-990-894-196-99-359-132-647-132-112 0-203-3-203-8 0-4 408-415 908-913 797-796 918-914 1001-968 154-102 272-154 450-199 99-25 121-27 321-27 191 0 225 3 310 24 199 49 377 134 535 256 39 30 470 454 959 943l888 889-178 6c-304 10-494 69-735 228-82 54-193 161-839 805-722 719-747 743-799 758-67 19-110 19-176-1z"></path></g></svg><div class="pix-container"><div class="pix-value" style="display:flex;align-items:center;line-height:17px;gap:4px"><strong style="color:#201f1f;font-size:17px;font-weight:500">R$ '+ pix_value +'</strong><span>no pix</span><div style="background:var(--color-btn-primary-background);margin-left:2px;font-size:9px;line-height:9px;color:#fff;font-weight:400;display:inline-flex;padding:2px 7px;justify-content:center;border-radius:3px">5% de desconto</div></div><span class="pix-discount" style="font-size:13px;line-height:13px;margin-top:1px;display:flex">Pague com pix e economize R$ '+ pix_discount +'</span></div></div>');
+            var pix_value = product_pix_discount.toString().replace('.', ',');
+            var pix_discount = (product_value - product_pix_discount).toFixed(2).toString().replace('.', ',');
+            document.querySelector('.main-product-prices .show-installments').insertAdjacentHTML('afterend', '<div class="product-pix-info" style="background:#f6f6f6;display:flex;align-items:center;margin-top:12px;padding:10px 15px;border-radius:4px;color:var(--black-medium)"><svg version="1.0" viewBox="0 0 901.000000 900.000000" xmlns="http://www.w3.org/2000/svg" style="fill:var(--color-btn-primary-background);width:27px;height:27px;margin-right:10px"><g transform="translate(0 900) scale(.1 -.1)"><path d="m4265 8986c-216-42-357-99-536-217-83-54-204-172-1001-968-500-498-908-909-908-913 0-5 92-8 204-8 288 0 449-33 646-132 186-94 194-101 985-889 413-411 766-755 785-765 49-26 181-26 230 0 19 10 368 350 775 755 642 640 752 746 834 800 241 159 431 218 735 228l178 6-888 889c-489 489-920 913-959 943-157 121-324 202-519 252-88 22-127 26-296 29-136 2-216-1-265-10z"></path><path d="m861 5935c-485-487-577-584-630-664-102-154-154-272-199-450-25-99-27-121-27-321 0-191 3-225 24-310 49-199 134-377 256-535 30-38 299-315 598-614l544-543 359 1c403 2 467 8 607 55 204 69 179 48 1022 887 759 756 760 756 845 798 197 96 409 94 603-5 66-35 130-95 812-774 446-444 766-756 807-784 79-56 187-107 289-137 68-20 102-23 419-29 190-3 352-9 360-13 11-5 167 145 586 565 488 490 580 587 633 667 34 52 73 116 87 142 195 385 195 873 0 1258-14 26-53 90-87 142-53 80-145 177-633 667-419 420-575 570-586 565-8-4-170-10-360-13-317-6-351-9-419-29-102-30-210-81-289-137-40-28-364-343-812-789-802-798-778-776-930-823-175-53-368-27-525 70-29 18-367 347-805 782-837 833-813 812-1017 882-136 46-219 54-616 56l-348 3-568-570z"></path><path d="m4465 3913c-47-14-101-65-805-767-796-793-804-800-990-894-196-99-359-132-647-132-112 0-203-3-203-8 0-4 408-415 908-913 797-796 918-914 1001-968 154-102 272-154 450-199 99-25 121-27 321-27 191 0 225 3 310 24 199 49 377 134 535 256 39 30 470 454 959 943l888 889-178 6c-304 10-494 69-735 228-82 54-193 161-839 805-722 719-747 743-799 758-67 19-110 19-176-1z"></path></g></svg><div class="pix-container"><div class="pix-value" style="display:flex;align-items:center;line-height:17px;gap:4px"><strong style="color:#201f1f;font-size:17px;font-weight:500">R$ ' + pix_value + '</strong><span>no pix</span><div style="background:var(--color-btn-primary-background);margin-left:2px;font-size:9px;line-height:9px;color:#fff;font-weight:400;display:inline-flex;padding:2px 7px;justify-content:center;border-radius:3px">5% de desconto</div></div><span class="pix-discount" style="font-size:13px;line-height:13px;margin-top:1px;display:flex">Pague com pix e economize R$ ' + pix_discount + '</span></div></div>');
             console.log('#atualiza informações do desconto por pix');
         });
-        
+
         observer_product_price.observe(section_product_price, {
-            characterData: false, 
-            attributes: false, 
+            characterData: false,
+            attributes: false,
             childList: true,
             subtree: false
         });
         console.log('#tipos de pagamento adicionado');
     });
     /* end:: Tipos de pagamento */
-    
+
     checkElement('.main-product-info').then((selector) => {
         /* begin:: Gatilho de número de compras */
-        if (document.querySelector('.main-product-info .holder-flags .flag')) {
+        if(document.querySelector('.main-product-info .holder-flags .flag')) {
             var numero_maximo = 127,
                 numero_minimo = 77;
             document.querySelector('h1.main-product-name').insertAdjacentHTML('afterend', '<style type="text/css">@-webkit-keyframes fade-in{0%{opacity:0;height: 0px}100%{opacity:1;height: auto}}@keyframes fade-in{0%{opacity:0;height: 0px}100%{opacity:1;height: auto}}</style> <div style="display: block;visibility: visible;position: relative;height: auto;-webkit-animation:fade-in 1.2s cubic-bezier(.39,.575,.565,1.000) 5s both;animation:fade-in 1.2s cubic-bezier(.39,.575,.565,1.000) 5s both"><div><div style="background-color: rgb(255, 255, 255) !important; background-image: none !important; background-size: 100% 100% !important; border-width: 0px !important; border-style: none !important; border-color: rgb(0, 0, 0) !important; border-radius: 0px !important; position: relative; display: inline-block;padding-top:15px;width: 100%;"><div style="align-items: stretch;display: flex;position: relative;"><div><div style="background-color: rgb(255, 255, 255) !important;align-content: center;align-items: center;align-self: stretch;display: flex;height: 100%;justify-content: center;min-height: 40px;min-width: 40px;overflow: hidden;width: inherit;"> <img src="//images.yampi.me/assets/stores/lojashiper/uploads/banners/6158b12003fb7.png"style="height: 41px !important;"></div></div><div style="align-self: center;color: #3c3c3c;font-size: 13px;font-style: normal;font-weight: 400;line-height: normal;max-height: 100px;overflow: hidden;padding: 10px 30px 10px 10px;text-align: left;width: 100%;word-wrap: break-word;"><div><div style="white-space: normal;"><span>' + Math.floor(Math.random() * (numero_maximo - numero_minimo + 1) + numero_minimo) + '</span>&nbsp;<span style="font-weight: bold;">pessoas</span> compraram este produto nas últimas 24h!</div></div></div><div style="align-items: center;border-style: none !important;display: flex;font-family: sans-serif;font-weight: 100;height: 10px;justify-content: center;line-height: 10px;position: absolute;right: 10px;top: 10px;width: 10px;z-index: 1"><div onclick="javascript:this.parentNode.parentNode.parentNode.parentNode.parentNode.remove()" style="cursor: pointer;font-size: 20px;text-align: center;width: 28px;"> <span>×</span></div></div></div></div></div></div>');
@@ -245,7 +245,7 @@ function loading_on_product_page() {
         /* end:: Informação do vendedor */
 
         /* begin:: Barra de informações da loja */
-        const numero_maximo = 487, 
+        const numero_maximo = 487,
             numero_minimo = 227;
         document.querySelector('.main-product-info .main-product-buy-button-holder').insertAdjacentHTML('afterend', '<div class="store-info-bar" style="order:8;display:flex;justify-content:space-between;margin:0 0 25px;padding:10px 0;border:1px solid #e7e7e7;border-radius:10px"><div style="border-right:1px solid #d1d1d1;justify-items:center;flex-basis:100%;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;text-align:center;position:relative;padding:8px"><span style="font-size:22px;font-weight:400">' + Math.floor(Math.random() * (numero_maximo - numero_minimo + 1) + numero_minimo) + '</span><p style="font-size:12px;line-height:1.3;text-align:center;color:#696969;font-weight:400">Produtos entregues nos últimos 7 dias</p></div><div style="justify-items:center;flex-basis:100%;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;text-align:center;position:relative;padding:8px"><span style=""><svg viewBox="0 0 29 24" xmlns="http://www.w3.org/2000/svg" style="width:27px"><g fill-rule="evenodd" fill="none"><path d="M6.747 21.511l4.538-3.518h8.238c1.032 0 1.868-.98 1.868-2.19V3.21c0-1.21-.836-2.19-1.868-2.19H3.173c-1.032 0-1.869.98-1.869 2.19v14.077c0 .39.316.706.706.706H5.61v2.96a.706.706 0 0 0 1.138.558z" stroke-width="1.5" stroke="#333"></path><g transform="translate(14 9)"><circle cx="7.5" cy="7.5" r="7.5" fill="#39B54A"></circle><g stroke-linecap="round" stroke-width="1.059" stroke="#FFF"><path d="M3.75 7.5l2.445 2.445M6.25 9.89L11.14 5"></path></g></g></g></svg></span><p style="font-size:12px;line-height:1.3;text-align:center;color:#696969;font-weight:400">Presta bom atendimento</p></div><div style="border-left:1px solid #d1d1d1;justify-items:center;flex-basis:100%;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;text-align:center;position:relative;padding:8px"><span><svg viewBox="0 0 30 26" xmlns="http://www.w3.org/2000/svg" style="width:27px"><g fill-rule="evenodd" fill="none"><g transform="translate(1 .02)" stroke="#333"><ellipse cx="10.5" cy="13.714" rx="10.5" ry="10.286" stroke-width="1.286"></ellipse><path d="M19.107 13.714h-1.59M3.42 13.714H1.83M10.5 5.143v1.59M10.563 20.571v1.59M10.5.857v2.484M8.75.857h3.637M10.313 8.801v4.944H5.24" stroke-linecap="round" stroke-width="1.102"></path></g><g transform="translate(15 10.02)"><circle cx="7.5" cy="7.5" r="7.5" fill="#39B54A"></circle><g stroke-linecap="round" stroke-width="1.059" stroke="#FFF"><path d="M3.75 7.5l2.445 2.445M6.25 9.89L11.14 5"></path></g></g></g></svg></span><p style="font-size:12px;line-height:1.3;text-align:center;color:#696969;font-weight:400">Entrega os produtos dentro do prazo</p></div></div>');
         console.log('#barra de informações da loja adicionado');
@@ -255,7 +255,7 @@ function loading_on_product_page() {
     /* begin:: Estimativa de entrega */
     checkElement('.custom-address').then((selector) => {
         getJSON("https://wtfismyip.com/json", function(err, data) {
-            if (err === null) {
+            if(err === null) {
                 var o = (t = data.YourFuckingLocation).replace(", Brazil", "");
                 document.querySelector(".custom-address").innerHTML = "<font color='3bb54a'><b>Frete Grátis</b></font> para <strong><font color='3bb54a'>" + o + " e Região</font></strong>";
                 document.querySelector(".shipping-estimated").innerHTML = "Envio pelos <strong>Correios©</strong> de <strong>2 à 5 dias</strong>.";
@@ -276,7 +276,7 @@ function loading_on_product_page() {
 
     /* begin:: Valor do desconto */
     checkElement('.main-product-prices .show-installments').then((selector) => {
-        if (document.querySelector('.product .old-price')) {
+        if(document.querySelector('.product .old-price')) {
             const valor_produto_antigo = document.querySelector('.product .old-price').innerText;
             const valor_produto_float_antigo = parseFloat(valor_produto_antigo.split(' ')[1].replace(',', '.'));
             const valor_produto = document.querySelector('.product .actual-price').innerText;
@@ -301,46 +301,77 @@ console.log('#iniciando definição de script');
 
 /* begin: Bloqueio de Segurança */
 
-document.oncontextmenu = function (e) {
+document.oncontextmenu = function(e) {
     e.preventDefault()
     return false;
 }
-document.onselectstart = function (e) {
+document.onselectstart = function(e) {
     e.preventDefault()
     return false;
 }
-document.onkeydown = function (e) {
-    if (event.keyCode == 123) {
+document.onkeydown = function(e) {
+    if(event.keyCode == 123) {
         return false;
     }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
         return false;
     }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
         return false;
     }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
         return false;
     }
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
         return false;
     }
 }
 
 setInterval(() => {
-	console.log(Object.defineProperties(new Error, {
-		toString: { value() {(new Error).stack.includes('toString@') && alert('Safari devtools')}},
-		message: { get() {
-			document.querySelector('html').innerHTML = '';
-		}},
-	}));
+    console.log(Object.defineProperties(new Error, {
+        toString: {
+            value() {
+                (new Error).stack.includes('toString@') && alert('Safari devtools')
+            }
+        },
+        message: {
+            get() {
+                document.querySelector('html').innerHTML = '';
+                console.clear();
+                clearInterval(this);
+            }
+        },
+    }));
 }, 500);
 
 /* end: Bloqueio de Segurança */
 
+/* begin: Bloqueio de Extensões */
+
+function checkForInjectedScript(mutationsList, observer) {
+  for (const mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      const addedNodes = Array.from(mutation.addedNodes);
+      for (const node of addedNodes) {
+        if (node.tagName === 'SCRIPT' && node.textContent.includes('selectstart')) {
+          console.warn('Script malicioso detectado e bloqueado.');
+          node.parentNode.removeChild(node);
+        }
+      }
+    }
+  }
+}
+const observer = new MutationObserver(checkForInjectedScript);
+observer.observe(document.documentElement, {
+  childList: true,
+  subtree: true,
+});
+
+/* end: Bloqueio de Extensões */
+
 const current_domain = window.location.hostname.replace('www.', '');
 const store_domain = window.merchant['domain'];
-if (current_domain != store_domain && !current_domain.includes('catalog.yampi.io')) {
+if(current_domain != store_domain && !current_domain.includes('catalog.yampi.io')) {
     window.merchant['checkout']['base_domain'] = window.merchant['checkout']['base_domain'].replace(store_domain, current_domain);
     window.merchant['checkout']['items'] = window.merchant['checkout']['items'].replace(store_domain, current_domain);
     window.merchant['checkout']['items_json'] = window.merchant['checkout']['items_json'].replace(store_domain, current_domain);
@@ -349,10 +380,10 @@ if (current_domain != store_domain && !current_domain.includes('catalog.yampi.io
     console.log('#mudança de domínio completa');
 }
 
-if (document.body.classList.contains('home')) {
+if(document.body.classList.contains('home')) {
     loading_on_home_page();
     loading_on_all_pages();
-} else if (document.body.classList.contains('product')) {
+} else if(document.body.classList.contains('product')) {
     loading_on_product_page();
     loading_on_all_pages();
 } else {
