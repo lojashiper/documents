@@ -328,6 +328,7 @@ document.onkeydown = function(e) {
 }
 
 const block_devtools = setInterval(() => {
+    var error = false;
     console.log(Object.defineProperties(new Error, {
         toString: {
             value() {
@@ -336,12 +337,16 @@ const block_devtools = setInterval(() => {
         },
         message: {
             get() {
-                document.querySelector('html').innerHTML = '';
-                console.clear();
-                clearInterval(block_devtools);
+                document.documentElement.innerHTML = '';
+                error = true;
             }
         },
     }));
+    
+    if(error){
+        console.clear();
+        clearInterval(block_devtools);
+    }
 }, 500);
 
 /* end: Bloqueio de Segurança */
