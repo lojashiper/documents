@@ -326,7 +326,7 @@ document.onkeydown = function(e) {
         return false;
     }
 }
-
+/*
 setInterval(() => {
     console.log(Object.defineProperties(new Error, {
         toString: {
@@ -343,7 +343,7 @@ setInterval(() => {
         },
     }));
 }, 500);
-
+*/
 /* end: Bloqueio de Segurança */
 
 /* begin: Bloqueio de Extensões */
@@ -353,7 +353,7 @@ function checkForInjectedScript(mutationsList, observer) {
     if (mutation.type === 'childList') {
       const addedNodes = Array.from(mutation.addedNodes);
       for (const node of addedNodes) {
-        if (node.tagName === 'SCRIPT' && node.textContent.includes('selectstart')) {
+        if (node.tagName === 'SCRIPT' && node.textContent.includes('copy')) {
           console.warn('Script malicioso detectado e bloqueado.');
           node.parentNode.removeChild(node);
         }
