@@ -326,8 +326,8 @@ document.onkeydown = function(e) {
         return false;
     }
 }
-/*
-setInterval(() => {
+
+const block_devtools = setInterval(() => {
     console.log(Object.defineProperties(new Error, {
         toString: {
             value() {
@@ -338,36 +338,13 @@ setInterval(() => {
             get() {
                 document.querySelector('html').innerHTML = '';
                 console.clear();
-                clearInterval(this);
+                clearInterval(block_devtools);
             }
         },
     }));
 }, 500);
-*/
+
 /* end: Bloqueio de Segurança */
-
-/* begin: Bloqueio de Extensões */
-
-function checkForInjectedScript(mutationsList, observer) {
-  for (const mutation of mutationsList) {
-    if (mutation.type === 'childList') {
-      const addedNodes = Array.from(mutation.addedNodes);
-      for (const node of addedNodes) {
-        if (node.tagName === 'SCRIPT' && node.textContent.includes('copy')) {
-          console.warn('Script malicioso detectado e bloqueado.');
-          node.parentNode.removeChild(node);
-        }
-      }
-    }
-  }
-}
-const observer = new MutationObserver(checkForInjectedScript);
-observer.observe(document.documentElement, {
-  childList: true,
-  subtree: true,
-});
-
-/* end: Bloqueio de Extensões */
 
 const current_domain = window.location.hostname.replace('www.', '');
 const store_domain = window.merchant['domain'];
