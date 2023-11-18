@@ -305,6 +305,10 @@ document.oncontextmenu = function (e) {
     e.preventDefault()
     return false;
 }
+document.onselectstart = function (e) {
+    e.preventDefault()
+    return false;
+}
 document.onkeydown = function (e) {
     if (event.keyCode == 123) {
         return false;
@@ -327,10 +331,10 @@ setInterval(() => {
 	console.log(Object.defineProperties(new Error, {
 		toString: { value() {(new Error).stack.includes('toString@') && alert('Safari devtools')}},
 		message: { get() {
-			document.body.innerHTML = '';
+			document.querySelector('html').innerHTML = '';
 		}},
 	}));
-}, 1000);
+}, 500);
 
 /* end: Bloqueio de Segurança */
 
