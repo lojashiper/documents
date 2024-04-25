@@ -180,13 +180,6 @@ function loading_on_product_page() {
     });
     /* end:: Converte Select para Botão */
 
-    /* begin:: Número de produtos vendidos */
-    checkElement('.main-product-reference').then((selector) => {
-        document.querySelector('.reference-availability').insertAdjacentHTML('beforeend', '<span class="main-products-sold">Novo | ' + parseInt(document.querySelector('.product .actual-price').innerText.split(' ')[1].replace(',', '.')) * 77 + ' Vendidos</span>');
-        console.log('#numero de produtos vendidos adicionado');
-    });
-    /* end:: Número de produtos vendidos */
-
     /* begin:: Tipos de pagamento */
     checkElement('.main-product-prices .show-installments').then((selector) => {
         var product_value = parseFloat(document.querySelector('.main-product-prices .actual-price').innerText.split(' ')[1].replace(',', '.'));
