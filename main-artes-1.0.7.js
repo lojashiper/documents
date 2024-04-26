@@ -139,7 +139,6 @@ function loading_on_all_pages() {
     checkElement('#modal-confirm-add-to-cart').then((selector) => {
         var modal_add_to_cart = document.querySelector('#modal-confirm-add-to-cart').parentNode;
         var observer_modal_add_to_cart = new MutationObserver(function(mutations, observer_modal_add_to_cart){
-            modal_add_to_cart.style.display = 'none';
             if(modal_add_to_cart.matches('.active')){
                 checkElement('#modal-confirm-add-to-cart .modal-footer .btn-modal-primary').then((selector) => {
                     var modal_button_add_to_cart = document.querySelector('#modal-confirm-add-to-cart .modal-footer .btn-modal-primary');
