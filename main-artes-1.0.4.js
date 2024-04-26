@@ -272,7 +272,33 @@ function loading_on_product_page() {
     /* end:: Selos de segurança */
 }
 
-document.querySelector('body').classList.add('script-makro');
+function loading_on_category_page() {
+    /* begin:: Modal de adicionar ao carrinho */
+    checkElement('.footer').then((selector) => {
+        var modal_add_to_cart = document.querySelector('#modal-confirm-add-to-cart').parentNode;
+        var observer_modal_add_to_cart = new MutationObserver(function(mutations, observer_modal_add_to_cart){
+            modal_add_to_cart.style.display = 'none';
+            if(modal_add_to_cart.matches('.active')){
+                checkElement('#modal-confirm-add-to-cart .modal-footer .btn-modal-primary').then((selector) => {
+                    var modal_button_add_to_cart = document.querySelector('#modal-confirm-add-to-cart .modal-footer .btn-modal-primary');
+                    modal_button_add_to_cart.click();
+                });
+            }
+        });
+
+        observer_modal_add_to_cart.observe(modal_add_to_cart, {
+            attributes: true,
+            attributeOldValue: true,
+            attributeFilter: ['class'],
+            childList: false,
+            characterData: false
+        });
+        console.log('#observer do modal de adicionar ao carrinho adicionado');
+    });
+    /* end:: Modal de adicionar ao carrinho */
+}
+
+document.querySelector('body').classList.add('script-artes');
 console.log('#iniciando definição de script');
 
 /* begin: Bloqueio de Segurança */
@@ -297,6 +323,9 @@ if(document.body.classList.contains('home')) {
     loading_on_all_pages();
 } else if(document.body.classList.contains('product')) {
     loading_on_product_page();
+    loading_on_all_pages();
+} else if(document.body.classList.contains('category')) {
+    loading_on_category_page();
     loading_on_all_pages();
 } else {
     loading_on_all_pages();
