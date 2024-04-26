@@ -274,7 +274,7 @@ function loading_on_product_page() {
 
 function loading_on_category_page() {
     /* begin:: Modal de adicionar ao carrinho */
-    checkElement('.footer').then((selector) => {
+    checkElement('#modal-confirm-add-to-cart').then((selector) => {
         var modal_add_to_cart = document.querySelector('#modal-confirm-add-to-cart').parentNode;
         var observer_modal_add_to_cart = new MutationObserver(function(mutations, observer_modal_add_to_cart){
             modal_add_to_cart.style.display = 'none';
