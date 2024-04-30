@@ -171,11 +171,13 @@ function start_countdown_timer(duration) {
         minutes = (diff / 60) | 0;
         seconds = (diff % 60) | 0;
 
-        localStorage.setItem('banner_countdown', JSON.stringify({
-            minutes: minutes,
-            seconds: seconds,
-            datetime: new Date().getTime()
-        }));
+        if (diff > 0){
+            localStorage.setItem('banner_countdown', JSON.stringify({
+                minutes: minutes,
+                seconds: seconds,
+                datetime: new Date().getTime()
+            }));
+        }
 
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
