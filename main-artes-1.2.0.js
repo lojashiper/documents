@@ -191,12 +191,14 @@ function start_countdown_timer(duration) {
                 display_banner.classList.add('shake');
             }
         }else{
-            document.querySelector('#app').insertAdjacentHTML('beforebegin', '<div class="banner-footer fadeinup"><div class="bf-content"><div class="bf-infos"><div class="bf-title"><p>Oferta Relâmpago!</p></div><div class="bf-desc"><p>Corra, descontos por tempo limitado.</p></div></div><div class="bf-timer"><div class="bf-hour"><p class="number">00</p><p class="text">HOR</p></div><div class="bf-min"><p class="number">20</p><p class="text">MIN</p></div><div class="bf-sec"><p class="number">00</p><p class="text">SEG</p></div></div></div></div>');
-            display_banner = document.querySelector('.banner-footer');
-            display_minutes = document.querySelector('.banner-footer .bf-min .number');
-            display_seconds = document.querySelector('.banner-footer .bf-sec .number');
-            display_minutes.textContent = minutes;
-            display_seconds.textContent = seconds;
+            if (diff > 0){
+                document.querySelector('#app').insertAdjacentHTML('beforebegin', '<div class="banner-footer fadeinup"><div class="bf-content"><div class="bf-infos"><div class="bf-title"><p>Oferta Relâmpago!</p></div><div class="bf-desc"><p>Corra, descontos por tempo limitado.</p></div></div><div class="bf-timer"><div class="bf-hour"><p class="number">00</p><p class="text">HOR</p></div><div class="bf-min"><p class="number">20</p><p class="text">MIN</p></div><div class="bf-sec"><p class="number">00</p><p class="text">SEG</p></div></div></div></div>');
+                display_banner = document.querySelector('.banner-footer');
+                display_minutes = document.querySelector('.banner-footer .bf-min .number');
+                display_seconds = document.querySelector('.banner-footer .bf-sec .number');
+                display_minutes.textContent = minutes;
+                display_seconds.textContent = seconds;
+            }
         }
 
         if (diff < 2 && diff > 0) {
