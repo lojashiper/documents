@@ -199,8 +199,11 @@ function start_countdown_timer(duration) {
             display_seconds.textContent = seconds;
         }
 
-        if (diff <= 0) {
-            start = Date.now() + 1000;
+        if (diff <= 1) {
+            display_banner.classList.remove('shake');
+            display_banner.classList.remove('fadeinup');
+        }else if (diff <= 0) {
+            display_banner.classList.add('fadeoutdown');
         }
     }, 1000);
 }
