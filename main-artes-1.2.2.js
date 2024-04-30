@@ -207,7 +207,7 @@ function start_countdown_timer(duration) {
             display_banner.classList.remove('shake');
             display_banner.classList.remove('fadeinup');
         }else if (diff <= 0) {
-            display_banner.classList.add('fadeoutdown');
+            if (display_banner) display_banner.classList.add('fadeoutdown');
             clearInterval(interval_countdown);
         }
     }, 1000);
