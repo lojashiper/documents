@@ -177,19 +177,19 @@ function start_countdown_timer(duration) {
             datetime: new Date().getTime()
         }));
 
-        if (seconds % 4 == 0){
-            display_banner.classList.remove('shake');
-            display_banner.classList.remove('fadeinup');
-        }else if (seconds % 5 == 0){
-            display_banner.classList.add('shake');
-        }
-
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
         if (display_banner){
             display_minutes.textContent = minutes;
             display_seconds.textContent = seconds;
+
+            if (seconds % 4 == 0){
+                display_banner.classList.remove('shake');
+                display_banner.classList.remove('fadeinup');
+            }else if (seconds % 5 == 0){
+                display_banner.classList.add('shake');
+            }
         }else{
             document.querySelector('#app').insertAdjacentHTML('beforebegin', '<div class="banner-footer fadeinup"><div class="bf-content"><div class="bf-infos"><div class="bf-title"><p>Oferta Relâmpago!</p></div><div class="bf-desc"><p>Corra, descontos por tempo limitado.</p></div></div><div class="bf-timer"><div class="bf-hour"><p class="number">00</p><p class="text">HOR</p></div><div class="bf-min"><p class="number">20</p><p class="text">MIN</p></div><div class="bf-sec"><p class="number">00</p><p class="text">SEG</p></div></div></div></div>');
             display_banner = document.querySelector('.banner-footer');
