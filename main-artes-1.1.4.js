@@ -217,7 +217,7 @@ function loading_countdown_on_page() {
                     var duration = 60 * 20;
                     start_countdown_timer(duration);
                 }else{
-                    console.log('loaded', banner_countdown_fields.minutes, banner_countdown_fields.seconds);
+                    console.log('#tempo anterior carregado', banner_countdown_fields.minutes, banner_countdown_fields.seconds);
                     var duration = (60 * banner_countdown_fields.minutes) + banner_countdown_fields.seconds;
                     start_countdown_timer(duration);
                 }
