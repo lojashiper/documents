@@ -196,7 +196,7 @@ function start_countdown_timer(duration, display_minutes, display_seconds, displ
     }, 1000);
 }
 
-function loading_on_category_page() {
+function loading_countdown_on_page() {
     window.addEventListener('load', function() {
 
         /* begin:: Banner Countdown */
@@ -379,13 +379,14 @@ if(current_domain != store_domain && !current_domain.includes('catalog.yampi.io'
 
 if(document.body.classList.contains('home')) {
     loading_on_home_page();
+    loading_countdown_on_page();
     loading_on_all_pages();
 } else if(document.body.classList.contains('product')) {
     loading_on_product_page();
     loading_on_all_pages();
 } else if(document.body.classList.contains('category')) {
-    loading_on_category_page();
     loading_on_all_pages();
+    loading_countdown_on_page();
 } else {
     loading_on_all_pages();
 }
