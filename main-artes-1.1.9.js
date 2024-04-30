@@ -165,7 +165,7 @@ function loading_on_home_page() {
 
 function start_countdown_timer(duration) {
     var start = Date.now(), diff, minutes, seconds, display_banner, display_minutes, display_seconds;
-    setInterval(() => {
+    var interval_countdown = setInterval(() => {
         diff = duration - (((Date.now() - start) / 1000) | 0);
 
         minutes = (diff / 60) | 0;
@@ -204,7 +204,7 @@ function start_countdown_timer(duration) {
             display_banner.classList.remove('fadeinup');
         }else if (diff <= 0) {
             display_banner.classList.add('fadeoutdown');
-            clearInterval(this);
+            clearInterval(interval_countdown);
         }
     }, 1000);
 }
