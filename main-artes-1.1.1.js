@@ -173,6 +173,7 @@ function start_countdown_timer(duration, display_minutes, display_seconds, displ
 
         if (seconds % 4 == 0){
             display_banner.classList.remove('shake');
+            display_banner.classList.remove('fadeinup');
         }else if (seconds % 5 == 0){
             display_banner.classList.add('shake');
         }
@@ -213,7 +214,7 @@ function loading_countdown_on_page() {
                     var bf_seconds = document.querySelector('.banner-footer .bf-sec .number');
                     start_countdown_timer(duration, bf_minutes, bf_seconds, banner_footer);
                 }else{
-                    console.log('loaded!');
+                    console.log('loaded', banner_countdown_fields.minutes, banner_countdown_fields.seconds);
                     var duration = (60 * banner_countdown_fields.minutes) + banner_countdown_fields.seconds;
                     var banner_footer = document.querySelector('.banner-footer');
                     var bf_minutes = document.querySelector('.banner-footer .bf-min .number');
