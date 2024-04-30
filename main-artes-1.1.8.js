@@ -199,7 +199,7 @@ function start_countdown_timer(duration) {
             display_seconds.textContent = seconds;
         }
 
-        if (diff < 2 && > 0) {
+        if (diff < 2 && diff > 0) {
             display_banner.classList.remove('shake');
             display_banner.classList.remove('fadeinup');
         }else if (diff <= 0) {
