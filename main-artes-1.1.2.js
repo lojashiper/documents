@@ -171,6 +171,12 @@ function start_countdown_timer(duration, display_minutes, display_seconds, displ
         minutes = (diff / 60) | 0;
         seconds = (diff % 60) | 0;
 
+        localStorage.setItem('banner_countdown', JSON.stringify({
+            minutes: minutes,
+            seconds: seconds,
+            datetime: new Date().getTime()
+        }));
+
         if (seconds % 4 == 0){
             display_banner.classList.remove('shake');
             display_banner.classList.remove('fadeinup');
@@ -187,13 +193,6 @@ function start_countdown_timer(duration, display_minutes, display_seconds, displ
         if (diff <= 0) {
             start = Date.now() + 1000;
         }
-
-        var banner_countdown_fields = {
-            minutes: minutes,
-            seconds: seconds,
-            datetime: new Date().getTime()
-        };
-        localStorage.setItem('banner_countdown', JSON.stringify(banner_countdown_fields));
     }, 1000);
 }
 
