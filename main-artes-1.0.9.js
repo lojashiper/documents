@@ -201,6 +201,8 @@ function loading_on_category_page() {
 
         /* begin:: Banner Countdown */
         checkElement('#app').then((selector) => {
+            document.querySelector('#app').insertAdjacentHTML('beforebegin', '<div class="banner-footer fadeinup"><div class="bf-content"><div class="bf-infos"><div class="bf-title"><p>Oferta Relâmpago!</p></div><div class="bf-desc"><p>Corra, descontos por tempo limitado.</p></div></div><div class="bf-timer"><div class="bf-hour"><p class="number">00</p><p class="text">HOR</p></div><div class="bf-min"><p class="number">20</p><p class="text">MIN</p></div><div class="bf-sec"><p class="number">00</p><p class="text">SEG</p></div></div></div></div>');
+
             if(localStorage.getItem('banner_countdown') !== null){
                 var banner_countdown_fields = JSON.parse(localStorage.getItem('banner_countdown'));
                 var actual_datetime = new Date().getTime();
